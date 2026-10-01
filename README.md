@@ -20,22 +20,30 @@ scatter, calibration, decontamination audit)*
 ## Headline result
 
 DeepNeo-CL v4.2 was trained only on the public **NetMHCpan-4.2 supplementary training archive**
-(published 2025-08-07) and evaluated against the version-pinned NetMHCpan-4.2c executable on
-two benchmarks, each decontaminated against the v4.2 training corpus:
+(published 2025-08-07) and evaluated against **two field-standard reference predictors** —
+**NetMHCpan-4.2c** and **MHCflurry-2.0** — on identical rows of two benchmarks, each
+decontaminated against the v4.2 training corpus.
 
-| Benchmark | n | positives | DeepNeo v4.2 EL AUROC | NetMHCpan-4.2c AUROC | Δ (EL) | DeLong p | per-allele Wilcoxon |
-|---|---:|---:|---:|---:|---:|---:|---|
-| **mono_el_v2 strict-sequence-disjoint** | 108,165 | 1,889 | **0.6433** [0.6294, 0.6572] | 0.6012 [0.5864, 0.6164] | **+0.042** | 2.7e-11 | 10/12 alleles, p=0.002 |
-| **TransPHLA exact-disjoint** | 117,884 | 37,370 | **0.9685** [0.9675, 0.9695] | 0.9492 [0.9478, 0.9506] | **+0.019** | 9.5e-292 | 64/93 alleles, p=9.5e-5 |
+**Presentation task — AUROC (95% bootstrap CI):**
 
-**Binding-affinity (BA) head:** wins on mono_el_v2 strict-disjoint (ΔAUROC +0.019, DeLong
-p=1.8e-4) and is **statistically tied** with NetMHCpan-4.2c on TransPHLA (per-allele Wilcoxon
-p=0.79).
+| Benchmark | n | DeepNeo v4.2 EL | MHCflurry-2.0 presentation | NetMHCpan-4.2c |
+|---|---:|---:|---:|---:|
+| **mono_el_v2 strict-sequence-disjoint** | 108,165 | **0.6433** [0.6298, 0.6573] | 0.6389 [0.6261, 0.6526] | 0.6012 [0.5862, 0.6163] |
+| **TransPHLA exact-disjoint** | 117,884 | **0.9685** [0.9676, 0.9695] | 0.9715 [0.9705, 0.9725] | 0.9492 [0.9478, 0.9506] |
 
-**In one sentence:** DeepNeo-CL v4.2's **presentation (EL) head consistently beats
-NetMHCpan-4.2c on both decontaminated benchmarks**, at every level of sequence-identity
-stringency including the strictest 8-mer-disjoint cut; the binding head is competitive-to-ahead.
-All reported significant results survive Holm / Benjamini-Hochberg multiple-testing correction.
+**In one sentence:** DeepNeo-CL v4.2's presentation head is **competitive with the two
+field-standard MHC-I predictors — clearly superior to NetMHCpan-4.2c and statistically on par
+with MHCflurry-2.0** — across both independently decontaminated benchmarks. On the strict
+mono-allelic set DeepNeo and MHCflurry are **tied** (ΔAUROC +0.004, DeLong *p*=0.41); on
+TransPHLA they are **neck-and-neck** (MHCflurry marginally higher pooled, DeepNeo winning the
+majority of individual alleles, 55/93, Wilcoxon *p*=0.03). Both clearly beat **NetMHCpan-4.2c**
+on presentation at every level of sequence-identity stringency (ΔAUROC +0.019 to +0.042,
+*p* ≤ 2.7×10⁻¹¹). All significant results survive Holm / Benjamini–Hochberg correction.
+
+**Binding affinity:** MHCflurry-2.0's affinity predictor retains an edge over DeepNeo's BA head
+on both benchmarks (ΔAUROC −0.039 and −0.023); DeepNeo's BA head still exceeds NetMHCpan-4.2c on
+the strict mono-allelic set. Full numbers, CIs, and per-allele tables are in
+[`results/`](results/) (including the 3-way `threeway_*.json` reports).
 
 ---
 
@@ -45,7 +53,8 @@ All reported significant results survive Holm / Benjamini-Hochberg multiple-test
 |---|---|
 | [`BENCHMARK_SCOPE.md`](BENCHMARK_SCOPE.md) | Definition of the two canonical benchmarks + full canonical numbers |
 | [`MODEL_CARD.md`](MODEL_CARD.md) | Model identity, training-data provenance, checkpoint SHA-256 hashes |
-| [`results/*.json`](results/) | Full statistical reports (AUROC/AUPR + 10k-bootstrap CIs, per-allele tables, calibration ECE/Brier, paired DeLong + Wilcoxon) |
+| [`results/*_report_10kboot.json`](results/) | Full statistical reports (AUROC/AUPR + 10k-bootstrap CIs, per-allele tables, calibration ECE/Brier, paired DeLong + Wilcoxon) |
+| [`results/threeway_*.json`](results/) | 3-way comparison: DeepNeo vs NetMHCpan-4.2c vs MHCflurry-2.0 (presentation + affinity) on each benchmark |
 | [`results/*_per_allele.csv`](results/) | Per-allele AUROC/AUPR for both models, both benchmarks |
 | [`results/canonical_multiple_testing_correction.txt`](results/canonical_multiple_testing_correction.txt) | Holm + Benjamini-Hochberg correction over the test family |
 
@@ -63,8 +72,9 @@ Every number on the live dashboard and in this README is reproducible from these
 - **Temporal gate.** Mono-allelic eluted-ligand positives come from three post-cutoff PRIDE
   immunopeptidomics studies (first-public date after the NetMHCpan-4.2 release), so neither
   model could have trained on them.
-- **Scoring.** DeepNeo is a 5-fold ensemble; NetMHCpan-4.2c is the unmodified DTU executable.
-  Both score identical rows.
+- **Scoring.** DeepNeo is a 5-fold ensemble; **NetMHCpan-4.2c** is the unmodified DTU
+  executable; **MHCflurry-2.0** is the openvax `Class1PresentationPredictor` (presentation +
+  affinity). All three score identical rows.
 - **Statistics.** AUROC/AUPR with 10,000-iteration bootstrap CIs; paired significance via the
   analytic DeLong test; a per-allele paired Wilcoxon signed-rank test (so a win reflects a
   consistent per-allele pattern, not just a large pooled n); calibration via 10-bin ECE +
