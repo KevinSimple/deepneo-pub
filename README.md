@@ -1,5 +1,7 @@
 # DeepNeo-CL v4.2 — public benchmark & model card
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23073343.svg)](https://doi.org/10.5281/zenodo.23073343)
+
 A LoRA-adapted protein language model for **MHC-I peptide binding & presentation** prediction,
 benchmarked head-to-head against **NetMHCpan-4.2c** on two independently decontaminated,
 post-training-cutoff test sets.
@@ -110,8 +112,8 @@ are not covered by this license.)
 ## Citation
 
 > Wang, K. *DeepNeo-CL v4.2: a LoRA-adapted protein language model for MHC-I peptide binding
-> and presentation — benchmark & model card.* 2026. GitHub: KevinSimple/deepneo-pub.
-> *(A Zenodo DOI will be minted from a release of this repository — add it here once issued.)*
+> and presentation — benchmark & model card.* 2026. Zenodo.
+> https://doi.org/10.5281/zenodo.23073343
 
 ---
 
