@@ -1,0 +1,20 @@
+
+=== holm (n=8 tests, canonical two-benchmark family) ===
+REJECT  p=2.688e-11  p_adj=1.613e-10  mono_el_v2 strict-disjoint | EL | DeLong
+REJECT  p=2.441e-03  p_adj=7.323e-03  mono_el_v2 strict-disjoint | EL | Wilcoxon
+REJECT  p=1.778e-04  p_adj=7.112e-04  mono_el_v2 strict-disjoint | BA | DeLong
+fail    p=1.763e-01  p_adj=3.526e-01  mono_el_v2 strict-disjoint | BA | Wilcoxon
+REJECT  p=9.503e-292  p_adj=7.602e-291  TransPHLA exact-disjoint | EL | DeLong
+REJECT  p=9.520e-05  p_adj=4.760e-04  TransPHLA exact-disjoint | EL | Wilcoxon
+REJECT  p=5.744e-63  p_adj=4.021e-62  TransPHLA exact-disjoint | BA | DeLong
+fail    p=7.919e-01  p_adj=7.919e-01  TransPHLA exact-disjoint | BA | Wilcoxon
+
+=== fdr_bh (n=8 tests, canonical two-benchmark family) ===
+REJECT  p=2.688e-11  p_adj=7.168e-11  mono_el_v2 strict-disjoint | EL | DeLong
+REJECT  p=2.441e-03  p_adj=3.255e-03  mono_el_v2 strict-disjoint | EL | Wilcoxon
+REJECT  p=1.778e-04  p_adj=2.845e-04  mono_el_v2 strict-disjoint | BA | DeLong
+fail    p=1.763e-01  p_adj=2.015e-01  mono_el_v2 strict-disjoint | BA | Wilcoxon
+REJECT  p=9.503e-292  p_adj=7.602e-291  TransPHLA exact-disjoint | EL | DeLong
+REJECT  p=9.520e-05  p_adj=1.904e-04  TransPHLA exact-disjoint | EL | Wilcoxon
+REJECT  p=5.744e-63  p_adj=2.298e-62  TransPHLA exact-disjoint | BA | DeLong
+fail    p=7.919e-01  p_adj=7.919e-01  TransPHLA exact-disjoint | BA | Wilcoxon
