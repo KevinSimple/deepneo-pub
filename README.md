@@ -20,30 +20,52 @@ scatter, calibration, decontamination audit)*
 ## Headline result
 
 DeepNeo-CL v4.2 was trained only on the public **NetMHCpan-4.2 supplementary training archive**
-(published 2025-08-07) and evaluated against **two field-standard reference predictors** —
-**NetMHCpan-4.2c** and **MHCflurry-2.0** — on identical rows of two benchmarks, each
-decontaminated against the v4.2 training corpus.
+(published 2025-08-07) and evaluated against **four field-standard reference predictors** —
+**NetMHCpan-4.2c** (2025), **MHCflurry-2.0** (2020), **BigMHC** (2023), and **MixMHCpred v3**
+(2024) — on identical rows of two benchmarks.
 
-**Presentation task — AUROC (95% bootstrap CI):**
+**Presentation task — AUROC:**
 
-| Benchmark | n | DeepNeo v4.2 EL | MHCflurry-2.0 presentation | NetMHCpan-4.2c |
-|---|---:|---:|---:|---:|
-| **mono_el_v2 strict-sequence-disjoint** | 108,165 | **0.6433** [0.6298, 0.6573] | 0.6389 [0.6261, 0.6526] | 0.6012 [0.5862, 0.6163] |
-| **TransPHLA exact-disjoint** | 117,884 | **0.9685** [0.9676, 0.9695] | 0.9715 [0.9705, 0.9725] | 0.9492 [0.9478, 0.9506] |
+| Model | mono_el_v2 strict-disjoint *(fair primary)* | TransPHLA exact-disjoint *(secondary)* |
+|---|---:|---:|
+| **BigMHC (2023)** | **0.6803** | 0.9583 |
+| DeepNeo v4.2 EL | 0.6433 | **0.9685** |
+| MHCflurry-2.0 presentation | 0.6389 | **0.9715** |
+| NetMHCpan-4.2c | 0.6012 | 0.9492 |
+| MixMHCpred v3 (2024) | 0.5970 | 0.9456 |
 
-**In one sentence:** DeepNeo-CL v4.2's presentation head is **competitive with the two
-field-standard MHC-I predictors — clearly superior to NetMHCpan-4.2c and statistically on par
-with MHCflurry-2.0** — across both independently decontaminated benchmarks. On the strict
-mono-allelic set DeepNeo and MHCflurry are **tied** (ΔAUROC +0.004, DeLong *p*=0.41); on
-TransPHLA they are **neck-and-neck** (MHCflurry marginally higher pooled, DeepNeo winning the
-majority of individual alleles, 55/93, Wilcoxon *p*=0.03). Both clearly beat **NetMHCpan-4.2c**
-on presentation at every level of sequence-identity stringency (ΔAUROC +0.019 to +0.042,
-*p* ≤ 2.7×10⁻¹¹). All significant results survive Holm / Benjamini–Hochberg correction.
+**In one sentence (honest, no cherry-picking):** DeepNeo-CL v4.2 is a **consistent top-tier
+presentation predictor — clearly superior to NetMHCpan-4.2c and MixMHCpred, on par with
+MHCflurry-2.0, and trading the lead with BigMHC** (behind BigMHC on the fair 2026 mono-allelic
+benchmark, ahead of it on TransPHLA). **BigMHC is the single strongest model on the genuinely
+fair benchmark; no model dominates both.** All significant results survive Holm / Benjamini–
+Hochberg correction. (Binding-affinity head: MHCflurry-2.0's affinity predictor leads; DeepNeo
+BA still beats NetMHCpan-4.2c on the strict mono-allelic set.)
 
-**Binding affinity:** MHCflurry-2.0's affinity predictor retains an edge over DeepNeo's BA head
-on both benchmarks (ΔAUROC −0.039 and −0.023); DeepNeo's BA head still exceeds NetMHCpan-4.2c on
-the strict mono-allelic set. Full numbers, CIs, and per-allele tables are in
-[`results/`](results/) (including the 3-way `threeway_*.json` reports).
+### Fairness — which benchmark to trust, and the limits of decontamination
+
+No head-to-head can *guarantee* a peptide was never seen by a third-party model whose full
+training set is not public (immunopeptidome peptides recur across datasets). We control for this
+three ways, strongest first:
+
+1. **Temporal gate.** mono_el_v2's three PRIDE studies are all **2026** — after every model
+   version (NetMHCpan-4.2 2025, MixMHCpred 2024, BigMHC 2023, MHCflurry 2020). No model could
+   have trained on these specific studies ⇒ **mono_el_v2 is the fair primary benchmark.**
+2. **Shared-public-well decontamination** against a 17.6M union catalogue including IEDB + CEDAR
+   (the common training source) removes most recurring pairs for *all* models, not just DeepNeo.
+3. **BigMHC double-decontamination (direct test).** Using BigMHC's own public 17M-pair training
+   set, we built a subset (n=70,400) **neither DeepNeo nor BigMHC trained on**: BigMHC **0.6726**
+   vs DeepNeo **0.6304** (DeLong *p*=1.5e-15) — the gap is unchanged, so **BigMHC's advantage is
+   real, not a contamination artifact.**
+
+**TransPHLA (2022)** predates the 2023+ models, so it is *temporally confounded* for them and is
+reported only as a secondary benchmark. **Residual limitation:** only DeepNeo's training is fully
+controlled; any residual overlap in a baseline's private data biases *toward the baseline*, so
+DeepNeo's standing here is conservative.
+
+Full numbers, CIs, per-allele Wilcoxon, and DeLong tests are in [`results/`](results/)
+(`multiway_*.json` = 5-model comparisons; `multiway_mono_doubledisjoint_bigmhc.json` = the fair
+BigMHC cut).
 
 ---
 
@@ -54,7 +76,8 @@ the strict mono-allelic set. Full numbers, CIs, and per-allele tables are in
 | [`BENCHMARK_SCOPE.md`](BENCHMARK_SCOPE.md) | Definition of the two canonical benchmarks + full canonical numbers |
 | [`MODEL_CARD.md`](MODEL_CARD.md) | Model identity, training-data provenance, checkpoint SHA-256 hashes |
 | [`results/*_report_10kboot.json`](results/) | Full statistical reports (AUROC/AUPR + 10k-bootstrap CIs, per-allele tables, calibration ECE/Brier, paired DeLong + Wilcoxon) |
-| [`results/threeway_*.json`](results/) | 3-way comparison: DeepNeo vs NetMHCpan-4.2c vs MHCflurry-2.0 (presentation + affinity) on each benchmark |
+| [`results/multiway_*.json`](results/) | 5-model comparison (DeepNeo / NetMHCpan-4.2c / MHCflurry-2.0 / BigMHC / MixMHCpred) per benchmark, incl. `multiway_mono_doubledisjoint_bigmhc.json` = the fair DeepNeo-vs-BigMHC cut |
+| [`results/threeway_*.json`](results/) | earlier 3-way comparison (DeepNeo vs NetMHCpan-4.2c vs MHCflurry-2.0), superseded by the multiway reports |
 | [`results/*_per_allele.csv`](results/) | Per-allele AUROC/AUPR for both models, both benchmarks |
 | [`results/canonical_multiple_testing_correction.txt`](results/canonical_multiple_testing_correction.txt) | Holm + Benjamini-Hochberg correction over the test family |
 
