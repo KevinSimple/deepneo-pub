@@ -1,0 +1,16 @@
+{
+  "benchmark": "TransPHLA",
+  "decontaminated_against": "NetMHCpan-4.2 corpus (BA+EL)",
+  "n_full": 161652,
+  "in_42_corpus": 43245,
+  "pct_contaminated_vs_42": 26.75,
+  "pct_contaminated_vs_41_reference": 26.92,
+  "n_clean": 118407,
+  "clean_per_length": {
+    "8": 5079,
+    "9": 88057,
+    "10": 17646,
+    "11": 7625
+  },
+  "note": "For the v4.2 comparison only. The v4.1 comparison uses the separate vs-4.1 clean subset (n=118,143). Do not mix them."
+}

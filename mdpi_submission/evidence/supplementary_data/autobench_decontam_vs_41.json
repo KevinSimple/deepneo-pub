@@ -1,0 +1,10 @@
+{
+  "autobench_pairs": 44516,
+  "in_41_corpus": 9527,
+  "pct_contaminated": 21.4,
+  "clean_rows": 34989,
+  "clean_positives": 20469,
+  "clean_alleles": 58,
+  "alleles_scorable_within_allele": 41,
+  "note": "Clean = auto_bench pairs absent from the NetMHCpan-4.1 training corpus (BA or EL, union of CV test folds). Fair for BOTH DeepNeo-v4.1 and NetMHCpan-4.1 (same corpus). This is the 4.1 counterpart of autobench_decontam_vs_42.json; the two clean subsets differ because the 4.2 corpus is larger."
+}

@@ -1,0 +1,46 @@
+{
+  "v41_fus_vs_fus_control": {
+    "deepneo_auroc": 0.9571618200508365,
+    "netmhcpan_auroc": 0.9575901621561731,
+    "delta_auroc": -0.0004283421053365988,
+    "n_bootstrap": 1000,
+    "delta_ci95_lo": -0.00605960029178873,
+    "delta_ci95_hi": 0.005850435991597668,
+    "excludes_zero": false
+  },
+  "v41_ba_head_vs_nmp_ba": {
+    "deepneo_auroc": 0.9362811152208738,
+    "netmhcpan_auroc": 0.9499758004024087,
+    "delta_auroc": -0.013694685181534938,
+    "n_bootstrap": 1000,
+    "delta_ci95_lo": -0.019856919980232077,
+    "delta_ci95_hi": -0.007536953586127696,
+    "excludes_zero": true
+  },
+  "v41_el_head_vs_nmp_el": {
+    "deepneo_auroc": 0.9639909555041776,
+    "netmhcpan_auroc": 0.9581141377323256,
+    "delta_auroc": 0.005876817771852005,
+    "n_bootstrap": 1000,
+    "delta_ci95_lo": -0.0031539461160937613,
+    "delta_ci95_hi": 0.018016539267971303,
+    "excludes_zero": false
+  },
+  "v41_deployed_fus_vs_nmp_ba": {
+    "deepneo_auroc": 0.9571618200508365,
+    "netmhcpan_auroc": 0.9499758004024087,
+    "delta_auroc": 0.007186019648427799,
+    "n_bootstrap": 1000,
+    "delta_ci95_lo": 0.002610354117758834,
+    "delta_ci95_hi": 0.01236817985902611,
+    "excludes_zero": true
+  },
+  "_meta": {
+    "seed": 20260724,
+    "B": 1000,
+    "cluster": "hla_allele",
+    "n_rows": 118143,
+    "n_alleles": 112,
+    "sampling": "Draw alleles with replacement, take all rows per drawn allele"
+  }
+}

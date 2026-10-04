@@ -1,0 +1,27 @@
+{
+  "provenance": {
+    "comparator": "NetMHCpan-4.2 (Nilsson et al., Front. Immunol. 2025)",
+    "binary": "/workspace/netMHCpan-4.2/netMHCpan",
+    "protocol": "Scored via the frozen Stage 1 run_netmhcpan() helper -- identical allele formatting, -BA invocation, parsing and rows as the NetMHCpan-4.1 columns in the manuscript. Only the binary differs.",
+    "reference_4_1": {
+      "iedb_pooled_auroc": 0.8707,
+      "iedb_pooled_aupr": 0.8016,
+      "iedb_mean_per_allele_auroc": 0.8697,
+      "transphla_ba_auroc": 0.9638,
+      "transphla_el_auroc": 0.9682
+    },
+    "deepneo_deployment_safe": {
+      "iedb_pooled_auroc": 0.8279,
+      "iedb_mean_per_allele_auroc": 0.8467,
+      "transphla_ba_auroc_fusion": 0.9694,
+      "transphla_el_auroc": 0.9697
+    }
+  },
+  "iedb": {
+    "n": 1365,
+    "auroc": 0.9117059515366691,
+    "aupr": 0.8723584357933063,
+    "mean_per_allele_auroc": 0.914685038652439,
+    "label_col": "label_binder"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "v41_fus_vs_fus_control": {
+    "n_alleles": 84,
+    "wilcoxon_p": 0.2525764312437475,
+    "mean_delta_per_allele": 0.0015992972937718358,
+    "holm_adjusted_p": 0.505152862487495
+  },
+  "v41_ba_head_vs_nmp_ba": {
+    "n_alleles": 84,
+    "wilcoxon_p": 0.0004192117798214637,
+    "mean_delta_per_allele": -0.0052502170540769085,
+    "holm_adjusted_p": 0.0016768471192858548
+  },
+  "v41_el_head_vs_nmp_el": {
+    "n_alleles": 84,
+    "wilcoxon_p": 0.3860515520369642,
+    "mean_delta_per_allele": 0.004269870009350565,
+    "holm_adjusted_p": 0.505152862487495
+  },
+  "v41_deployed_fus_vs_nmp_ba": {
+    "n_alleles": 84,
+    "wilcoxon_p": 0.050371238000775975,
+    "mean_delta_per_allele": 0.006613071150447398,
+    "holm_adjusted_p": 0.15111371400232793
+  },
+  "_meta": {
+    "family_size": 4,
+    "adjustment": "Holm-Bonferroni",
+    "family": "four v4.1 Table 2 comparisons"
+  }
+}

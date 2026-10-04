@@ -1,0 +1,194 @@
+{
+  "figures": {
+    "fig_roc_pr_decontam": {
+      "supports": [
+        "Abstract three-view claim on decontaminated TransPHLA n=118,143",
+        "Table 2 v4.1 headline AUROCs / AUPRs at the row level"
+      ],
+      "source_npz": "milestone_netmhcpan_beaten/thesis_assets/transphla_raw_predictions.npz",
+      "n_clean": 118143,
+      "positives": 37509,
+      "scores": {
+        "DeepNeo-CL fusion": {
+          "auroc": 0.9572527343956256,
+          "aupr": 0.9261234854741069
+        },
+        "NetMHCpan-4.1 BA": {
+          "auroc": 0.9499758004024087,
+          "aupr": 0.9119735125109307
+        },
+        "NetMHCpan-4.1 EL": {
+          "auroc": 0.9581141377323256,
+          "aupr": 0.9350881506304561
+        }
+      }
+    },
+    "fig_per_length_decontam": {
+      "supports": [
+        "Section 3.2: per-length Delta AUROC on decontaminated TransPHLA",
+        "Falsified secondary hypothesis: no monotone long-length tail"
+      ],
+      "source_npz": "milestone_netmhcpan_beaten/thesis_assets/transphla_raw_predictions.npz",
+      "n_clean": 118143,
+      "rows": [
+        {
+          "length": 8,
+          "n": 5071,
+          "positives": 1319,
+          "auroc_deepneo": 0.9365060393365137,
+          "auroc_nmp41_ba": 0.9283294550210068,
+          "delta_auroc": 0.00817658431550683,
+          "delta_auroc_ci_lo": 0.003166417431436458,
+          "delta_auroc_ci_hi": 0.012332309777041625,
+          "aupr_deepneo": 0.8801055766333501,
+          "aupr_nmp41_ba": 0.8775417832285565,
+          "delta_aupr": 0.002563793404793624,
+          "delta_aupr_ci_lo": -0.005984613104922973,
+          "delta_aupr_ci_hi": 0.010853781399185263
+        },
+        {
+          "length": 9,
+          "n": 87897,
+          "positives": 30278,
+          "auroc_deepneo": 0.967129696922921,
+          "auroc_nmp41_ba": 0.9628593547849309,
+          "delta_auroc": 0.004270342137990046,
+          "delta_auroc_ci_lo": 0.0036479564200418675,
+          "delta_auroc_ci_hi": 0.004879249293532436,
+          "aupr_deepneo": 0.9423988360910892,
+          "aupr_nmp41_ba": 0.9326488314082911,
+          "delta_aupr": 0.009750004682798075,
+          "delta_aupr_ci_lo": 0.008275700236939002,
+          "delta_aupr_ci_hi": 0.011255641867931328
+        },
+        {
+          "length": 10,
+          "n": 17564,
+          "positives": 4085,
+          "auroc_deepneo": 0.9239994250088286,
+          "auroc_nmp41_ba": 0.9090768240691378,
+          "delta_auroc": 0.014922600939690778,
+          "delta_auroc_ci_lo": 0.011871480079177843,
+          "delta_auroc_ci_hi": 0.01838614613780778,
+          "aupr_deepneo": 0.8506146522339302,
+          "aupr_nmp41_ba": 0.8140952169264607,
+          "delta_aupr": 0.03651943530746948,
+          "delta_aupr_ci_lo": 0.030666142497983075,
+          "delta_aupr_ci_hi": 0.04244556612615371
+        },
+        {
+          "length": 11,
+          "n": 7611,
+          "positives": 1827,
+          "auroc_deepneo": 0.8761311236629594,
+          "auroc_nmp41_ba": 0.8563047581952289,
+          "delta_auroc": 0.019826365467730533,
+          "delta_auroc_ci_lo": 0.01411288619860955,
+          "delta_auroc_ci_hi": 0.025680393488679287,
+          "aupr_deepneo": 0.797689212613317,
+          "aupr_nmp41_ba": 0.7786557676727001,
+          "delta_aupr": 0.019033444940616984,
+          "delta_aupr_ci_lo": 0.011743393652342357,
+          "delta_aupr_ci_hi": 0.027043260178791797
+        }
+      ],
+      "bootstrap": {
+        "B": 500,
+        "seed": 20260726
+      }
+    },
+    "fig_per_length_delta_aupr": {
+      "supports": [
+        "Supplement: Delta AUPR companion to per-length Delta AUROC"
+      ],
+      "source_npz": "milestone_netmhcpan_beaten/thesis_assets/transphla_raw_predictions.npz",
+      "n_clean": 118143,
+      "rows": [
+        {
+          "length": 8,
+          "n": 5071,
+          "positives": 1319,
+          "auroc_deepneo": 0.9365060393365137,
+          "auroc_nmp41_ba": 0.9283294550210068,
+          "delta_auroc": 0.00817658431550683,
+          "delta_auroc_ci_lo": 0.003166417431436458,
+          "delta_auroc_ci_hi": 0.012332309777041625,
+          "aupr_deepneo": 0.8801055766333501,
+          "aupr_nmp41_ba": 0.8775417832285565,
+          "delta_aupr": 0.002563793404793624,
+          "delta_aupr_ci_lo": -0.005984613104922973,
+          "delta_aupr_ci_hi": 0.010853781399185263
+        },
+        {
+          "length": 9,
+          "n": 87897,
+          "positives": 30278,
+          "auroc_deepneo": 0.967129696922921,
+          "auroc_nmp41_ba": 0.9628593547849309,
+          "delta_auroc": 0.004270342137990046,
+          "delta_auroc_ci_lo": 0.0036479564200418675,
+          "delta_auroc_ci_hi": 0.004879249293532436,
+          "aupr_deepneo": 0.9423988360910892,
+          "aupr_nmp41_ba": 0.9326488314082911,
+          "delta_aupr": 0.009750004682798075,
+          "delta_aupr_ci_lo": 0.008275700236939002,
+          "delta_aupr_ci_hi": 0.011255641867931328
+        },
+        {
+          "length": 10,
+          "n": 17564,
+          "positives": 4085,
+          "auroc_deepneo": 0.9239994250088286,
+          "auroc_nmp41_ba": 0.9090768240691378,
+          "delta_auroc": 0.014922600939690778,
+          "delta_auroc_ci_lo": 0.011871480079177843,
+          "delta_auroc_ci_hi": 0.01838614613780778,
+          "aupr_deepneo": 0.8506146522339302,
+          "aupr_nmp41_ba": 0.8140952169264607,
+          "delta_aupr": 0.03651943530746948,
+          "delta_aupr_ci_lo": 0.030666142497983075,
+          "delta_aupr_ci_hi": 0.04244556612615371
+        },
+        {
+          "length": 11,
+          "n": 7611,
+          "positives": 1827,
+          "auroc_deepneo": 0.8761311236629594,
+          "auroc_nmp41_ba": 0.8563047581952289,
+          "delta_auroc": 0.019826365467730533,
+          "delta_auroc_ci_lo": 0.01411288619860955,
+          "delta_auroc_ci_hi": 0.025680393488679287,
+          "aupr_deepneo": 0.797689212613317,
+          "aupr_nmp41_ba": 0.7786557676727001,
+          "delta_aupr": 0.019033444940616984,
+          "delta_aupr_ci_lo": 0.011743393652342357,
+          "delta_aupr_ci_hi": 0.027043260178791797
+        }
+      ],
+      "bootstrap": {
+        "B": 500,
+        "seed": 20260726
+      }
+    },
+    "fig_rare_allele": {
+      "supports": [
+        "Section 3.6: per-allele Delta AUROC on decontaminated TransPHLA",
+        "Score-availability figure Fig 8 replacement"
+      ],
+      "source_npz": "milestone_netmhcpan_beaten/thesis_assets/transphla_raw_predictions.npz",
+      "n_clean": 118143,
+      "n_alleles_shown": 79
+    },
+    "fig_holm_family": {
+      "supports": [
+        "Section 2.6 three-condition rule bar/error visualisation"
+      ],
+      "source_json": [
+        "publication/phase0/artifacts/paired_bootstrap_ci.json",
+        "publication/phase0/artifacts/table2_holm_adjusted.json"
+      ]
+    }
+  },
+  "generated_by": "publication/phase0/scripts/pod_regen_bmc_figures.py",
+  "round": "R24"
+}

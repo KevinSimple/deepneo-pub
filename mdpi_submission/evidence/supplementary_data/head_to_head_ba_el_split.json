@@ -1,0 +1,166 @@
+{
+  "n_pool_rows": 32790,
+  "status": {
+    "deepneo_fusion": "from_common_rows",
+    "deepneo_ba": "from_common_rows",
+    "netmhcpan41_ba": "ok",
+    "mhcflurry_affinity": "ok",
+    "transphla": "ok",
+    "deepneo_el": "from_common_rows",
+    "netmhcpan41_el": "ok",
+    "mhcflurry_presentation": "ok",
+    "bigmhc_el": "ok",
+    "mhcfovea": "ok"
+  },
+  "ba_benchmark": {
+    "n_intersection_refs": 146,
+    "ranking": {
+      "score_deepneo_fusion": {
+        "intersection_mean_auroc": 0.7506,
+        "intersection_n_refs": 146,
+        "std_intersection": 0.1927,
+        "max_set_mean_auroc": 0.7403,
+        "max_set_n_refs": 173
+      },
+      "score_deepneo_ba": {
+        "intersection_mean_auroc": 0.7485,
+        "intersection_n_refs": 146,
+        "std_intersection": 0.1898,
+        "max_set_mean_auroc": 0.74,
+        "max_set_n_refs": 173
+      },
+      "score_netmhcpan41_ba": {
+        "intersection_mean_auroc": 0.7689,
+        "intersection_n_refs": 146,
+        "std_intersection": 0.1847,
+        "max_set_mean_auroc": 0.7667,
+        "max_set_n_refs": 159
+      },
+      "score_mhcflurry_affinity": {
+        "intersection_mean_auroc": 0.7564,
+        "intersection_n_refs": 146,
+        "std_intersection": 0.1864,
+        "max_set_mean_auroc": 0.7507,
+        "max_set_n_refs": 159
+      },
+      "score_transphla": {
+        "intersection_mean_auroc": 0.7086,
+        "intersection_n_refs": 146,
+        "std_intersection": 0.2099,
+        "max_set_mean_auroc": 0.7086,
+        "max_set_n_refs": 146
+      }
+    },
+    "paired_vs_anchor": {
+      "score_deepneo_ba": {
+        "delta_mean": 0.0021,
+        "wilcoxon_p": 0.375,
+        "wins": 64,
+        "ties": 30,
+        "losses": 52,
+        "n_refs": 146
+      },
+      "score_netmhcpan41_ba": {
+        "delta_mean": -0.0184,
+        "wilcoxon_p": 0.0194,
+        "wins": 52,
+        "ties": 22,
+        "losses": 72,
+        "n_refs": 146
+      },
+      "score_mhcflurry_affinity": {
+        "delta_mean": -0.0058,
+        "wilcoxon_p": 0.7182,
+        "wins": 60,
+        "ties": 12,
+        "losses": 74,
+        "n_refs": 146
+      },
+      "score_transphla": {
+        "delta_mean": 0.042,
+        "wilcoxon_p": 0.0002008,
+        "wins": 87,
+        "ties": 13,
+        "losses": 46,
+        "n_refs": 146
+      }
+    },
+    "anchor": "score_deepneo_fusion"
+  },
+  "el_benchmark": {
+    "n_intersection_refs": 156,
+    "ranking": {
+      "score_deepneo_el": {
+        "intersection_mean_auroc": 0.7306,
+        "intersection_n_refs": 156,
+        "std_intersection": 0.1978,
+        "max_set_mean_auroc": 0.7289,
+        "max_set_n_refs": 173
+      },
+      "score_netmhcpan41_el": {
+        "intersection_mean_auroc": 0.7451,
+        "intersection_n_refs": 156,
+        "std_intersection": 0.1945,
+        "max_set_mean_auroc": 0.7429,
+        "max_set_n_refs": 159
+      },
+      "score_mhcflurry_presentation": {
+        "intersection_mean_auroc": 0.7212,
+        "intersection_n_refs": 156,
+        "std_intersection": 0.213,
+        "max_set_mean_auroc": 0.7193,
+        "max_set_n_refs": 159
+      },
+      "score_bigmhc_el": {
+        "intersection_mean_auroc": 0.7259,
+        "intersection_n_refs": 156,
+        "std_intersection": 0.2024,
+        "max_set_mean_auroc": 0.7247,
+        "max_set_n_refs": 159
+      },
+      "score_mhcfovea": {
+        "intersection_mean_auroc": 0.7612,
+        "intersection_n_refs": 156,
+        "std_intersection": 0.1885,
+        "max_set_mean_auroc": 0.7612,
+        "max_set_n_refs": 156
+      }
+    },
+    "paired_vs_anchor": {
+      "score_netmhcpan41_el": {
+        "delta_mean": -0.0145,
+        "wilcoxon_p": 0.08212,
+        "wins": 59,
+        "ties": 18,
+        "losses": 79,
+        "n_refs": 156
+      },
+      "score_mhcflurry_presentation": {
+        "delta_mean": 0.0094,
+        "wilcoxon_p": 0.2407,
+        "wins": 72,
+        "ties": 17,
+        "losses": 67,
+        "n_refs": 156
+      },
+      "score_bigmhc_el": {
+        "delta_mean": 0.0047,
+        "wilcoxon_p": 0.2135,
+        "wins": 85,
+        "ties": 15,
+        "losses": 56,
+        "n_refs": 156
+      },
+      "score_mhcfovea": {
+        "delta_mean": -0.0306,
+        "wilcoxon_p": 0.0003489,
+        "wins": 54,
+        "ties": 14,
+        "losses": 88,
+        "n_refs": 156
+      }
+    },
+    "anchor": "score_deepneo_el"
+  },
+  "note": "BA benchmark: predictors that output BA-flavor scores (IC50 affinity or BA classifier). EL benchmark: predictors that output presentation/EL scores. DeepNeo-CL's deployed BA prediction is its label-free BA+EL rank-fusion (architecture design); DeepNeo BA head shown as ablation. Each ranking uses the intersection of references where every listed predictor produced a valid AUROC."
+}

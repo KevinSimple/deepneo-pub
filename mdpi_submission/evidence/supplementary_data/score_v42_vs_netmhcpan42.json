@@ -1,0 +1,167 @@
+{
+  "provenance": {
+    "deepneo_v42": "SupCon-refined 5-fold on the NetMHCpan-4.2 corpus",
+    "netmhcpan_42": "/workspace/netMHCpan-4.2/netMHCpan",
+    "netmhcpan_41": "/workspace/deepneo_cl/models/NetMHCpan/netMHCpan-4.1/netMHCpan-4.1/Linux_x86_64/bin/netMHCpan",
+    "nmp_workers": 48,
+    "opt": "TransPHLA v4.1 control from persisted npz; NetMHCpan parallel across alleles."
+  },
+  "transphla_vs42": {
+    "n": 118407,
+    "v42_vs_netmhcpan42": {
+      "ba": {
+        "deepneo_auroc": 0.9333,
+        "netmhcpan_auroc": 0.9496,
+        "delta_auroc": -0.0163,
+        "deepneo_aupr": 0.8921,
+        "netmhcpan_aupr": 0.9107,
+        "delong_p": 0.0,
+        "mean_per_allele_deepneo": 0.9409,
+        "mean_per_allele_netmhcpan": 0.9444,
+        "within_allele_wilcoxon_p": 3e-05,
+        "n_alleles": 92
+      },
+      "el": {
+        "deepneo_auroc": 0.9652,
+        "netmhcpan_auroc": 0.96,
+        "delta_auroc": 0.0052,
+        "deepneo_aupr": 0.9378,
+        "netmhcpan_aupr": 0.9373,
+        "delong_p": 9.6e-34,
+        "mean_per_allele_deepneo": 0.9626,
+        "mean_per_allele_netmhcpan": 0.9554,
+        "within_allele_wilcoxon_p": 0.806,
+        "n_alleles": 92
+      },
+      "fusion": {
+        "deepneo_auroc": 0.9567,
+        "netmhcpan_auroc": 0.9589,
+        "delta_auroc": -0.0022,
+        "deepneo_aupr": 0.9259,
+        "netmhcpan_aupr": 0.9328,
+        "delong_p": 8.62e-10,
+        "mean_per_allele_deepneo": 0.9572,
+        "mean_per_allele_netmhcpan": 0.9523,
+        "within_allele_wilcoxon_p": 0.105,
+        "n_alleles": 92
+      }
+    },
+    "v41_vs_netmhcpan41_CONTROL": {
+      "ba": {
+        "deepneo_auroc": 0.9364,
+        "netmhcpan_auroc": 0.9501,
+        "delta_auroc": -0.0137,
+        "deepneo_aupr": 0.8951,
+        "netmhcpan_aupr": 0.9128,
+        "delong_p": 5.39e-259,
+        "mean_per_allele_deepneo": 0.9476,
+        "mean_per_allele_netmhcpan": 0.945,
+        "within_allele_wilcoxon_p": 0.00114,
+        "n_alleles": 92
+      },
+      "el": {
+        "deepneo_auroc": 0.9641,
+        "netmhcpan_auroc": 0.9581,
+        "delta_auroc": 0.006,
+        "deepneo_aupr": 0.9359,
+        "netmhcpan_aupr": 0.9355,
+        "delong_p": 6.04e-44,
+        "mean_per_allele_deepneo": 0.9605,
+        "mean_per_allele_netmhcpan": 0.9526,
+        "within_allele_wilcoxon_p": 0.394,
+        "n_alleles": 92
+      },
+      "fusion": {
+        "deepneo_auroc": 0.9573,
+        "netmhcpan_auroc": 0.9576,
+        "delta_auroc": -0.0003,
+        "deepneo_aupr": 0.927,
+        "netmhcpan_aupr": 0.9318,
+        "delong_p": 0.297,
+        "mean_per_allele_deepneo": 0.9578,
+        "mean_per_allele_netmhcpan": 0.9501,
+        "within_allele_wilcoxon_p": 0.136,
+        "n_alleles": 92
+      }
+    }
+  },
+  "autobench_vs42": {
+    "n": 34426,
+    "v42_vs_netmhcpan42": {
+      "ba": {
+        "deepneo_auroc": 0.5875,
+        "netmhcpan_auroc": 0.5911,
+        "delta_auroc": -0.0036,
+        "deepneo_aupr": 0.6339,
+        "netmhcpan_aupr": 0.6326,
+        "delong_p": 0.00205,
+        "mean_per_allele_deepneo": 0.6251,
+        "mean_per_allele_netmhcpan": 0.6758,
+        "within_allele_wilcoxon_p": 0.0214,
+        "n_alleles": 38
+      },
+      "el": {
+        "deepneo_auroc": 0.634,
+        "netmhcpan_auroc": 0.6227,
+        "delta_auroc": 0.0113,
+        "deepneo_aupr": 0.6829,
+        "netmhcpan_aupr": 0.6854,
+        "delong_p": 4.67e-20,
+        "mean_per_allele_deepneo": 0.6084,
+        "mean_per_allele_netmhcpan": 0.6604,
+        "within_allele_wilcoxon_p": 0.0423,
+        "n_alleles": 38
+      },
+      "fusion": {
+        "deepneo_auroc": 0.6135,
+        "netmhcpan_auroc": null,
+        "delta_auroc": null,
+        "deepneo_aupr": 0.6583,
+        "netmhcpan_aupr": null,
+        "delong_p": null,
+        "mean_per_allele_deepneo": null,
+        "mean_per_allele_netmhcpan": null,
+        "within_allele_wilcoxon_p": null,
+        "n_alleles": 0
+      }
+    },
+    "v41_vs_netmhcpan41_CONTROL": {
+      "ba": {
+        "deepneo_auroc": 0.584,
+        "netmhcpan_auroc": 0.5894,
+        "delta_auroc": -0.0054,
+        "deepneo_aupr": 0.6273,
+        "netmhcpan_aupr": 0.6339,
+        "delong_p": 1.15e-06,
+        "mean_per_allele_deepneo": 0.6422,
+        "mean_per_allele_netmhcpan": 0.6824,
+        "within_allele_wilcoxon_p": 0.0399,
+        "n_alleles": 38
+      },
+      "el": {
+        "deepneo_auroc": 0.6358,
+        "netmhcpan_auroc": 0.6177,
+        "delta_auroc": 0.0181,
+        "deepneo_aupr": 0.6896,
+        "netmhcpan_aupr": 0.6831,
+        "delong_p": 4.6e-47,
+        "mean_per_allele_deepneo": 0.631,
+        "mean_per_allele_netmhcpan": 0.6712,
+        "within_allele_wilcoxon_p": 0.14,
+        "n_alleles": 38
+      },
+      "fusion": {
+        "deepneo_auroc": 0.6125,
+        "netmhcpan_auroc": null,
+        "delta_auroc": null,
+        "deepneo_aupr": 0.6595,
+        "netmhcpan_aupr": null,
+        "delong_p": null,
+        "mean_per_allele_deepneo": null,
+        "mean_per_allele_netmhcpan": null,
+        "within_allele_wilcoxon_p": null,
+        "n_alleles": 0
+      }
+    }
+  }
+}

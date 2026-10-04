@@ -1,0 +1,26 @@
+{
+  "n_clean": 118143,
+  "fusion_batch_rank_vs_netmhcpan_fusion": {
+    "deepneo_auroc": 0.9571618200508365,
+    "netmhcpan_auroc": 0.9575901621561731,
+    "delta_auroc": -0.0004283421053365988,
+    "note": "Should match transphla_rescored_fusion_fixed.json clean_vs_41_118143.deepneo_fusion_vs_netmhcpan_fusion"
+  },
+  "fusion_cdf_v1_vs_netmhcpan_fusion": {
+    "deepneo_auroc": 0.9572527390244887,
+    "netmhcpan_auroc": 0.9575901621561731,
+    "delta_auroc": -0.000337423131684389
+  },
+  "auroc_shift_batch_to_cdf": 9.09189736522098e-05,
+  "verdict": "SAFE: |shift| < 0.001; manuscript batch-rank fusion numbers hold under the CDF",
+  "provenance": {
+    "version": "v1_transphla_proxy_2026-07-24",
+    "source_npz": "milestone_netmhcpan_beaten/thesis_assets/transphla_raw_predictions.npz",
+    "reference_distribution": "DeepNeo-CL SupCon 5-fold ensemble scores on the FULL TransPHLA independent benchmark (n=161,652, 112 HLA-I alleles, ~50:50 balanced)",
+    "n_ba_cdf": 161652,
+    "n_el_cdf": 161652,
+    "cdf_lookup": "np.searchsorted(cdf, score, side='right') / len(cdf)",
+    "deployment_formula": "fused(BA, EL) = 0.5 * (percentile_BA(BA) + percentile_EL(EL))",
+    "limitations": "Proxy: this is the benchmark-corpus score distribution, not the training-corpus one. A v2 full-training-corpus CDF (score each fold's held-out training partition; union) is queued but requires a 2+ h GPU rescoring pass. If the v1 vs batch-rank AUROC delta reported below is small (< 0.001), the manuscript's fusion numbers are safe under either definition."
+  }
+}

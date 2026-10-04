@@ -1,0 +1,2102 @@
+{
+  "ba": {
+    "benchmark": "BA benchmark (weekly)",
+    "cutoff": "2020-01-01",
+    "n_weeks_used": 46,
+    "per_predictor_summary": [
+      {
+        "predictor": "NetMHCpan 4.0 BA",
+        "n_weeks_scored": 46,
+        "mean_week_auroc": 0.8084,
+        "mean_rank": 4.9783,
+        "n_weeks_rank1_including_ties": 9,
+        "n_weeks_rank1_outright": 2
+      },
+      {
+        "predictor": "NetMHCpan 4.1 BA",
+        "n_weeks_scored": 46,
+        "mean_week_auroc": 0.8074,
+        "mean_rank": 5.1413,
+        "n_weeks_rank1_including_ties": 11,
+        "n_weeks_rank1_outright": 4
+      },
+      {
+        "predictor": "NetMHCpan 3.0",
+        "n_weeks_scored": 41,
+        "mean_week_auroc": 0.8047,
+        "mean_rank": 6.0732,
+        "n_weeks_rank1_including_ties": 9,
+        "n_weeks_rank1_outright": 3
+      },
+      {
+        "predictor": "ANN 4.0",
+        "n_weeks_scored": 46,
+        "mean_week_auroc": 0.8042,
+        "mean_rank": 6.2174,
+        "n_weeks_rank1_including_ties": 7,
+        "n_weeks_rank1_outright": 1
+      },
+      {
+        "predictor": "DeepNeo-CL v4.1 Fusion",
+        "n_weeks_scored": 46,
+        "mean_week_auroc": 0.7951,
+        "mean_rank": 6.8478,
+        "n_weeks_rank1_including_ties": 14,
+        "n_weeks_rank1_outright": 9
+      },
+      {
+        "predictor": "mhcflurry 1.2.0",
+        "n_weeks_scored": 44,
+        "mean_week_auroc": 0.8058,
+        "mean_rank": 7.1818,
+        "n_weeks_rank1_including_ties": 7,
+        "n_weeks_rank1_outright": 3
+      },
+      {
+        "predictor": "ANN 3.4",
+        "n_weeks_scored": 42,
+        "mean_week_auroc": 0.8038,
+        "mean_rank": 7.2738,
+        "n_weeks_rank1_including_ties": 6,
+        "n_weeks_rank1_outright": 1
+      },
+      {
+        "predictor": "NetMHCcons",
+        "n_weeks_scored": 40,
+        "mean_week_auroc": 0.813,
+        "mean_rank": 7.3125,
+        "n_weeks_rank1_including_ties": 7,
+        "n_weeks_rank1_outright": 1
+      },
+      {
+        "predictor": "IEDB Consensus",
+        "n_weeks_scored": 46,
+        "mean_week_auroc": 0.7933,
+        "mean_rank": 7.4565,
+        "n_weeks_rank1_including_ties": 7,
+        "n_weeks_rank1_outright": 2
+      },
+      {
+        "predictor": "NetMHCpan 2.8",
+        "n_weeks_scored": 42,
+        "mean_week_auroc": 0.794,
+        "mean_rank": 7.8929,
+        "n_weeks_rank1_including_ties": 5,
+        "n_weeks_rank1_outright": 1
+      },
+      {
+        "predictor": "SMMPMBEC",
+        "n_weeks_scored": 46,
+        "mean_week_auroc": 0.788,
+        "mean_rank": 8.2609,
+        "n_weeks_rank1_including_ties": 9,
+        "n_weeks_rank1_outright": 2
+      },
+      {
+        "predictor": "SMM",
+        "n_weeks_scored": 46,
+        "mean_week_auroc": 0.7841,
+        "mean_rank": 8.6304,
+        "n_weeks_rank1_including_ties": 7,
+        "n_weeks_rank1_outright": 0
+      },
+      {
+        "predictor": "PickPocket",
+        "n_weeks_scored": 46,
+        "mean_week_auroc": 0.7647,
+        "mean_rank": 9.2935,
+        "n_weeks_rank1_including_ties": 7,
+        "n_weeks_rank1_outright": 2
+      },
+      {
+        "predictor": "ARB",
+        "n_weeks_scored": 43,
+        "mean_week_auroc": 0.7679,
+        "mean_rank": 9.6628,
+        "n_weeks_rank1_including_ties": 9,
+        "n_weeks_rank1_outright": 4
+      },
+      {
+        "predictor": "Custommune HLA-I",
+        "n_weeks_scored": 1,
+        "mean_week_auroc": 0.9568,
+        "mean_rank": 14.0,
+        "n_weeks_rank1_including_ties": 0,
+        "n_weeks_rank1_outright": 0
+      }
+    ],
+    "per_week_ranks": {
+      "2020-03-13": {
+        "NetMHCpan 2.8": 6.0,
+        "SMM": 1.5,
+        "ANN 3.4": 12.0,
+        "ANN 4.0": 9.0,
+        "ARB": 1.5,
+        "SMMPMBEC": 4.0,
+        "IEDB Consensus": 3.0,
+        "NetMHCcons": 6.0,
+        "PickPocket": 14.0,
+        "mhcflurry 1.2.0": 6.0,
+        "NetMHCpan 3.0": 11.0,
+        "NetMHCpan 4.0 BA": 13.0,
+        "NetMHCpan 4.1 BA": 9.0,
+        "DeepNeo-CL v4.1 Fusion": 9.0
+      },
+      "2020-04-24": {
+        "NetMHCpan 2.8": 5.0,
+        "SMM": 10.0,
+        "ANN 3.4": 7.0,
+        "ANN 4.0": 11.0,
+        "ARB": 12.0,
+        "SMMPMBEC": 8.5,
+        "IEDB Consensus": 13.0,
+        "NetMHCcons": 4.0,
+        "PickPocket": 14.0,
+        "mhcflurry 1.2.0": 8.5,
+        "NetMHCpan 3.0": 6.0,
+        "NetMHCpan 4.0 BA": 2.0,
+        "NetMHCpan 4.1 BA": 1.0,
+        "DeepNeo-CL v4.1 Fusion": 3.0
+      },
+      "2020-09-11": {
+        "NetMHCpan 2.8": 12.0,
+        "SMM": 3.0,
+        "ANN 3.4": 14.0,
+        "ANN 4.0": 7.5,
+        "ARB": 3.0,
+        "SMMPMBEC": 3.0,
+        "IEDB Consensus": 7.5,
+        "NetMHCcons": 12.0,
+        "PickPocket": 7.5,
+        "mhcflurry 1.2.0": 7.5,
+        "NetMHCpan 3.0": 12.0,
+        "NetMHCpan 4.0 BA": 7.5,
+        "NetMHCpan 4.1 BA": 7.5,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2020-10-02": {
+        "NetMHCpan 2.8": 7.0,
+        "SMM": 1.5,
+        "ANN 3.4": 7.0,
+        "ANN 4.0": 5.0,
+        "ARB": 14.0,
+        "SMMPMBEC": 1.5,
+        "IEDB Consensus": 3.0,
+        "NetMHCcons": 11.5,
+        "PickPocket": 13.0,
+        "mhcflurry 1.2.0": 4.0,
+        "NetMHCpan 3.0": 11.5,
+        "NetMHCpan 4.0 BA": 9.0,
+        "NetMHCpan 4.1 BA": 7.0,
+        "DeepNeo-CL v4.1 Fusion": 10.0
+      },
+      "2020-11-13": {
+        "NetMHCpan 2.8": 7.5,
+        "SMM": 7.5,
+        "ANN 3.4": 7.5,
+        "ANN 4.0": 7.5,
+        "ARB": 7.5,
+        "SMMPMBEC": 7.5,
+        "IEDB Consensus": 7.5,
+        "NetMHCcons": 7.5,
+        "PickPocket": 7.5,
+        "mhcflurry 1.2.0": 7.5,
+        "NetMHCpan 3.0": 7.5,
+        "NetMHCpan 4.0 BA": 7.5,
+        "NetMHCpan 4.1 BA": 7.5,
+        "DeepNeo-CL v4.1 Fusion": 7.5
+      },
+      "2020-12-11": {
+        "NetMHCpan 2.8": 8.5,
+        "SMM": 13.0,
+        "ANN 3.4": 6.5,
+        "ANN 4.0": 8.5,
+        "ARB": 13.0,
+        "SMMPMBEC": 13.0,
+        "IEDB Consensus": 10.5,
+        "NetMHCcons": 6.5,
+        "PickPocket": 3.5,
+        "mhcflurry 1.2.0": 10.5,
+        "NetMHCpan 3.0": 3.5,
+        "NetMHCpan 4.0 BA": 1.5,
+        "NetMHCpan 4.1 BA": 1.5,
+        "DeepNeo-CL v4.1 Fusion": 5.0
+      },
+      "2020-12-25": {
+        "NetMHCpan 2.8": 2.0,
+        "SMM": 9.0,
+        "ANN 3.4": 5.0,
+        "ANN 4.0": 6.0,
+        "SMMPMBEC": 10.0,
+        "IEDB Consensus": 7.0,
+        "PickPocket": 11.0,
+        "NetMHCpan 3.0": 3.0,
+        "NetMHCpan 4.0 BA": 4.0,
+        "NetMHCpan 4.1 BA": 1.0,
+        "DeepNeo-CL v4.1 Fusion": 8.0
+      },
+      "2021-01-01": {
+        "NetMHCpan 2.8": 4.0,
+        "SMM": 12.0,
+        "ANN 3.4": 8.0,
+        "ANN 4.0": 7.0,
+        "ARB": 14.0,
+        "SMMPMBEC": 13.0,
+        "IEDB Consensus": 9.5,
+        "NetMHCcons": 5.0,
+        "PickPocket": 11.0,
+        "mhcflurry 1.2.0": 6.0,
+        "NetMHCpan 3.0": 2.0,
+        "NetMHCpan 4.0 BA": 1.0,
+        "NetMHCpan 4.1 BA": 3.0,
+        "DeepNeo-CL v4.1 Fusion": 9.5
+      },
+      "2021-01-15": {
+        "NetMHCpan 2.8": 8.5,
+        "SMM": 8.5,
+        "ANN 3.4": 8.5,
+        "ANN 4.0": 8.5,
+        "ARB": 13.0,
+        "SMMPMBEC": 8.5,
+        "IEDB Consensus": 8.5,
+        "NetMHCcons": 8.5,
+        "PickPocket": 14.0,
+        "mhcflurry 1.2.0": 8.5,
+        "NetMHCpan 3.0": 3.0,
+        "NetMHCpan 4.0 BA": 3.0,
+        "NetMHCpan 4.1 BA": 3.0,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2021-02-19": {
+        "NetMHCpan 2.8": 1.0,
+        "SMM": 14.0,
+        "ANN 3.4": 8.0,
+        "ANN 4.0": 7.0,
+        "ARB": 10.0,
+        "SMMPMBEC": 13.0,
+        "IEDB Consensus": 12.0,
+        "NetMHCcons": 5.0,
+        "PickPocket": 11.0,
+        "mhcflurry 1.2.0": 6.0,
+        "NetMHCpan 3.0": 2.5,
+        "NetMHCpan 4.0 BA": 2.5,
+        "NetMHCpan 4.1 BA": 4.0,
+        "DeepNeo-CL v4.1 Fusion": 9.0
+      },
+      "2021-04-16": {
+        "NetMHCpan 2.8": 8.0,
+        "SMM": 12.0,
+        "ANN 3.4": 4.0,
+        "ANN 4.0": 4.0,
+        "ARB": 14.0,
+        "SMMPMBEC": 12.0,
+        "IEDB Consensus": 12.0,
+        "NetMHCcons": 4.0,
+        "PickPocket": 10.0,
+        "mhcflurry 1.2.0": 9.0,
+        "NetMHCpan 3.0": 4.0,
+        "NetMHCpan 4.0 BA": 4.0,
+        "NetMHCpan 4.1 BA": 4.0,
+        "DeepNeo-CL v4.1 Fusion": 4.0
+      },
+      "2021-05-21": {
+        "NetMHCpan 2.8": 3.5,
+        "SMM": 9.5,
+        "ANN 3.4": 9.5,
+        "ANN 4.0": 9.5,
+        "ARB": 14.0,
+        "SMMPMBEC": 9.5,
+        "IEDB Consensus": 9.5,
+        "NetMHCcons": 9.5,
+        "PickPocket": 9.5,
+        "mhcflurry 1.2.0": 3.5,
+        "NetMHCpan 3.0": 9.5,
+        "NetMHCpan 4.0 BA": 3.5,
+        "NetMHCpan 4.1 BA": 3.5,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2021-09-03": {
+        "NetMHCpan 2.8": 8.0,
+        "SMM": 11.0,
+        "ANN 3.4": 7.0,
+        "ANN 4.0": 5.0,
+        "ARB": 12.0,
+        "SMMPMBEC": 10.0,
+        "IEDB Consensus": 13.0,
+        "NetMHCcons": 3.0,
+        "PickPocket": 14.0,
+        "mhcflurry 1.2.0": 6.0,
+        "NetMHCpan 3.0": 4.0,
+        "NetMHCpan 4.0 BA": 2.0,
+        "NetMHCpan 4.1 BA": 1.0,
+        "DeepNeo-CL v4.1 Fusion": 9.0
+      },
+      "2021-10-01": {
+        "NetMHCpan 2.8": 8.0,
+        "SMM": 10.0,
+        "ANN 3.4": 11.0,
+        "ANN 4.0": 4.5,
+        "ARB": 13.0,
+        "SMMPMBEC": 12.0,
+        "IEDB Consensus": 3.0,
+        "NetMHCcons": 9.0,
+        "PickPocket": 14.0,
+        "mhcflurry 1.2.0": 6.0,
+        "NetMHCpan 3.0": 2.0,
+        "NetMHCpan 4.0 BA": 4.5,
+        "NetMHCpan 4.1 BA": 7.0,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2021-10-08": {
+        "NetMHCpan 2.8": 10.0,
+        "SMM": 3.0,
+        "ANN 3.4": 9.0,
+        "ANN 4.0": 13.0,
+        "ARB": 14.0,
+        "SMMPMBEC": 1.0,
+        "IEDB Consensus": 2.0,
+        "NetMHCcons": 11.0,
+        "PickPocket": 6.0,
+        "mhcflurry 1.2.0": 8.0,
+        "NetMHCpan 3.0": 4.0,
+        "NetMHCpan 4.0 BA": 5.0,
+        "NetMHCpan 4.1 BA": 7.0,
+        "DeepNeo-CL v4.1 Fusion": 12.0
+      },
+      "2021-11-05": {
+        "NetMHCpan 2.8": 2.5,
+        "SMM": 13.0,
+        "ANN 3.4": 10.0,
+        "ANN 4.0": 9.0,
+        "ARB": 11.0,
+        "SMMPMBEC": 12.0,
+        "IEDB Consensus": 1.0,
+        "NetMHCcons": 7.0,
+        "PickPocket": 14.0,
+        "mhcflurry 1.2.0": 6.0,
+        "NetMHCpan 3.0": 5.0,
+        "NetMHCpan 4.0 BA": 4.0,
+        "NetMHCpan 4.1 BA": 2.5,
+        "DeepNeo-CL v4.1 Fusion": 8.0
+      },
+      "2021-12-24": {
+        "NetMHCpan 2.8": 6.0,
+        "SMM": 12.0,
+        "ANN 3.4": 1.0,
+        "ANN 4.0": 2.0,
+        "ARB": 9.0,
+        "SMMPMBEC": 11.0,
+        "IEDB Consensus": 13.0,
+        "NetMHCcons": 3.0,
+        "PickPocket": 14.0,
+        "mhcflurry 1.2.0": 7.0,
+        "NetMHCpan 3.0": 8.0,
+        "NetMHCpan 4.0 BA": 4.0,
+        "NetMHCpan 4.1 BA": 5.0,
+        "DeepNeo-CL v4.1 Fusion": 10.0
+      },
+      "2022-04-29": {
+        "NetMHCpan 2.8": 7.0,
+        "SMM": 9.0,
+        "ANN 3.4": 8.0,
+        "ANN 4.0": 4.0,
+        "ARB": 10.5,
+        "SMMPMBEC": 5.0,
+        "IEDB Consensus": 10.5,
+        "NetMHCcons": 6.0,
+        "PickPocket": 12.0,
+        "mhcflurry 1.2.0": 14.0,
+        "NetMHCpan 3.0": 1.0,
+        "NetMHCpan 4.0 BA": 3.0,
+        "NetMHCpan 4.1 BA": 2.0,
+        "DeepNeo-CL v4.1 Fusion": 13.0
+      },
+      "2022-05-20": {
+        "NetMHCpan 2.8": 10.5,
+        "SMM": 13.0,
+        "ANN 3.4": 5.0,
+        "ANN 4.0": 2.0,
+        "ARB": 14.0,
+        "SMMPMBEC": 12.0,
+        "IEDB Consensus": 6.0,
+        "NetMHCcons": 7.0,
+        "PickPocket": 10.5,
+        "mhcflurry 1.2.0": 1.0,
+        "NetMHCpan 3.0": 8.0,
+        "NetMHCpan 4.0 BA": 3.0,
+        "NetMHCpan 4.1 BA": 4.0,
+        "DeepNeo-CL v4.1 Fusion": 9.0
+      },
+      "2022-07-22": {
+        "NetMHCpan 2.8": 5.0,
+        "SMM": 12.5,
+        "ANN 3.4": 11.0,
+        "ANN 4.0": 8.0,
+        "SMMPMBEC": 2.0,
+        "IEDB Consensus": 10.0,
+        "NetMHCcons": 5.0,
+        "PickPocket": 2.0,
+        "mhcflurry 1.2.0": 12.5,
+        "NetMHCpan 3.0": 5.0,
+        "NetMHCpan 4.0 BA": 8.0,
+        "NetMHCpan 4.1 BA": 8.0,
+        "DeepNeo-CL v4.1 Fusion": 2.0
+      },
+      "2022-10-06": {
+        "NetMHCpan 2.8": 13.5,
+        "SMM": 5.0,
+        "ANN 3.4": 8.5,
+        "ANN 4.0": 5.0,
+        "ARB": 8.5,
+        "SMMPMBEC": 2.0,
+        "IEDB Consensus": 3.0,
+        "NetMHCcons": 13.5,
+        "PickPocket": 8.5,
+        "mhcflurry 1.2.0": 1.0,
+        "NetMHCpan 3.0": 12.0,
+        "NetMHCpan 4.0 BA": 8.5,
+        "NetMHCpan 4.1 BA": 5.0,
+        "DeepNeo-CL v4.1 Fusion": 11.0
+      },
+      "2022-10-28": {
+        "NetMHCpan 2.8": 10.0,
+        "SMM": 11.0,
+        "ANN 3.4": 8.0,
+        "ANN 4.0": 4.0,
+        "ARB": 13.0,
+        "SMMPMBEC": 12.0,
+        "IEDB Consensus": 14.0,
+        "NetMHCcons": 6.0,
+        "PickPocket": 7.0,
+        "mhcflurry 1.2.0": 3.0,
+        "NetMHCpan 3.0": 1.0,
+        "NetMHCpan 4.0 BA": 2.0,
+        "NetMHCpan 4.1 BA": 5.0,
+        "DeepNeo-CL v4.1 Fusion": 9.0
+      },
+      "2022-11-24": {
+        "NetMHCpan 2.8": 13.0,
+        "SMM": 5.0,
+        "ANN 3.4": 2.5,
+        "ANN 4.0": 12.0,
+        "ARB": 1.0,
+        "SMMPMBEC": 4.0,
+        "IEDB Consensus": 2.5,
+        "NetMHCcons": 10.5,
+        "PickPocket": 9.0,
+        "mhcflurry 1.2.0": 7.5,
+        "NetMHCpan 3.0": 6.0,
+        "NetMHCpan 4.0 BA": 7.5,
+        "NetMHCpan 4.1 BA": 10.5,
+        "DeepNeo-CL v4.1 Fusion": 14.0
+      },
+      "2023-05-11": {
+        "NetMHCpan 2.8": 14.0,
+        "SMM": 8.0,
+        "ANN 3.4": 7.0,
+        "ANN 4.0": 9.0,
+        "ARB": 12.0,
+        "SMMPMBEC": 6.0,
+        "IEDB Consensus": 10.0,
+        "NetMHCcons": 11.0,
+        "PickPocket": 1.0,
+        "mhcflurry 1.2.0": 13.0,
+        "NetMHCpan 3.0": 5.0,
+        "NetMHCpan 4.0 BA": 2.0,
+        "NetMHCpan 4.1 BA": 3.0,
+        "DeepNeo-CL v4.1 Fusion": 4.0
+      },
+      "2023-06-15": {
+        "NetMHCpan 2.8": 6.0,
+        "SMM": 13.0,
+        "ANN 3.4": 9.0,
+        "ANN 4.0": 7.0,
+        "ARB": 12.0,
+        "SMMPMBEC": 11.0,
+        "IEDB Consensus": 8.0,
+        "NetMHCcons": 5.0,
+        "PickPocket": 14.0,
+        "mhcflurry 1.2.0": 10.0,
+        "NetMHCpan 3.0": 2.0,
+        "NetMHCpan 4.0 BA": 3.5,
+        "NetMHCpan 4.1 BA": 3.5,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2023-08-03": {
+        "NetMHCpan 2.8": 8.0,
+        "SMM": 12.0,
+        "ANN 3.4": 10.0,
+        "ANN 4.0": 5.0,
+        "ARB": 11.0,
+        "SMMPMBEC": 9.0,
+        "IEDB Consensus": 1.0,
+        "NetMHCcons": 7.0,
+        "PickPocket": 14.0,
+        "mhcflurry 1.2.0": 2.0,
+        "NetMHCpan 3.0": 4.0,
+        "NetMHCpan 4.0 BA": 3.0,
+        "NetMHCpan 4.1 BA": 6.0,
+        "DeepNeo-CL v4.1 Fusion": 13.0
+      },
+      "2023-08-10": {
+        "NetMHCpan 2.8": 8.0,
+        "SMM": 10.0,
+        "ANN 3.4": 2.0,
+        "ANN 4.0": 1.0,
+        "ARB": 13.0,
+        "SMMPMBEC": 11.0,
+        "IEDB Consensus": 12.0,
+        "NetMHCcons": 7.0,
+        "PickPocket": 9.0,
+        "mhcflurry 1.2.0": 6.0,
+        "NetMHCpan 3.0": 5.0,
+        "NetMHCpan 4.0 BA": 4.0,
+        "NetMHCpan 4.1 BA": 3.0,
+        "DeepNeo-CL v4.1 Fusion": 14.0
+      },
+      "2024-02-15": {
+        "NetMHCpan 2.8": 11.0,
+        "SMM": 5.0,
+        "ANN 3.4": 7.0,
+        "ANN 4.0": 3.5,
+        "SMMPMBEC": 6.0,
+        "IEDB Consensus": 3.5,
+        "PickPocket": 2.0,
+        "NetMHCpan 3.0": 10.0,
+        "NetMHCpan 4.0 BA": 8.0,
+        "NetMHCpan 4.1 BA": 9.0,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2024-02-29": {
+        "NetMHCpan 2.8": 7.5,
+        "SMM": 7.5,
+        "ANN 3.4": 13.0,
+        "ANN 4.0": 2.5,
+        "ARB": 1.0,
+        "SMMPMBEC": 7.5,
+        "IEDB Consensus": 7.5,
+        "NetMHCcons": 12.0,
+        "PickPocket": 7.5,
+        "mhcflurry 1.2.0": 2.5,
+        "NetMHCpan 3.0": 7.5,
+        "NetMHCpan 4.0 BA": 7.5,
+        "NetMHCpan 4.1 BA": 7.5,
+        "DeepNeo-CL v4.1 Fusion": 14.0
+      },
+      "2024-04-18": {
+        "NetMHCpan 2.8": 9.5,
+        "SMM": 9.5,
+        "ANN 3.4": 9.5,
+        "ANN 4.0": 9.5,
+        "ARB": 14.0,
+        "SMMPMBEC": 9.5,
+        "IEDB Consensus": 9.5,
+        "NetMHCcons": 9.5,
+        "PickPocket": 2.5,
+        "mhcflurry 1.2.0": 2.5,
+        "NetMHCpan 3.0": 9.5,
+        "NetMHCpan 4.0 BA": 4.0,
+        "NetMHCpan 4.1 BA": 5.0,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2024-05-16": {
+        "NetMHCpan 2.8": 12.0,
+        "SMM": 8.5,
+        "ANN 3.4": 3.0,
+        "ANN 4.0": 2.0,
+        "ARB": 8.5,
+        "SMMPMBEC": 8.5,
+        "IEDB Consensus": 4.0,
+        "NetMHCcons": 12.0,
+        "PickPocket": 12.0,
+        "mhcflurry 1.2.0": 1.0,
+        "NetMHCpan 3.0": 14.0,
+        "NetMHCpan 4.0 BA": 5.0,
+        "NetMHCpan 4.1 BA": 8.5,
+        "DeepNeo-CL v4.1 Fusion": 6.0
+      },
+      "2024-05-23": {
+        "NetMHCpan 2.8": 5.5,
+        "SMM": 12.5,
+        "ANN 3.4": 1.5,
+        "ANN 4.0": 5.5,
+        "ARB": 12.5,
+        "SMMPMBEC": 12.5,
+        "IEDB Consensus": 5.5,
+        "NetMHCcons": 1.5,
+        "PickPocket": 12.5,
+        "mhcflurry 1.2.0": 10.0,
+        "NetMHCpan 3.0": 5.5,
+        "NetMHCpan 4.0 BA": 5.5,
+        "NetMHCpan 4.1 BA": 5.5,
+        "DeepNeo-CL v4.1 Fusion": 9.0
+      },
+      "2024-05-30": {
+        "NetMHCpan 2.8": 11.5,
+        "SMM": 6.0,
+        "ANN 3.4": 4.0,
+        "ANN 4.0": 2.5,
+        "ARB": 1.0,
+        "SMMPMBEC": 8.0,
+        "IEDB Consensus": 5.0,
+        "NetMHCcons": 7.0,
+        "PickPocket": 13.0,
+        "mhcflurry 1.2.0": 2.5,
+        "NetMHCpan 3.0": 9.5,
+        "NetMHCpan 4.0 BA": 9.5,
+        "NetMHCpan 4.1 BA": 11.5,
+        "DeepNeo-CL v4.1 Fusion": 14.0
+      },
+      "2024-11-28": {
+        "NetMHCpan 2.8": 7.5,
+        "SMM": 7.5,
+        "ANN 3.4": 7.5,
+        "ANN 4.0": 7.5,
+        "ARB": 7.5,
+        "SMMPMBEC": 7.5,
+        "IEDB Consensus": 7.5,
+        "NetMHCcons": 7.5,
+        "PickPocket": 7.5,
+        "mhcflurry 1.2.0": 7.5,
+        "NetMHCpan 3.0": 7.5,
+        "NetMHCpan 4.0 BA": 7.5,
+        "NetMHCpan 4.1 BA": 7.5,
+        "DeepNeo-CL v4.1 Fusion": 7.5
+      },
+      "2025-01-23": {
+        "NetMHCpan 2.8": 7.5,
+        "SMM": 7.5,
+        "ANN 3.4": 7.5,
+        "ANN 4.0": 7.5,
+        "ARB": 7.5,
+        "SMMPMBEC": 7.5,
+        "IEDB Consensus": 7.5,
+        "NetMHCcons": 7.5,
+        "PickPocket": 7.5,
+        "mhcflurry 1.2.0": 7.5,
+        "NetMHCpan 3.0": 7.5,
+        "NetMHCpan 4.0 BA": 7.5,
+        "NetMHCpan 4.1 BA": 7.5,
+        "DeepNeo-CL v4.1 Fusion": 7.5
+      },
+      "2025-02-13": {
+        "NetMHCpan 2.8": 10.5,
+        "SMM": 4.5,
+        "ANN 3.4": 10.5,
+        "ANN 4.0": 4.5,
+        "ARB": 4.5,
+        "SMMPMBEC": 4.5,
+        "IEDB Consensus": 4.5,
+        "NetMHCcons": 10.5,
+        "PickPocket": 14.0,
+        "mhcflurry 1.2.0": 10.5,
+        "NetMHCpan 3.0": 4.5,
+        "NetMHCpan 4.0 BA": 4.5,
+        "NetMHCpan 4.1 BA": 4.5,
+        "DeepNeo-CL v4.1 Fusion": 13.0
+      },
+      "2025-02-20": {
+        "NetMHCpan 2.8": 8.5,
+        "SMM": 6.5,
+        "ANN 3.4": 5.0,
+        "ANN 4.0": 11.0,
+        "ARB": 13.0,
+        "SMMPMBEC": 8.5,
+        "IEDB Consensus": 10.0,
+        "NetMHCcons": 6.5,
+        "PickPocket": 14.0,
+        "mhcflurry 1.2.0": 12.0,
+        "NetMHCpan 3.0": 1.0,
+        "NetMHCpan 4.0 BA": 2.0,
+        "NetMHCpan 4.1 BA": 3.0,
+        "DeepNeo-CL v4.1 Fusion": 4.0
+      },
+      "2025-03-06": {
+        "NetMHCpan 2.8": 6.0,
+        "SMM": 6.0,
+        "ANN 3.4": 12.0,
+        "ANN 4.0": 6.0,
+        "ARB": 14.0,
+        "SMMPMBEC": 6.0,
+        "IEDB Consensus": 6.0,
+        "NetMHCcons": 6.0,
+        "PickPocket": 6.0,
+        "mhcflurry 1.2.0": 6.0,
+        "NetMHCpan 3.0": 6.0,
+        "NetMHCpan 4.0 BA": 6.0,
+        "NetMHCpan 4.1 BA": 6.0,
+        "DeepNeo-CL v4.1 Fusion": 13.0
+      },
+      "2025-03-13": {
+        "SMM": 4.5,
+        "ANN 4.0": 2.0,
+        "ARB": 1.0,
+        "SMMPMBEC": 8.5,
+        "IEDB Consensus": 4.5,
+        "PickPocket": 10.0,
+        "mhcflurry 1.2.0": 8.5,
+        "NetMHCpan 4.0 BA": 6.5,
+        "NetMHCpan 4.1 BA": 6.5,
+        "DeepNeo-CL v4.1 Fusion": 3.0
+      },
+      "2025-03-27": {
+        "NetMHCpan 2.8": 8.0,
+        "SMM": 11.0,
+        "ANN 3.4": 6.0,
+        "ANN 4.0": 2.0,
+        "ARB": 14.0,
+        "SMMPMBEC": 12.0,
+        "IEDB Consensus": 9.0,
+        "NetMHCcons": 5.0,
+        "PickPocket": 10.0,
+        "mhcflurry 1.2.0": 13.0,
+        "NetMHCpan 3.0": 7.0,
+        "NetMHCpan 4.0 BA": 4.0,
+        "NetMHCpan 4.1 BA": 1.0,
+        "DeepNeo-CL v4.1 Fusion": 3.0
+      },
+      "2025-06-19": {
+        "NetMHCpan 2.8": 11.0,
+        "SMM": 9.0,
+        "ANN 3.4": 2.0,
+        "ANN 4.0": 3.0,
+        "ARB": 14.0,
+        "SMMPMBEC": 10.0,
+        "IEDB Consensus": 13.0,
+        "NetMHCcons": 5.0,
+        "PickPocket": 12.0,
+        "mhcflurry 1.2.0": 7.0,
+        "NetMHCpan 3.0": 6.0,
+        "NetMHCpan 4.0 BA": 4.0,
+        "NetMHCpan 4.1 BA": 8.0,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2025-07-03": {
+        "NetMHCpan 2.8": 10.0,
+        "SMM": 12.0,
+        "ANN 3.4": 9.0,
+        "ANN 4.0": 7.0,
+        "ARB": 5.0,
+        "SMMPMBEC": 14.0,
+        "IEDB Consensus": 2.0,
+        "NetMHCcons": 11.0,
+        "PickPocket": 4.0,
+        "mhcflurry 1.2.0": 13.0,
+        "NetMHCpan 3.0": 6.0,
+        "NetMHCpan 4.0 BA": 8.0,
+        "NetMHCpan 4.1 BA": 3.0,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2025-12-25": {
+        "SMM": 7.0,
+        "ANN 4.0": 6.0,
+        "ARB": 8.0,
+        "SMMPMBEC": 5.0,
+        "IEDB Consensus": 9.0,
+        "PickPocket": 10.0,
+        "mhcflurry 1.2.0": 4.0,
+        "NetMHCpan 4.0 BA": 1.0,
+        "NetMHCpan 4.1 BA": 2.0,
+        "DeepNeo-CL v4.1 Fusion": 3.0
+      },
+      "2026-01-22": {
+        "SMM": 8.0,
+        "ANN 4.0": 9.0,
+        "ARB": 5.0,
+        "SMMPMBEC": 10.0,
+        "IEDB Consensus": 6.0,
+        "PickPocket": 1.0,
+        "mhcflurry 1.2.0": 7.0,
+        "NetMHCpan 4.0 BA": 4.0,
+        "NetMHCpan 4.1 BA": 2.0,
+        "DeepNeo-CL v4.1 Fusion": 3.0
+      },
+      "2026-04-16": {
+        "SMM": 4.0,
+        "ANN 4.0": 9.0,
+        "ARB": 2.0,
+        "SMMPMBEC": 1.0,
+        "IEDB Consensus": 8.0,
+        "PickPocket": 3.0,
+        "mhcflurry 1.2.0": 10.0,
+        "NetMHCpan 4.0 BA": 6.0,
+        "NetMHCpan 4.1 BA": 7.0,
+        "DeepNeo-CL v4.1 Fusion": 5.0
+      },
+      "2026-05-21": {
+        "NetMHCpan 2.8": 3.0,
+        "SMM": 11.5,
+        "ANN 3.4": 2.0,
+        "ANN 4.0": 5.0,
+        "ARB": 13.0,
+        "SMMPMBEC": 10.0,
+        "IEDB Consensus": 9.0,
+        "NetMHCcons": 1.0,
+        "PickPocket": 4.0,
+        "mhcflurry 1.2.0": 11.5,
+        "NetMHCpan 4.0 BA": 6.0,
+        "NetMHCpan 4.1 BA": 7.0,
+        "Custommune HLA-I": 14.0,
+        "DeepNeo-CL v4.1 Fusion": 8.0
+      }
+    },
+    "per_week_scores": {
+      "2020-03-13": {
+        "NetMHCpan 2.8": 0.46875,
+        "SMM": 0.53125,
+        "ANN 3.4": 0.390625,
+        "ANN 4.0": 0.4375,
+        "ARB": 0.53125,
+        "SMMPMBEC": 0.5,
+        "IEDB Consensus": 0.515625,
+        "NetMHCcons": 0.46875,
+        "PickPocket": 0.359375,
+        "mhcflurry 1.2.0": 0.46875,
+        "NetMHCpan 3.0": 0.40625,
+        "NetMHCpan 4.0 BA": 0.375,
+        "NetMHCpan 4.1 BA": 0.4375,
+        "DeepNeo-CL v4.1 BA": 0.53125,
+        "DeepNeo-CL v4.1 Fusion": 0.4375
+      },
+      "2020-04-24": {
+        "NetMHCpan 2.8": 0.8470695970695972,
+        "SMM": 0.8173076923076923,
+        "ANN 3.4": 0.8296703296703297,
+        "ANN 4.0": 0.816849816849817,
+        "ARB": 0.8159340659340659,
+        "SMMPMBEC": 0.8287545787545788,
+        "IEDB Consensus": 0.8072344322344321,
+        "NetMHCcons": 0.8498168498168498,
+        "PickPocket": 0.7655677655677656,
+        "mhcflurry 1.2.0": 0.8287545787545788,
+        "NetMHCpan 3.0": 0.8324175824175823,
+        "NetMHCpan 4.0 BA": 0.8534798534798536,
+        "NetMHCpan 4.1 BA": 0.8717948717948718,
+        "DeepNeo-CL v4.1 BA": 0.8333333333333334,
+        "DeepNeo-CL v4.1 Fusion": 0.8511904761904762
+      },
+      "2020-09-11": {
+        "NetMHCpan 2.8": 0.8518518518518519,
+        "SMM": 0.9259259259259259,
+        "ANN 3.4": 0.8148148148148149,
+        "ANN 4.0": 0.888888888888889,
+        "ARB": 0.9259259259259259,
+        "SMMPMBEC": 0.9259259259259259,
+        "IEDB Consensus": 0.888888888888889,
+        "NetMHCcons": 0.8518518518518519,
+        "PickPocket": 0.888888888888889,
+        "mhcflurry 1.2.0": 0.888888888888889,
+        "NetMHCpan 3.0": 0.8518518518518519,
+        "NetMHCpan 4.0 BA": 0.8888888888888888,
+        "NetMHCpan 4.1 BA": 0.8888888888888888,
+        "DeepNeo-CL v4.1 BA": 0.9629629629629629,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2020-10-02": {
+        "NetMHCpan 2.8": 0.8,
+        "SMM": 0.9,
+        "ANN 3.4": 0.8,
+        "ANN 4.0": 0.85,
+        "ARB": 0.55,
+        "SMMPMBEC": 0.9,
+        "IEDB Consensus": 0.885,
+        "NetMHCcons": 0.78,
+        "PickPocket": 0.75,
+        "mhcflurry 1.2.0": 0.88,
+        "NetMHCpan 3.0": 0.78,
+        "NetMHCpan 4.0 BA": 0.79,
+        "NetMHCpan 4.1 BA": 0.8,
+        "DeepNeo-CL v4.1 BA": 0.78,
+        "DeepNeo-CL v4.1 Fusion": 0.7849999999999999
+      },
+      "2020-11-13": {
+        "NetMHCpan 2.8": 1.0,
+        "SMM": 1.0,
+        "ANN 3.4": 1.0,
+        "ANN 4.0": 1.0,
+        "ARB": 1.0,
+        "SMMPMBEC": 1.0,
+        "IEDB Consensus": 1.0,
+        "NetMHCcons": 1.0,
+        "PickPocket": 1.0,
+        "mhcflurry 1.2.0": 1.0,
+        "NetMHCpan 3.0": 1.0,
+        "NetMHCpan 4.0 BA": 1.0,
+        "NetMHCpan 4.1 BA": 1.0,
+        "DeepNeo-CL v4.1 BA": 1.0,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2020-12-11": {
+        "NetMHCpan 2.8": 0.8727272727272728,
+        "SMM": 0.8363636363636364,
+        "ANN 3.4": 0.8909090909090909,
+        "ANN 4.0": 0.8727272727272728,
+        "ARB": 0.8363636363636364,
+        "SMMPMBEC": 0.8363636363636364,
+        "IEDB Consensus": 0.8545454545454545,
+        "NetMHCcons": 0.8909090909090909,
+        "PickPocket": 0.9090909090909091,
+        "mhcflurry 1.2.0": 0.8545454545454545,
+        "NetMHCpan 3.0": 0.9090909090909091,
+        "NetMHCpan 4.0 BA": 0.9272727272727272,
+        "NetMHCpan 4.1 BA": 0.9272727272727272,
+        "DeepNeo-CL v4.1 BA": 0.8727272727272728,
+        "DeepNeo-CL v4.1 Fusion": 0.9
+      },
+      "2020-12-25": {
+        "NetMHCpan 2.8": 0.7227717185706682,
+        "SMM": 0.6401365565750412,
+        "ANN 3.4": 0.676940068350421,
+        "ANN 4.0": 0.6746103192464783,
+        "SMMPMBEC": 0.614649014817807,
+        "IEDB Consensus": 0.6525781285064856,
+        "PickPocket": 0.6002516654804727,
+        "NetMHCpan 3.0": 0.7019240387019832,
+        "NetMHCpan 4.0 BA": 0.6962884952007232,
+        "NetMHCpan 4.1 BA": 0.7259871057507967,
+        "DeepNeo-CL v4.1 BA": 0.6660128173068909,
+        "DeepNeo-CL v4.1 Fusion": 0.643044254653407
+      },
+      "2021-01-01": {
+        "NetMHCpan 2.8": 0.8916666666666667,
+        "SMM": 0.8595238095238095,
+        "ANN 3.4": 0.8767857142857143,
+        "ANN 4.0": 0.8773809523809524,
+        "ARB": 0.7773809523809525,
+        "SMMPMBEC": 0.8553571428571428,
+        "IEDB Consensus": 0.8678571428571429,
+        "NetMHCcons": 0.8904761904761904,
+        "PickPocket": 0.8660714285714286,
+        "mhcflurry 1.2.0": 0.8892857142857143,
+        "NetMHCpan 3.0": 0.911904761904762,
+        "NetMHCpan 4.0 BA": 0.9136904761904763,
+        "NetMHCpan 4.1 BA": 0.9059523809523811,
+        "DeepNeo-CL v4.1 BA": 0.861904761904762,
+        "DeepNeo-CL v4.1 Fusion": 0.8678571428571429
+      },
+      "2021-01-15": {
+        "NetMHCpan 2.8": 0.9743589743589745,
+        "SMM": 0.9743589743589745,
+        "ANN 3.4": 0.9743589743589745,
+        "ANN 4.0": 0.9743589743589745,
+        "ARB": 0.9230769230769231,
+        "SMMPMBEC": 0.9743589743589745,
+        "IEDB Consensus": 0.9743589743589745,
+        "NetMHCcons": 0.9743589743589745,
+        "PickPocket": 0.8931623931623932,
+        "mhcflurry 1.2.0": 0.9743589743589745,
+        "NetMHCpan 3.0": 0.982905982905983,
+        "NetMHCpan 4.0 BA": 0.982905982905983,
+        "NetMHCpan 4.1 BA": 0.982905982905983,
+        "DeepNeo-CL v4.1 BA": 1.0,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2021-02-19": {
+        "NetMHCpan 2.8": 0.8377976190476191,
+        "SMM": 0.7003968253968254,
+        "ANN 3.4": 0.7673611111111112,
+        "ANN 4.0": 0.7787698412698413,
+        "ARB": 0.7482638888888888,
+        "SMMPMBEC": 0.7043650793650793,
+        "IEDB Consensus": 0.7219742063492064,
+        "NetMHCcons": 0.8065476190476191,
+        "PickPocket": 0.7331349206349207,
+        "mhcflurry 1.2.0": 0.8025793650793651,
+        "NetMHCpan 3.0": 0.826140873015873,
+        "NetMHCpan 4.0 BA": 0.826140873015873,
+        "NetMHCpan 4.1 BA": 0.810515873015873,
+        "DeepNeo-CL v4.1 BA": 0.7435515873015873,
+        "DeepNeo-CL v4.1 Fusion": 0.7589285714285714
+      },
+      "2021-04-16": {
+        "NetMHCpan 2.8": 0.9871794871794872,
+        "SMM": 0.9743589743589743,
+        "ANN 3.4": 0.9935897435897436,
+        "ANN 4.0": 0.9935897435897436,
+        "ARB": 0.967948717948718,
+        "SMMPMBEC": 0.9743589743589743,
+        "IEDB Consensus": 0.9743589743589743,
+        "NetMHCcons": 0.9935897435897436,
+        "PickPocket": 0.9775641025641025,
+        "mhcflurry 1.2.0": 0.9807692307692308,
+        "NetMHCpan 3.0": 0.9935897435897436,
+        "NetMHCpan 4.0 BA": 0.9935897435897436,
+        "NetMHCpan 4.1 BA": 0.9935897435897436,
+        "DeepNeo-CL v4.1 BA": 0.9807692307692308,
+        "DeepNeo-CL v4.1 Fusion": 0.9935897435897435
+      },
+      "2021-05-21": {
+        "NetMHCpan 2.8": 0.9583333333333334,
+        "SMM": 0.9166666666666666,
+        "ANN 3.4": 0.9166666666666666,
+        "ANN 4.0": 0.9166666666666666,
+        "ARB": 0.8333333333333334,
+        "SMMPMBEC": 0.9166666666666666,
+        "IEDB Consensus": 0.9166666666666666,
+        "NetMHCcons": 0.9166666666666666,
+        "PickPocket": 0.9166666666666666,
+        "mhcflurry 1.2.0": 0.9583333333333334,
+        "NetMHCpan 3.0": 0.9166666666666666,
+        "NetMHCpan 4.0 BA": 0.9583333333333334,
+        "NetMHCpan 4.1 BA": 0.9583333333333334,
+        "DeepNeo-CL v4.1 BA": 1.0,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2021-09-03": {
+        "NetMHCpan 2.8": 0.8334188034188035,
+        "SMM": 0.7771136521136521,
+        "ANN 3.4": 0.8387907137907138,
+        "ANN 4.0": 0.8466735966735968,
+        "ARB": 0.771826923076923,
+        "SMMPMBEC": 0.7837260337260338,
+        "IEDB Consensus": 0.7538836913836914,
+        "NetMHCcons": 0.8520940170940171,
+        "PickPocket": 0.753440170940171,
+        "mhcflurry 1.2.0": 0.8415384615384616,
+        "NetMHCpan 3.0": 0.8511965811965811,
+        "NetMHCpan 4.0 BA": 0.8693162393162394,
+        "NetMHCpan 4.1 BA": 0.8739316239316239,
+        "DeepNeo-CL v4.1 BA": 0.814465811965812,
+        "DeepNeo-CL v4.1 Fusion": 0.7927670940170941
+      },
+      "2021-10-01": {
+        "NetMHCpan 2.8": 0.7300204918032787,
+        "SMM": 0.728483606557377,
+        "ANN 3.4": 0.725922131147541,
+        "ANN 4.0": 0.7489754098360656,
+        "ARB": 0.6690573770491803,
+        "SMMPMBEC": 0.721311475409836,
+        "IEDB Consensus": 0.7530737704918034,
+        "NetMHCcons": 0.7289959016393442,
+        "PickPocket": 0.5788934426229508,
+        "mhcflurry 1.2.0": 0.7407786885245902,
+        "NetMHCpan 3.0": 0.7561475409836066,
+        "NetMHCpan 4.0 BA": 0.7489754098360656,
+        "NetMHCpan 4.1 BA": 0.7387295081967213,
+        "DeepNeo-CL v4.1 BA": 0.7387295081967213,
+        "DeepNeo-CL v4.1 Fusion": 0.7863729508196721
+      },
+      "2021-10-08": {
+        "NetMHCpan 2.8": 0.7946859903381642,
+        "SMM": 0.8599033816425121,
+        "ANN 3.4": 0.7958937198067633,
+        "ANN 4.0": 0.7898550724637681,
+        "ARB": 0.7246376811594203,
+        "SMMPMBEC": 0.8623188405797102,
+        "IEDB Consensus": 0.8611111111111112,
+        "NetMHCcons": 0.7922705314009661,
+        "PickPocket": 0.8333333333333334,
+        "mhcflurry 1.2.0": 0.8067632850241546,
+        "NetMHCpan 3.0": 0.857487922705314,
+        "NetMHCpan 4.0 BA": 0.8381642512077295,
+        "NetMHCpan 4.1 BA": 0.8236714975845411,
+        "DeepNeo-CL v4.1 BA": 0.7729468599033816,
+        "DeepNeo-CL v4.1 Fusion": 0.791062801932367
+      },
+      "2021-11-05": {
+        "NetMHCpan 2.8": 0.7011904761904763,
+        "SMM": 0.5842261904761905,
+        "ANN 3.4": 0.63125,
+        "ANN 4.0": 0.6476190476190476,
+        "ARB": 0.6005952380952381,
+        "SMMPMBEC": 0.5964285714285715,
+        "IEDB Consensus": 0.7366071428571429,
+        "NetMHCcons": 0.6803571428571429,
+        "PickPocket": 0.5270833333333333,
+        "mhcflurry 1.2.0": 0.6880952380952381,
+        "NetMHCpan 3.0": 0.6946428571428571,
+        "NetMHCpan 4.0 BA": 0.6988095238095238,
+        "NetMHCpan 4.1 BA": 0.7011904761904761,
+        "DeepNeo-CL v4.1 BA": 0.6535714285714286,
+        "DeepNeo-CL v4.1 Fusion": 0.6785714285714285
+      },
+      "2021-12-24": {
+        "NetMHCpan 2.8": 0.6682630432630432,
+        "SMM": 0.6422807807807808,
+        "ANN 3.4": 0.7226561561561562,
+        "ANN 4.0": 0.7058106601584864,
+        "ARB": 0.6605405405405406,
+        "SMMPMBEC": 0.652978978978979,
+        "IEDB Consensus": 0.6332327327327327,
+        "NetMHCcons": 0.6857765143479428,
+        "PickPocket": 0.6117099438528011,
+        "mhcflurry 1.2.0": 0.666105105105105,
+        "NetMHCpan 3.0": 0.6622440140297283,
+        "NetMHCpan 4.0 BA": 0.6755052540766826,
+        "NetMHCpan 4.1 BA": 0.6714444821587678,
+        "DeepNeo-CL v4.1 BA": 0.6212507248221534,
+        "DeepNeo-CL v4.1 Fusion": 0.6570168088025231
+      },
+      "2022-04-29": {
+        "NetMHCpan 2.8": 0.6796536796536796,
+        "SMM": 0.6645021645021645,
+        "ANN 3.4": 0.6753246753246753,
+        "ANN 4.0": 0.7316017316017316,
+        "ARB": 0.6580086580086579,
+        "SMMPMBEC": 0.6883116883116883,
+        "IEDB Consensus": 0.658008658008658,
+        "NetMHCcons": 0.6839826839826839,
+        "PickPocket": 0.6190476190476191,
+        "mhcflurry 1.2.0": 0.5108225108225108,
+        "NetMHCpan 3.0": 0.7835497835497836,
+        "NetMHCpan 4.0 BA": 0.7402597402597403,
+        "NetMHCpan 4.1 BA": 0.7532467532467533,
+        "DeepNeo-CL v4.1 BA": 0.6103896103896104,
+        "DeepNeo-CL v4.1 Fusion": 0.5844155844155845
+      },
+      "2022-05-20": {
+        "NetMHCpan 2.8": 0.7388888888888889,
+        "SMM": 0.71875,
+        "ANN 3.4": 0.7715277777777778,
+        "ANN 4.0": 0.8062499999999999,
+        "ARB": 0.7135416666666667,
+        "SMMPMBEC": 0.73125,
+        "IEDB Consensus": 0.765625,
+        "NetMHCcons": 0.763888888888889,
+        "PickPocket": 0.7388888888888889,
+        "mhcflurry 1.2.0": 0.820138888888889,
+        "NetMHCpan 3.0": 0.75625,
+        "NetMHCpan 4.0 BA": 0.79375,
+        "NetMHCpan 4.1 BA": 0.78125,
+        "DeepNeo-CL v4.1 BA": 0.79375,
+        "DeepNeo-CL v4.1 Fusion": 0.7427083333333333
+      },
+      "2022-07-22": {
+        "NetMHCpan 2.8": 0.9761904761904763,
+        "SMM": 0.880952380952381,
+        "ANN 3.4": 0.9285714285714286,
+        "ANN 4.0": 0.9523809523809524,
+        "SMMPMBEC": 1.0,
+        "IEDB Consensus": 0.9404761904761905,
+        "NetMHCcons": 0.9761904761904763,
+        "PickPocket": 1.0,
+        "mhcflurry 1.2.0": 0.8809523809523809,
+        "NetMHCpan 3.0": 0.9761904761904763,
+        "NetMHCpan 4.0 BA": 0.9523809523809524,
+        "NetMHCpan 4.1 BA": 0.9523809523809524,
+        "DeepNeo-CL v4.1 BA": 1.0,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2022-10-06": {
+        "NetMHCpan 2.8": 0.6499999999999999,
+        "SMM": 0.8,
+        "ANN 3.4": 0.75,
+        "ANN 4.0": 0.8,
+        "ARB": 0.75,
+        "SMMPMBEC": 0.8500000000000001,
+        "IEDB Consensus": 0.8250000000000001,
+        "NetMHCcons": 0.6499999999999999,
+        "PickPocket": 0.75,
+        "mhcflurry 1.2.0": 0.9,
+        "NetMHCpan 3.0": 0.7,
+        "NetMHCpan 4.0 BA": 0.75,
+        "NetMHCpan 4.1 BA": 0.8,
+        "DeepNeo-CL v4.1 BA": 0.9,
+        "DeepNeo-CL v4.1 Fusion": 0.7250000000000001
+      },
+      "2022-10-28": {
+        "NetMHCpan 2.8": 0.7171864631718645,
+        "SMM": 0.7109489051094889,
+        "ANN 3.4": 0.7261446582614466,
+        "ANN 4.0": 0.7394824153948242,
+        "ARB": 0.6946250829462508,
+        "SMMPMBEC": 0.7075013491635187,
+        "IEDB Consensus": 0.6865958858659589,
+        "NetMHCcons": 0.7304801349900292,
+        "PickPocket": 0.7291970802919708,
+        "mhcflurry 1.2.0": 0.750763105507631,
+        "NetMHCpan 3.0": 0.7592568015925679,
+        "NetMHCpan 4.0 BA": 0.7557907654548244,
+        "NetMHCpan 4.1 BA": 0.7323158593231586,
+        "DeepNeo-CL v4.1 BA": 0.7238221632382216,
+        "DeepNeo-CL v4.1 Fusion": 0.7232249502322494
+      },
+      "2022-11-24": {
+        "NetMHCpan 2.8": 0.7486111111111111,
+        "SMM": 0.8166666666666667,
+        "ANN 3.4": 0.81875,
+        "ANN 4.0": 0.7840277777777778,
+        "ARB": 0.8777777777777778,
+        "SMMPMBEC": 0.8180555555555555,
+        "IEDB Consensus": 0.81875,
+        "NetMHCcons": 0.7881944444444444,
+        "PickPocket": 0.7930555555555555,
+        "mhcflurry 1.2.0": 0.8111111111111111,
+        "NetMHCpan 3.0": 0.8138888888888889,
+        "NetMHCpan 4.0 BA": 0.8111111111111111,
+        "NetMHCpan 4.1 BA": 0.7881944444444444,
+        "DeepNeo-CL v4.1 BA": 0.6833333333333333,
+        "DeepNeo-CL v4.1 Fusion": 0.7
+      },
+      "2023-05-11": {
+        "NetMHCpan 2.8": 0.47010925582354146,
+        "SMM": 0.48271833986119705,
+        "ANN 3.4": 0.48331959046244766,
+        "ANN 4.0": 0.4796949082663369,
+        "ARB": 0.474129045557617,
+        "SMMPMBEC": 0.48460798460798465,
+        "IEDB Consensus": 0.47820037105751395,
+        "NetMHCcons": 0.475091046519618,
+        "PickPocket": 0.4967704253418539,
+        "mhcflurry 1.2.0": 0.4701779701779701,
+        "NetMHCpan 3.0": 0.4846766989624132,
+        "NetMHCpan 4.0 BA": 0.4868068439497011,
+        "NetMHCpan 4.1 BA": 0.48536384250669967,
+        "DeepNeo-CL v4.1 BA": 0.4827526970384113,
+        "DeepNeo-CL v4.1 Fusion": 0.48522641379784237
+      },
+      "2023-06-15": {
+        "NetMHCpan 2.8": 0.8610169491525423,
+        "SMM": 0.8022598870056497,
+        "ANN 3.4": 0.8519774011299435,
+        "ANN 4.0": 0.8576271186440678,
+        "ARB": 0.8282485875706215,
+        "SMMPMBEC": 0.831638418079096,
+        "IEDB Consensus": 0.8559322033898304,
+        "NetMHCcons": 0.8621468926553673,
+        "PickPocket": 0.7988700564971751,
+        "mhcflurry 1.2.0": 0.8350282485875707,
+        "NetMHCpan 3.0": 0.8734463276836157,
+        "NetMHCpan 4.0 BA": 0.8666666666666667,
+        "NetMHCpan 4.1 BA": 0.8666666666666666,
+        "DeepNeo-CL v4.1 BA": 0.8440677966101694,
+        "DeepNeo-CL v4.1 Fusion": 0.8864406779661017
+      },
+      "2023-08-03": {
+        "NetMHCpan 2.8": 0.8709415397256464,
+        "SMM": 0.8647844335056485,
+        "ANN 3.4": 0.870580552131984,
+        "ANN 4.0": 0.8807229085997897,
+        "ARB": 0.8658533986500871,
+        "SMMPMBEC": 0.8708246635197532,
+        "IEDB Consensus": 0.9000732516083856,
+        "NetMHCcons": 0.8738436456899834,
+        "PickPocket": 0.8077039009201241,
+        "mhcflurry 1.2.0": 0.8906381502568095,
+        "NetMHCpan 3.0": 0.8835561320564811,
+        "NetMHCpan 4.0 BA": 0.8844136015686763,
+        "NetMHCpan 4.1 BA": 0.8796135908631746,
+        "DeepNeo-CL v4.1 BA": 0.8434070121951218,
+        "DeepNeo-CL v4.1 Fusion": 0.8334762525437004
+      },
+      "2023-08-10": {
+        "NetMHCpan 2.8": 0.7129904487047345,
+        "SMM": 0.692281660138803,
+        "ANN 3.4": 0.7901978973407545,
+        "ANN 4.0": 0.7975984333127191,
+        "ARB": 0.6489435168006596,
+        "SMMPMBEC": 0.6910619803476946,
+        "IEDB Consensus": 0.6741092901807187,
+        "NetMHCcons": 0.7422077922077922,
+        "PickPocket": 0.7026283240568955,
+        "mhcflurry 1.2.0": 0.757579193293479,
+        "NetMHCpan 3.0": 0.7603449460592318,
+        "NetMHCpan 4.0 BA": 0.7642960214388785,
+        "NetMHCpan 4.1 BA": 0.7685734900020614,
+        "DeepNeo-CL v4.1 BA": 0.7592455163883736,
+        "DeepNeo-CL v4.1 Fusion": 0.6308871023156737
+      },
+      "2024-02-15": {
+        "NetMHCpan 2.8": 0.3055555555555555,
+        "SMM": 0.5472222222222223,
+        "ANN 3.4": 0.5111111111111111,
+        "ANN 4.0": 0.5666666666666667,
+        "SMMPMBEC": 0.5388888888888889,
+        "IEDB Consensus": 0.5666666666666667,
+        "PickPocket": 0.6166666666666667,
+        "NetMHCpan 3.0": 0.36666666666666664,
+        "NetMHCpan 4.0 BA": 0.5,
+        "NetMHCpan 4.1 BA": 0.43333333333333335,
+        "DeepNeo-CL v4.1 BA": 0.6222222222222221,
+        "DeepNeo-CL v4.1 Fusion": 0.6972222222222222
+      },
+      "2024-02-29": {
+        "NetMHCpan 2.8": 0.9305555555555556,
+        "SMM": 0.9305555555555556,
+        "ANN 3.4": 0.8888888888888888,
+        "ANN 4.0": 0.9444444444444444,
+        "ARB": 0.9861111111111112,
+        "SMMPMBEC": 0.9305555555555556,
+        "IEDB Consensus": 0.9305555555555556,
+        "NetMHCcons": 0.9027777777777778,
+        "PickPocket": 0.9305555555555556,
+        "mhcflurry 1.2.0": 0.9444444444444444,
+        "NetMHCpan 3.0": 0.9305555555555556,
+        "NetMHCpan 4.0 BA": 0.9305555555555556,
+        "NetMHCpan 4.1 BA": 0.9305555555555556,
+        "DeepNeo-CL v4.1 BA": 0.9027777777777777,
+        "DeepNeo-CL v4.1 Fusion": 0.8819444444444444
+      },
+      "2024-04-18": {
+        "NetMHCpan 2.8": 0.8181818181818181,
+        "SMM": 0.8181818181818181,
+        "ANN 3.4": 0.8181818181818181,
+        "ANN 4.0": 0.8181818181818181,
+        "ARB": 0.7727272727272727,
+        "SMMPMBEC": 0.8181818181818181,
+        "IEDB Consensus": 0.8181818181818181,
+        "NetMHCcons": 0.8181818181818181,
+        "PickPocket": 0.9545454545454546,
+        "mhcflurry 1.2.0": 0.9545454545454546,
+        "NetMHCpan 3.0": 0.8181818181818181,
+        "NetMHCpan 4.0 BA": 0.9090909090909092,
+        "NetMHCpan 4.1 BA": 0.8636363636363636,
+        "DeepNeo-CL v4.1 BA": 1.0,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2024-05-16": {
+        "NetMHCpan 2.8": 0.6190476190476191,
+        "SMM": 0.6428571428571428,
+        "ANN 3.4": 0.7142857142857143,
+        "ANN 4.0": 0.738095238095238,
+        "ARB": 0.6428571428571428,
+        "SMMPMBEC": 0.6428571428571429,
+        "IEDB Consensus": 0.6904761904761905,
+        "NetMHCcons": 0.6190476190476191,
+        "PickPocket": 0.6190476190476191,
+        "mhcflurry 1.2.0": 0.761904761904762,
+        "NetMHCpan 3.0": 0.5952380952380953,
+        "NetMHCpan 4.0 BA": 0.6666666666666666,
+        "NetMHCpan 4.1 BA": 0.6428571428571428,
+        "DeepNeo-CL v4.1 BA": 0.6428571428571429,
+        "DeepNeo-CL v4.1 Fusion": 0.6547619047619048
+      },
+      "2024-05-23": {
+        "NetMHCpan 2.8": 0.95,
+        "SMM": 0.85,
+        "ANN 3.4": 1.0,
+        "ANN 4.0": 0.95,
+        "ARB": 0.85,
+        "SMMPMBEC": 0.85,
+        "IEDB Consensus": 0.95,
+        "NetMHCcons": 1.0,
+        "PickPocket": 0.85,
+        "mhcflurry 1.2.0": 0.9,
+        "NetMHCpan 3.0": 0.95,
+        "NetMHCpan 4.0 BA": 0.95,
+        "NetMHCpan 4.1 BA": 0.95,
+        "DeepNeo-CL v4.1 BA": 0.85,
+        "DeepNeo-CL v4.1 Fusion": 0.925
+      },
+      "2024-05-30": {
+        "NetMHCpan 2.8": 0.9291666666666666,
+        "SMM": 0.9458333333333333,
+        "ANN 3.4": 0.9541666666666666,
+        "ANN 4.0": 0.9625,
+        "ARB": 0.975,
+        "SMMPMBEC": 0.9375,
+        "IEDB Consensus": 0.95,
+        "NetMHCcons": 0.94375,
+        "PickPocket": 0.925,
+        "mhcflurry 1.2.0": 0.9625,
+        "NetMHCpan 3.0": 0.9333333333333332,
+        "NetMHCpan 4.0 BA": 0.9333333333333333,
+        "NetMHCpan 4.1 BA": 0.9291666666666666,
+        "DeepNeo-CL v4.1 BA": 0.9124999999999999,
+        "DeepNeo-CL v4.1 Fusion": 0.9041666666666666
+      },
+      "2024-11-28": {
+        "NetMHCpan 2.8": 1.0,
+        "SMM": 1.0,
+        "ANN 3.4": 1.0,
+        "ANN 4.0": 1.0,
+        "ARB": 1.0,
+        "SMMPMBEC": 1.0,
+        "IEDB Consensus": 1.0,
+        "NetMHCcons": 1.0,
+        "PickPocket": 1.0,
+        "mhcflurry 1.2.0": 1.0,
+        "NetMHCpan 3.0": 1.0,
+        "NetMHCpan 4.0 BA": 1.0,
+        "NetMHCpan 4.1 BA": 1.0,
+        "DeepNeo-CL v4.1 BA": 1.0,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2025-01-23": {
+        "NetMHCpan 2.8": 1.0,
+        "SMM": 1.0,
+        "ANN 3.4": 1.0,
+        "ANN 4.0": 1.0,
+        "ARB": 1.0,
+        "SMMPMBEC": 1.0,
+        "IEDB Consensus": 1.0,
+        "NetMHCcons": 1.0,
+        "PickPocket": 1.0,
+        "mhcflurry 1.2.0": 1.0,
+        "NetMHCpan 3.0": 1.0,
+        "NetMHCpan 4.0 BA": 1.0,
+        "NetMHCpan 4.1 BA": 1.0,
+        "DeepNeo-CL v4.1 BA": 1.0,
+        "DeepNeo-CL v4.1 Fusion": 1.0
+      },
+      "2025-02-13": {
+        "NetMHCpan 2.8": 0.9444444444444444,
+        "SMM": 1.0,
+        "ANN 3.4": 0.9444444444444444,
+        "ANN 4.0": 1.0,
+        "ARB": 1.0,
+        "SMMPMBEC": 1.0,
+        "IEDB Consensus": 1.0,
+        "NetMHCcons": 0.9444444444444444,
+        "PickPocket": 0.7777777777777779,
+        "mhcflurry 1.2.0": 0.9444444444444444,
+        "NetMHCpan 3.0": 1.0,
+        "NetMHCpan 4.0 BA": 1.0,
+        "NetMHCpan 4.1 BA": 1.0,
+        "DeepNeo-CL v4.1 BA": 0.9444444444444444,
+        "DeepNeo-CL v4.1 Fusion": 0.8333333333333334
+      },
+      "2025-02-20": {
+        "NetMHCpan 2.8": 0.675,
+        "SMM": 0.6875,
+        "ANN 3.4": 0.690625,
+        "ANN 4.0": 0.6625,
+        "ARB": 0.60625,
+        "SMMPMBEC": 0.675,
+        "IEDB Consensus": 0.665625,
+        "NetMHCcons": 0.6875,
+        "PickPocket": 0.6000000000000001,
+        "mhcflurry 1.2.0": 0.63125,
+        "NetMHCpan 3.0": 0.75625,
+        "NetMHCpan 4.0 BA": 0.74375,
+        "NetMHCpan 4.1 BA": 0.7375,
+        "DeepNeo-CL v4.1 BA": 0.6875,
+        "DeepNeo-CL v4.1 Fusion": 0.69375
+      },
+      "2025-03-06": {
+        "NetMHCpan 2.8": 1.0,
+        "SMM": 1.0,
+        "ANN 3.4": 0.9772727272727273,
+        "ANN 4.0": 1.0,
+        "ARB": 0.9090909090909091,
+        "SMMPMBEC": 1.0,
+        "IEDB Consensus": 1.0,
+        "NetMHCcons": 1.0,
+        "PickPocket": 1.0,
+        "mhcflurry 1.2.0": 1.0,
+        "NetMHCpan 3.0": 1.0,
+        "NetMHCpan 4.0 BA": 1.0,
+        "NetMHCpan 4.1 BA": 1.0,
+        "DeepNeo-CL v4.1 BA": 0.9545454545454545,
+        "DeepNeo-CL v4.1 Fusion": 0.9318181818181818
+      },
+      "2025-03-13": {
+        "SMM": 0.75,
+        "ANN 4.0": 0.7625,
+        "ARB": 0.8,
+        "SMMPMBEC": 0.725,
+        "IEDB Consensus": 0.75,
+        "PickPocket": 0.65,
+        "mhcflurry 1.2.0": 0.725,
+        "NetMHCpan 4.0 BA": 0.7375,
+        "NetMHCpan 4.1 BA": 0.7375,
+        "DeepNeo-CL v4.1 BA": 0.8,
+        "DeepNeo-CL v4.1 Fusion": 0.75625
+      },
+      "2025-03-27": {
+        "NetMHCpan 2.8": 0.6901883121395317,
+        "SMM": 0.6432145090681676,
+        "ANN 3.4": 0.69720658745049,
+        "ANN 4.0": 0.7129803349315544,
+        "ARB": 0.6259815162254188,
+        "SMMPMBEC": 0.6380376624279064,
+        "IEDB Consensus": 0.6775762629421167,
+        "NetMHCcons": 0.7018622750330066,
+        "PickPocket": 0.6737196859148079,
+        "mhcflurry 1.2.0": 0.6353971232020013,
+        "NetMHCpan 3.0": 0.695365158779793,
+        "NetMHCpan 4.0 BA": 0.7041206309498993,
+        "NetMHCpan 4.1 BA": 0.7294142172190953,
+        "DeepNeo-CL v4.1 BA": 0.6838996595094156,
+        "DeepNeo-CL v4.1 Fusion": 0.7059620596205962
+      },
+      "2025-06-19": {
+        "NetMHCpan 2.8": 0.5793650793650794,
+        "SMM": 0.6031746031746031,
+        "ANN 3.4": 0.7043650793650794,
+        "ANN 4.0": 0.6904761904761905,
+        "ARB": 0.42261904761904756,
+        "SMMPMBEC": 0.5932539682539683,
+        "IEDB Consensus": 0.5505952380952381,
+        "NetMHCcons": 0.6527777777777778,
+        "PickPocket": 0.5783730158730159,
+        "mhcflurry 1.2.0": 0.6488095238095238,
+        "NetMHCpan 3.0": 0.6517857142857143,
+        "NetMHCpan 4.0 BA": 0.6547619047619048,
+        "NetMHCpan 4.1 BA": 0.6428571428571429,
+        "DeepNeo-CL v4.1 BA": 0.6369047619047619,
+        "DeepNeo-CL v4.1 Fusion": 0.7063492063492064
+      },
+      "2025-07-03": {
+        "NetMHCpan 2.8": 0.5593709043250328,
+        "SMM": 0.5551470588235293,
+        "ANN 3.4": 0.5636402727440261,
+        "ANN 4.0": 0.5711192538307794,
+        "ARB": 0.5727583168098701,
+        "SMMPMBEC": 0.544248278925161,
+        "IEDB Consensus": 0.5769209415944925,
+        "NetMHCcons": 0.5574574049803407,
+        "PickPocket": 0.5738269986893839,
+        "mhcflurry 1.2.0": 0.5490228736397957,
+        "NetMHCpan 3.0": 0.5714678899082569,
+        "NetMHCpan 4.0 BA": 0.5696985583224116,
+        "NetMHCpan 4.1 BA": 0.576887462189024,
+        "DeepNeo-CL v4.1 BA": 0.5735255570117955,
+        "DeepNeo-CL v4.1 Fusion": 0.5822673656618611
+      },
+      "2025-12-25": {
+        "SMM": 0.7036489151873767,
+        "ANN 4.0": 0.7059608965188364,
+        "ARB": 0.696110325318246,
+        "SMMPMBEC": 0.7173581306628517,
+        "IEDB Consensus": 0.6910348116356699,
+        "PickPocket": 0.6869814020028612,
+        "mhcflurry 1.2.0": 0.7308880308880308,
+        "NetMHCpan 4.0 BA": 0.7402479732951835,
+        "NetMHCpan 4.1 BA": 0.7380066762041011,
+        "DeepNeo-CL v4.1 BA": 0.7465903671912255,
+        "DeepNeo-CL v4.1 Fusion": 0.7330948974725798
+      },
+      "2026-01-22": {
+        "SMM": 0.8060428849902533,
+        "ANN 4.0": 0.7984683932052353,
+        "ARB": 0.8190336953494848,
+        "SMMPMBEC": 0.7962962962962963,
+        "IEDB Consensus": 0.8149192425508215,
+        "PickPocket": 0.845224171539961,
+        "mhcflurry 1.2.0": 0.8090782511835144,
+        "NetMHCpan 4.0 BA": 0.828223336118073,
+        "NetMHCpan 4.1 BA": 0.8353661932609301,
+        "DeepNeo-CL v4.1 BA": 0.8159704817599555,
+        "DeepNeo-CL v4.1 Fusion": 0.8337649679754943
+      },
+      "2026-04-16": {
+        "SMM": 0.5089285714285714,
+        "ANN 4.0": 0.4790547798066595,
+        "ARB": 0.533182503770739,
+        "SMMPMBEC": 0.5445757250268528,
+        "IEDB Consensus": 0.4822771213748658,
+        "PickPocket": 0.5139634801288937,
+        "mhcflurry 1.2.0": 0.38560687432867885,
+        "NetMHCpan 4.0 BA": 0.4962406015037594,
+        "NetMHCpan 4.1 BA": 0.49409237379162196,
+        "DeepNeo-CL v4.1 BA": 0.5069817400644469,
+        "DeepNeo-CL v4.1 Fusion": 0.5032223415682063
+      },
+      "2026-05-21": {
+        "NetMHCpan 2.8": 0.9824919754887658,
+        "SMM": 0.973446162824628,
+        "ANN 3.4": 0.983659177122848,
+        "ANN 4.0": 0.9804493726291217,
+        "ARB": 0.9626495477093668,
+        "SMMPMBEC": 0.9740297636416692,
+        "IEDB Consensus": 0.9754887656842719,
+        "NetMHCcons": 0.9849722789611906,
+        "PickPocket": 0.9817624744674642,
+        "mhcflurry 1.2.0": 0.9734461628246279,
+        "NetMHCpan 4.0 BA": 0.9801575722206012,
+        "NetMHCpan 4.1 BA": 0.9798657718120806,
+        "Custommune HLA-I": 0.9568135395389553,
+        "DeepNeo-CL v4.1 BA": 0.9646921505690108,
+        "DeepNeo-CL v4.1 Fusion": 0.9759264662970528
+      }
+    },
+    "note": "Single-column DeepNeo protocol: DeepNeo-CL v4.1 BA head excluded so only the deployed fusion is entered in the ranking. Scores are rounded to 12 decimal places before comparison so that floating-point differences at the ULP level do not spuriously separate mathematically-equal AUROCs (e.g. 0.9935897435897436 vs 0.9935897435897435 in BA week 2021-04-16; 0.6666666666666666 vs 0.6666666666666665 in EL week 2024-05-16). Fractional-rank tie-breaking; non-human alleles already excluded upstream.",
+    "tie_tolerance_decimals": 12
+  },
+  "el": {
+    "benchmark": "EL benchmark (weekly)",
+    "cutoff": "2020-01-01",
+    "n_weeks_used": 46,
+    "per_predictor_summary": [
+      {
+        "predictor": "DeepNeo-CL v4.1 EL",
+        "n_weeks_scored": 46,
+        "mean_week_auroc": 0.7763,
+        "mean_rank": 1.8043,
+        "n_weeks_rank1_including_ties": 24,
+        "n_weeks_rank1_outright": 19
+      },
+      {
+        "predictor": "NetMHCpan 4.1 EL",
+        "n_weeks_scored": 46,
+        "mean_week_auroc": 0.7232,
+        "mean_rank": 2.0109,
+        "n_weeks_rank1_including_ties": 15,
+        "n_weeks_rank1_outright": 12
+      },
+      {
+        "predictor": "NetMHCpan 4.0 EL",
+        "n_weeks_scored": 45,
+        "mean_week_auroc": 0.7413,
+        "mean_rank": 2.1667,
+        "n_weeks_rank1_including_ties": 15,
+        "n_weeks_rank1_outright": 10
+      }
+    ],
+    "per_week_ranks": {
+      "2020-03-13": {
+        "NetMHCpan 4.0 EL": 2.0,
+        "NetMHCpan 4.1 EL": 3.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2020-04-24": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 2.0
+      },
+      "2020-09-11": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2020-10-02": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 2.0
+      },
+      "2020-11-13": {
+        "NetMHCpan 4.0 EL": 2.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 2.0
+      },
+      "2020-12-11": {
+        "NetMHCpan 4.0 EL": 2.5,
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 2.5
+      },
+      "2020-12-25": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 2.0
+      },
+      "2021-01-01": {
+        "NetMHCpan 4.0 EL": 1.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 3.0
+      },
+      "2021-01-15": {
+        "NetMHCpan 4.0 EL": 2.0,
+        "NetMHCpan 4.1 EL": 3.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2021-02-19": {
+        "NetMHCpan 4.0 EL": 1.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 3.0
+      },
+      "2021-04-16": {
+        "NetMHCpan 4.0 EL": 2.0,
+        "NetMHCpan 4.1 EL": 3.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2021-05-21": {
+        "NetMHCpan 4.0 EL": 2.5,
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 2.5
+      },
+      "2021-09-03": {
+        "NetMHCpan 4.0 EL": 2.0,
+        "NetMHCpan 4.1 EL": 3.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2021-10-01": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2021-10-08": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2021-11-05": {
+        "NetMHCpan 4.0 EL": 1.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 3.0
+      },
+      "2021-12-24": {
+        "NetMHCpan 4.0 EL": 1.0,
+        "NetMHCpan 4.1 EL": 3.0,
+        "DeepNeo-CL v4.1 EL": 2.0
+      },
+      "2022-04-29": {
+        "NetMHCpan 4.0 EL": 2.0,
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 3.0
+      },
+      "2022-05-20": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2022-07-22": {
+        "NetMHCpan 4.0 EL": 1.5,
+        "NetMHCpan 4.1 EL": 3.0,
+        "DeepNeo-CL v4.1 EL": 1.5
+      },
+      "2022-10-06": {
+        "NetMHCpan 4.0 EL": 2.5,
+        "NetMHCpan 4.1 EL": 2.5,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2022-10-28": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2022-11-24": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2023-05-11": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 2.0
+      },
+      "2023-06-15": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2023-08-03": {
+        "NetMHCpan 4.0 EL": 1.0,
+        "NetMHCpan 4.1 EL": 3.0,
+        "DeepNeo-CL v4.1 EL": 2.0
+      },
+      "2023-08-10": {
+        "NetMHCpan 4.0 EL": 1.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 3.0
+      },
+      "2024-02-15": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2024-02-29": {
+        "NetMHCpan 4.0 EL": 1.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 3.0
+      },
+      "2024-04-18": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2024-05-16": {
+        "NetMHCpan 4.0 EL": 1.5,
+        "NetMHCpan 4.1 EL": 3.0,
+        "DeepNeo-CL v4.1 EL": 1.5
+      },
+      "2024-05-23": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 2.0
+      },
+      "2024-05-30": {
+        "NetMHCpan 4.0 EL": 2.0,
+        "NetMHCpan 4.1 EL": 3.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2024-11-28": {
+        "NetMHCpan 4.0 EL": 2.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 2.0
+      },
+      "2025-01-23": {
+        "NetMHCpan 4.0 EL": 2.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 2.0
+      },
+      "2025-02-13": {
+        "NetMHCpan 4.0 EL": 1.0,
+        "NetMHCpan 4.1 EL": 3.0,
+        "DeepNeo-CL v4.1 EL": 2.0
+      },
+      "2025-02-20": {
+        "NetMHCpan 4.0 EL": 2.0,
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 3.0
+      },
+      "2025-03-06": {
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 2.0
+      },
+      "2025-03-13": {
+        "NetMHCpan 4.0 EL": 2.0,
+        "NetMHCpan 4.1 EL": 3.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2025-03-27": {
+        "NetMHCpan 4.0 EL": 2.0,
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 3.0
+      },
+      "2025-06-19": {
+        "NetMHCpan 4.0 EL": 1.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 3.0
+      },
+      "2025-07-03": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2025-12-25": {
+        "NetMHCpan 4.0 EL": 2.0,
+        "NetMHCpan 4.1 EL": 3.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2026-01-22": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2026-04-16": {
+        "NetMHCpan 4.0 EL": 3.0,
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 2.0
+      },
+      "2026-05-21": {
+        "NetMHCpan 4.0 EL": 1.0,
+        "NetMHCpan 4.1 EL": 2.0,
+        "DeepNeo-CL v4.1 EL": 3.0
+      }
+    },
+    "per_week_scores": {
+      "2020-03-13": {
+        "NetMHCpan 4.0 EL": 0.1875,
+        "NetMHCpan 4.1 EL": 0.125,
+        "DeepNeo-CL v4.1 EL": 0.3125
+      },
+      "2020-04-24": {
+        "NetMHCpan 4.0 EL": 0.7857142857142857,
+        "NetMHCpan 4.1 EL": 0.8292124542124543,
+        "DeepNeo-CL v4.1 EL": 0.8186813186813188
+      },
+      "2020-09-11": {
+        "NetMHCpan 4.0 EL": 0.7407407407407408,
+        "NetMHCpan 4.1 EL": 0.7777777777777778,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2020-10-02": {
+        "NetMHCpan 4.0 EL": 0.735,
+        "NetMHCpan 4.1 EL": 0.78,
+        "DeepNeo-CL v4.1 EL": 0.75
+      },
+      "2020-11-13": {
+        "NetMHCpan 4.0 EL": 1.0,
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2020-12-11": {
+        "NetMHCpan 4.0 EL": 0.9090909090909091,
+        "NetMHCpan 4.1 EL": 0.9272727272727272,
+        "DeepNeo-CL v4.1 EL": 0.9090909090909091
+      },
+      "2020-12-25": {
+        "NetMHCpan 4.0 EL": 0.602692580196331,
+        "NetMHCpan 4.1 EL": 0.621622953815377,
+        "DeepNeo-CL v4.1 EL": 0.60620203127705
+      },
+      "2021-01-01": {
+        "NetMHCpan 4.0 EL": 0.85,
+        "NetMHCpan 4.1 EL": 0.8452380952380952,
+        "DeepNeo-CL v4.1 EL": 0.8392857142857143
+      },
+      "2021-01-15": {
+        "NetMHCpan 4.0 EL": 0.905982905982906,
+        "NetMHCpan 4.1 EL": 0.5384615384615384,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2021-02-19": {
+        "NetMHCpan 4.0 EL": 0.8018353174603174,
+        "NetMHCpan 4.1 EL": 0.7586805555555556,
+        "DeepNeo-CL v4.1 EL": 0.7234623015873016
+      },
+      "2021-04-16": {
+        "NetMHCpan 4.0 EL": 0.9935897435897436,
+        "NetMHCpan 4.1 EL": 0.9198717948717948,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2021-05-21": {
+        "NetMHCpan 4.0 EL": 0.9583333333333334,
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 0.9583333333333334
+      },
+      "2021-09-03": {
+        "NetMHCpan 4.0 EL": 0.7001175213675214,
+        "NetMHCpan 4.1 EL": 0.6959188034188033,
+        "DeepNeo-CL v4.1 EL": 0.7802991452991452
+      },
+      "2021-10-01": {
+        "NetMHCpan 4.0 EL": 0.7546106557377048,
+        "NetMHCpan 4.1 EL": 0.7612704918032787,
+        "DeepNeo-CL v4.1 EL": 0.7961065573770493
+      },
+      "2021-10-08": {
+        "NetMHCpan 4.0 EL": 0.7270531400966184,
+        "NetMHCpan 4.1 EL": 0.7753623188405797,
+        "DeepNeo-CL v4.1 EL": 0.7777777777777777
+      },
+      "2021-11-05": {
+        "NetMHCpan 4.0 EL": 0.7857142857142858,
+        "NetMHCpan 4.1 EL": 0.7423167848699763,
+        "DeepNeo-CL v4.1 EL": 0.6946428571428571
+      },
+      "2021-12-24": {
+        "NetMHCpan 4.0 EL": 0.6943000693000694,
+        "NetMHCpan 4.1 EL": 0.6645277341705913,
+        "DeepNeo-CL v4.1 EL": 0.6922910744339316
+      },
+      "2022-04-29": {
+        "NetMHCpan 4.0 EL": 0.6623376623376623,
+        "NetMHCpan 4.1 EL": 0.6709956709956709,
+        "DeepNeo-CL v4.1 EL": 0.48917748917748916
+      },
+      "2022-05-20": {
+        "NetMHCpan 4.0 EL": 0.6854166666666667,
+        "NetMHCpan 4.1 EL": 0.6885416666666666,
+        "DeepNeo-CL v4.1 EL": 0.7416666666666667
+      },
+      "2022-07-22": {
+        "NetMHCpan 4.0 EL": 0.9523809523809524,
+        "NetMHCpan 4.1 EL": 0.9285714285714286,
+        "DeepNeo-CL v4.1 EL": 0.9523809523809524
+      },
+      "2022-10-06": {
+        "NetMHCpan 4.0 EL": 0.30000000000000004,
+        "NetMHCpan 4.1 EL": 0.30000000000000004,
+        "DeepNeo-CL v4.1 EL": 0.55
+      },
+      "2022-10-28": {
+        "NetMHCpan 4.0 EL": 0.6699463327370305,
+        "NetMHCpan 4.1 EL": 0.6745189117451891,
+        "DeepNeo-CL v4.1 EL": 0.7094890510948906
+      },
+      "2022-11-24": {
+        "NetMHCpan 4.0 EL": 0.7090277777777778,
+        "NetMHCpan 4.1 EL": 0.711111111111111,
+        "DeepNeo-CL v4.1 EL": 0.7138888888888888
+      },
+      "2023-05-11": {
+        "NetMHCpan 4.0 EL": 0.4740087954373668,
+        "NetMHCpan 4.1 EL": 0.49585996014567446,
+        "DeepNeo-CL v4.1 EL": 0.4903112760255618
+      },
+      "2023-06-15": {
+        "NetMHCpan 4.0 EL": 0.7338983050847459,
+        "NetMHCpan 4.1 EL": 0.8203389830508475,
+        "DeepNeo-CL v4.1 EL": 0.8994350282485876
+      },
+      "2023-08-03": {
+        "NetMHCpan 4.0 EL": 0.842112012487922,
+        "NetMHCpan 4.1 EL": 0.7651869894299184,
+        "DeepNeo-CL v4.1 EL": 0.7953820171361228
+      },
+      "2023-08-10": {
+        "NetMHCpan 4.0 EL": 0.6695973338830481,
+        "NetMHCpan 4.1 EL": 0.6475091046519618,
+        "DeepNeo-CL v4.1 EL": 0.6332371332371333
+      },
+      "2024-02-15": {
+        "NetMHCpan 4.0 EL": 0.47222222222222227,
+        "NetMHCpan 4.1 EL": 0.49722222222222223,
+        "DeepNeo-CL v4.1 EL": 0.7333333333333333
+      },
+      "2024-02-29": {
+        "NetMHCpan 4.0 EL": 0.9166666666666666,
+        "NetMHCpan 4.1 EL": 0.8888888888888888,
+        "DeepNeo-CL v4.1 EL": 0.8611111111111112
+      },
+      "2024-04-18": {
+        "NetMHCpan 4.0 EL": 0.8181818181818181,
+        "NetMHCpan 4.1 EL": 0.9090909090909092,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2024-05-16": {
+        "NetMHCpan 4.0 EL": 0.6666666666666666,
+        "NetMHCpan 4.1 EL": 0.6428571428571428,
+        "DeepNeo-CL v4.1 EL": 0.6666666666666665
+      },
+      "2024-05-23": {
+        "NetMHCpan 4.0 EL": 0.9,
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 0.95
+      },
+      "2024-05-30": {
+        "NetMHCpan 4.0 EL": 0.8458333333333333,
+        "NetMHCpan 4.1 EL": 0.06666666666666671,
+        "DeepNeo-CL v4.1 EL": 0.8999999999999999
+      },
+      "2024-11-28": {
+        "NetMHCpan 4.0 EL": 1.0,
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2025-01-23": {
+        "NetMHCpan 4.0 EL": 1.0,
+        "NetMHCpan 4.1 EL": 1.0,
+        "DeepNeo-CL v4.1 EL": 1.0
+      },
+      "2025-02-13": {
+        "NetMHCpan 4.0 EL": 0.7222222222222222,
+        "NetMHCpan 4.1 EL": 0.6111111111111112,
+        "DeepNeo-CL v4.1 EL": 0.6666666666666666
+      },
+      "2025-02-20": {
+        "NetMHCpan 4.0 EL": 0.71875,
+        "NetMHCpan 4.1 EL": 0.721875,
+        "DeepNeo-CL v4.1 EL": 0.65625
+      },
+      "2025-03-06": {
+        "NetMHCpan 4.1 EL": 0.9545454545454545,
+        "DeepNeo-CL v4.1 EL": 0.9090909090909091
+      },
+      "2025-03-13": {
+        "NetMHCpan 4.0 EL": 0.6375,
+        "NetMHCpan 4.1 EL": 0.6,
+        "DeepNeo-CL v4.1 EL": 0.7250000000000001
+      },
+      "2025-03-27": {
+        "NetMHCpan 4.0 EL": 0.7069696337989021,
+        "NetMHCpan 4.1 EL": 0.7346605517337225,
+        "DeepNeo-CL v4.1 EL": 0.6932805225488152
+      },
+      "2025-06-19": {
+        "NetMHCpan 4.0 EL": 0.8283730158730159,
+        "NetMHCpan 4.1 EL": 0.7906746031746031,
+        "DeepNeo-CL v4.1 EL": 0.746031746031746
+      },
+      "2025-07-03": {
+        "NetMHCpan 4.0 EL": 0.5596723460026212,
+        "NetMHCpan 4.1 EL": 0.5762647444298821,
+        "DeepNeo-CL v4.1 EL": 0.5811795543905636
+      },
+      "2025-12-25": {
+        "NetMHCpan 4.0 EL": 0.6500715307582261,
+        "NetMHCpan 4.1 EL": 0.5669527896995709,
+        "DeepNeo-CL v4.1 EL": 0.7102527420123986
+      },
+      "2026-01-22": {
+        "NetMHCpan 4.0 EL": 0.6831523252575885,
+        "NetMHCpan 4.1 EL": 0.6858256752993596,
+        "DeepNeo-CL v4.1 EL": 0.8137426900584795
+      },
+      "2026-04-16": {
+        "NetMHCpan 4.0 EL": 0.4199785177228786,
+        "NetMHCpan 4.1 EL": 0.5719656283566058,
+        "DeepNeo-CL v4.1 EL": 0.48442534908700324
+      },
+      "2026-05-21": {
+        "NetMHCpan 4.0 EL": 0.9824919754887658,
+        "NetMHCpan 4.1 EL": 0.9819083746717245,
+        "DeepNeo-CL v4.1 EL": 0.9804493726291218
+      }
+    },
+    "note": "Single-column DeepNeo protocol: DeepNeo-CL v4.1 BA head excluded so only the deployed fusion is entered in the ranking. Scores are rounded to 12 decimal places before comparison so that floating-point differences at the ULP level do not spuriously separate mathematically-equal AUROCs (e.g. 0.9935897435897436 vs 0.9935897435897435 in BA week 2021-04-16; 0.6666666666666666 vs 0.6666666666666665 in EL week 2024-05-16). Fractional-rank tie-breaking; non-human alleles already excluded upstream.",
+    "tie_tolerance_decimals": 12
+  }
+}

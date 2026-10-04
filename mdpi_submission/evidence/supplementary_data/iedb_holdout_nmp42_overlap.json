@@ -1,0 +1,11 @@
+{
+  "n_holdout": 1365,
+  "n_positives_label_binder": 574,
+  "n_in_nmp42_corpus": 1364,
+  "n_not_in_nmp42_corpus": 1,
+  "pct_in_nmp42_corpus": 99.93,
+  "source_csv": "publication/BMC/results/artifacts/iedb_static_in_nmp42_corpus.csv",
+  "claim": "1364/1365 (99.93%) of author-constructed post-4.1 IEDB BA holdout pairs appear in NetMHCpan-4.2 training pairs; contamination probe only.",
+  "not_a_ranking_board": true,
+  "not_reynisson_2020_eval_board": true
+}

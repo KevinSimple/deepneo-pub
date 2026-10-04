@@ -1,0 +1,31 @@
+{
+  "metric": "per-reference (within-allele) AUROC paired Wilcoxon DeepNeo vs NetMHCpan-4.1 BA",
+  "wilcoxon_p": 0.6477905856505521,
+  "raw": {
+    "paired_scatter": {
+      "win": 15,
+      "tie": 12,
+      "loss": 19,
+      "mean_delta": -0.006696450897017064,
+      "wilcoxon_p": 0.6477905856505521,
+      "n_datasets": 46
+    },
+    "weekly_compare": {
+      "weeks": 13,
+      "deepneo_higher": 3,
+      "tied": 2,
+      "netmhcpan_higher": 8,
+      "mean_deepneo": 0.7632652810379733,
+      "mean_netmhcpan": 0.7692988114634031
+    }
+  },
+  "note": "This is NOT the same as Wilcoxon on per-week mean AUROC from weekly_ranking JSON (that yields ~0.042). Manuscript p=0.65 must cite THIS per-reference metric.",
+  "matched_block": {
+    "win": 15,
+    "tie": 12,
+    "loss": 19,
+    "mean_delta": -0.006696450897017064,
+    "wilcoxon_p": 0.6477905856505521,
+    "n_datasets": 46
+  }
+}

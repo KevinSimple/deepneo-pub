@@ -1,0 +1,45 @@
+{
+  "provenance": {
+    "manuscript_ref": "Sec 3.6 Pocket rescorer paragraph",
+    "attempted_2026-07-24_R10": "Reproduce the manuscript's 'per-allele shift correlates r approx 0.99 with benchmark binder fraction' claim from committed Phase-0 data.",
+    "outcome": "NOT REPRODUCED from committed data"
+  },
+  "what_is_reproducible_from_committed_artefacts": {
+    "source": "publication/experiments/inductive_reranker_result.json",
+    "IEDB_BA": {
+      "base_auroc": 0.8279,
+      "base_aupr": 0.7365,
+      "transductive_auroc": 0.8620,
+      "transductive_aupr": 0.8066,
+      "inductive_auroc": 0.4423,
+      "inductive_aupr": 0.3962
+    },
+    "TransPHLA_BA": {
+      "base_auroc": 0.9546,
+      "base_aupr": 0.9561,
+      "transductive_auroc": 0.9766,
+      "transductive_aupr": 0.9750,
+      "inductive_auroc": 0.8714,
+      "inductive_aupr": 0.7680
+    },
+    "TransPHLA_EL": {
+      "base_auroc": 0.9697,
+      "base_aupr": 0.9714,
+      "transductive_auroc": 0.9781,
+      "transductive_aupr": 0.9777,
+      "inductive_auroc": 0.8885,
+      "inductive_aupr": 0.7883
+    }
+  },
+  "what_is_NOT_reproducible_from_committed_artefacts": {
+    "per_allele_delta_transductive_minus_base": "MISSING - the rescorer's per-row transductive predictions were not persisted in the milestone vault (iedb_raw_predictions.npz contains only base DeepNeo E13 + SupCon scores; no rescorer output column).",
+    "correlation_r_with_binder_fraction": "MISSING - depends on the per-allele delta above.",
+    "paired_p_transductive_vs_base_across_alleles": "MISSING - same dependency."
+  },
+  "action_required_before_submission": {
+    "option_a_regenerate": "Re-run scripts/structure/train_eval_struct_reranker.py in transductive-CV mode with a per-row-prediction dump; commit iedb_ba_rescorer_transductive_per_row.csv (peptide, hla_allele, rescorer_score) + a rebuilt inductive dump. Then this JSON can be filled in.",
+    "option_b_remove_from_manuscript": "Remove the 'r approx 0.99' and 'paired p<0.05' claims from Sec 3.6 pocket-rescorer paragraph; retain only the aggregate 0.828 -> 0.862 -> 0.442 collapse (which IS reproducible from inductive_reranker_result.json above)."
+  },
+  "manuscript_R10_action": "Sec 3.6 rewrite: keep the aggregate transductive-vs-inductive collapse story, remove the specific r=0.99 and p<0.05 numeric claims since they cannot be defended from committed artefacts. See R10 SUBMISSION_STATUS blocker.",
+  "status": "MISSING_ARTEFACT_DOCUMENTED_R10"
+}

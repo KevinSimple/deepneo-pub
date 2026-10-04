@@ -1,0 +1,10 @@
+{
+  "autobench_pairs": 44516,
+  "in_42_corpus": 10090,
+  "pct_contaminated": 22.67,
+  "clean_rows": 34426,
+  "clean_positives": 20083,
+  "clean_alleles": 60,
+  "alleles_scorable_within_allele": 42,
+  "note": "Clean = auto_bench pairs absent from the NetMHCpan-4.2 training corpus (BA or EL). Fair for BOTH DeepNeo-v4.2 and NetMHCpan-4.2 (same corpus). Verdict on viability: if clean_rows is large enough (>~1000, several scorable alleles) the powered fair comparison is worth the GPU; if gutted, report the survival number itself as the finding."
+}
