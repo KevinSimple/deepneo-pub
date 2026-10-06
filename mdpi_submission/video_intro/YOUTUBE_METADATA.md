@@ -13,6 +13,32 @@ DeepNeo-CL: A Compact PLM for Peptide–MHC Ranking — Leakage-Aware Evaluation
 ## Description
 
 ```
+NARRATION TRANSCRIPT:
+
+Imagine your body as a city of billions of cells, each one holding up tiny protein fragments on its surface so the immune system can inspect what's being made inside. When something goes wrong — a virus, or a cancer mutation — those abnormal fragments get caught, and a T-cell comes along and kills the cell.
+
+That inspection process is run by MHC class I proteins. They bind to short peptides from inside the cell and present them on the surface. Predicting which peptides a given MHC will present is one of the most important computational problems in immunology — it's the foundation of neoantigen vaccine design and cancer immunotherapy.
+
+In our paper, we approach this as a machine-learning problem: sequence ranking under a context key. You have ten-thousand candidate peptides, one HLA allele, and you need to rank them. We built DeepNeo-CL — a compact transformer, 35 million parameters, trained on the official NetMHCpan-4.1 folds.
+
+But the paper isn't really about the model. It's about how we evaluate.
+
+Here's the problem. The most-cited predictor in this field, NetMHCpan, trains on peptide-HLA pairs that end up in almost every public benchmark. If you don't remove the overlap, your test set is partly a train set, and your reported gains aren't real. On top of that, every paper reports results across dozens of HLA alleles — and treats each one as an independent win, so pure chance gives you lots of "significant" results.
+
+So we did two things. We removed every shared training pair before scoring. And we applied Holm's multiple-testing correction across the family of allele-level comparisons.
+
+On the TransPHLA benchmark — 118-thousand clean rows after decontamination — our compact PLM matches NetMHCpan-4.1 at the fused score we deploy. Not better, not worse. Matched.
+
+On the IEDB weekly leaderboard — 14 predictors scored over 46 weeks — we sit mid-field for binding affinity, and we lead the three-predictor eluted-ligand board.
+
+NetMHCpan still beats us on the pure binding-affinity head. That's in Table 1. We don't hide it.
+
+And here's the most interesting failure. We tried a second-stage rescoring head, fit by cross-validation on the evaluation benchmark itself. In-sample AUROC jumped to 0.862. Under a fair, allele-held-out protocol, it dropped to 0.442 — below chance. That's the classic transductive-overfitting trap. We withdrew the component.
+
+The takeaway: a compact protein language model can rank peptide-MHC pairs competitively against a strong industrial baseline — when the comparison is leakage-controlled. Code and benchmark results at github.com/KevinSimple/deepneo-pub. Paper under review at MDPI Information. Thanks for watching.
+
+———————————————————————
+
 A 3-minute introduction to our paper:
 
 "Efficient Protein Language Models for Peptide–MHC Ranking: A Leakage-Aware Evaluation Protocol under Multiplicity Control"
