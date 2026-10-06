@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DeepNeo-CL intro — 12-slide deck</title>
+<style>
+  :root {
+    --bg: #0b0f17;
+    --bg2: #121826;
+    --fg: #e8eef5;
+    --muted: #8da1b8;
+    --dim: #556372;
+    --accent: #ffb000;
+    --blue: #4aa3df;
+    --blue-dim: #1e3a52;
+    --green: #46c56f;
+    --green-dim: #1e3d26;
+    --red: #e3604e;
+    --red-dim: #3d1a14;
+    --card: #16202e;
+    --border: #2a3647;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- deck + slide chrome ---------- */
+  .deck { height: 100vh; width: 100vw; position: relative; }
+  .slide {
+    display: none;
+    position: absolute; inset: 0;
+    padding: 72px 80px 60px;
+    animation: fadein 0.35s ease;
+  }
+  .slide.active { display: flex; flex-direction: column; }
+  @keyframes fadein { from {opacity:0; transform: translateY(6px);} to {opacity:1; transform: none;} }
+
+  /* progress bar (top) */
+  .progress {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 4px; display: flex; z-index: 20;
+    background: var(--bg2);
+  }
+  .progress .seg { flex: 1; margin: 0 1px; background: var(--border); transition: background 0.3s; }
+  .progress .seg.done { background: var(--accent); }
+
+  /* section tag (upper left) */
+  .section-tag {
+    position: absolute; top: 24px; left: 80px;
+    font-size: 14px; font-weight: 700; letter-spacing: 3px;
+    color: var(--accent); text-transform: uppercase;
+  }
+  /* paper footer */
+  .footer {
+    position: fixed; bottom: 20px; left: 80px; right: 80px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: var(--dim); z-index: 10;
+    border-top: 1px solid var(--border); padding-top: 10px;
+  }
+  .footer .paper { font-weight: 600; color: var(--muted); }
+  .footer .page { font-variant-numeric: tabular-nums; }
+  .controls {
+    position: fixed; bottom: 4px; left: 50%; transform: translateX(-50%);
+    font-size: 11px; color: var(--dim); opacity: 0.55; z-index: 10;
+  }
+
+  /* ---------- typography ---------- */
+  h1 { font-size: 68px; font-weight: 800; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 20px; }
+  h1.title-big { font-size: 92px; }
+  h2 { font-size: 40px; font-weight: 700; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 32px; color: var(--fg); }
+  h3 { font-size: 24px; font-weight: 600; letter-spacing: 0; margin-bottom: 10px; color: var(--blue); }
+  p  { font-size: 22px; line-height: 1.5; color: var(--fg); max-width: 1300px; }
+  .lead { font-size: 26px; color: var(--muted); line-height: 1.4; }
+  .caption { font-size: 15px; color: var(--muted); font-style: italic; margin-top: 10px; }
+  .cite { font-size: 13px; color: var(--dim); font-style: italic; }
+  .meta { font-size: 16px; color: var(--muted); letter-spacing: 1px; }
+
+  .accent { color: var(--accent); }
+  .green { color: var(--green); }
+  .red { color: var(--red); }
+  .blue { color: var(--blue); }
+  b, strong { color: var(--fg); font-weight: 700; }
+
+  /* ---------- layout primitives ---------- */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; flex: 1; align-items: start; }
+  .two-col-wide-l { grid-template-columns: 1.4fr 1fr; }
+  .two-col-wide-r { grid-template-columns: 1fr 1.4fr; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; flex: 1; }
+
+  /* cards */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+  }
+  .card-accent { border-left: 4px solid var(--accent); }
+  .card-blue   { border-left: 4px solid var(--blue); }
+  .card-green  { border-left: 4px solid var(--green); background: var(--green-dim); }
+  .card-red    { border-left: 4px solid var(--red); background: var(--red-dim); }
+
+  .card h3 { margin-bottom: 14px; }
+  .card p  { font-size: 20px; }
+
+  /* numbered list items */
+  .numbered { list-style: none; padding: 0; }
+  .numbered li {
+    display: grid; grid-template-columns: 50px 1fr; gap: 16px;
+    margin-bottom: 20px; align-items: start;
+  }
+  .numbered li .num {
+    font-size: 32px; font-weight: 800; color: var(--accent);
+    line-height: 1; padding-top: 2px;
+  }
+  .numbered li .body {
+    font-size: 20px; line-height: 1.45; color: var(--fg);
+  }
+
+  /* table */
+  table {
+    width: 100%; border-collapse: collapse; margin: 10px 0;
+    font-size: 18px;
+  }
+  th { background: var(--bg2); color: var(--accent); padding: 12px 16px;
+       text-align: left; font-weight: 600; font-size: 15px;
+       border-bottom: 2px solid var(--accent); letter-spacing: 0.5px; }
+  td { padding: 10px 16px; border-bottom: 1px solid var(--border); color: var(--fg); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td.num-cell { font-variant-numeric: tabular-nums; text-align: right; }
+  tr.highlight td { background: rgba(255,176,0,0.08); font-weight: 600; }
+
+  /* key-value row (used in header meta) */
+  .kv { display: grid; grid-template-columns: 180px 1fr; gap: 12px; font-size: 18px; margin-bottom: 10px; }
+  .kv .k { color: var(--muted); font-weight: 600; }
+  .kv .v { color: var(--fg); }
+
+  /* big number display */
+  .mega { display: flex; align-items: center; justify-content: center; gap: 60px; margin: 30px 0; }
+  .mega .num {
+    font-size: 160px; font-weight: 800; letter-spacing: -5px; line-height: 1;
+  }
+  .mega .num.good { color: var(--green); }
+  .mega .num.bad { color: var(--red); }
+  .mega .arrow { font-size: 100px; color: var(--red); }
+  .mega .label { font-size: 20px; color: var(--muted); text-align: center; margin-top: 10px; }
+
+  /* figure */
+  .figure-wrap { background: white; border-radius: 8px; padding: 12px; max-width: 100%; max-height: 55vh; }
+  .figure-wrap img { max-width: 100%; max-height: 100%; display: block; }
+
+  /* code / mono */
+  code, .mono { font-family: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+                background: var(--bg2); padding: 2px 8px; border-radius: 3px;
+                font-size: 0.9em; color: var(--blue); }
+
+  /* ---------- light-mode variant ---------- */
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#ffffff; --bg2:#f3f6fa; --fg:#1a1a1a; --muted:#4a5560; --dim:#8a95a3;
+            --card:#f8fafc; --border:#dbe2eb; --blue:#0b4f8a; --accent:#c08000;
+            --green:#1a6b2e; --red:#b03a2e;
+            --green-dim:#e8f5ea; --red-dim:#f9e5e2; --blue-dim:#e8eef5; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Progress bar segments: generated by JS -->
+<div class="progress" id="progress"></div>
+
+<div class="deck">
+
+  <!-- =============== Slide 1 — TITLE =============== -->
+  <section class="slide active" id="s1">
+    <div style="margin: auto; text-align: center; max-width: 1100px;">
+      <div class="meta accent" style="margin-bottom: 24px;">DEEPNEO-CL · MDPI INFORMATION · OCTOBER 2026</div>
+      <h1 class="title-big accent">DeepNeo-CL</h1>
+      <h2 style="font-size: 36px; color: var(--fg); max-width: 1100px; margin: 20px auto 10px;">
+        A compact protein language model<br>for peptide–MHC class I ranking
+      </h2>
+      <p class="lead" style="margin: 24px auto 40px; max-width: 900px;">
+        A leakage-aware evaluation protocol under multiplicity control
+      </p>
+      <div style="border-top: 1px solid var(--border); padding-top: 30px; margin-top: 30px;">
+        <p class="lead" style="color: var(--fg); margin-bottom: 10px;">Kevin Wang &nbsp;·&nbsp; Parma Nand</p>
+        <p class="meta">School of Design and Creative Technologies &nbsp;·&nbsp; Auckland University of Technology</p>
+        <p class="meta" style="margin-top: 20px; color: var(--blue);">
+          MDPI <i>Information</i> &nbsp;·&nbsp; Special Issue: Emerging Trends in Machine Learning &amp; Natural Language Processing
+        </p>
+        <p class="meta" style="margin-top: 12px; color: var(--dim);">
+          <span class="mono">github.com/KevinSimple/deepneo-pub</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== Slide 2 — BIOLOGY =============== -->
+  <section class="slide" id="s2">
+    <div class="section-tag">1 / Context</div>
+    <h2>A central problem in computational immunology</h2>
+    <div class="two-col" style="margin-top: 20px;">
+      <div>
+        <ol class="numbered">
+          <li><span class="num">1</span><span class="body"><b>MHC class I proteins</b> bind short protein fragments ("peptides") from inside each cell.</span></li>
+          <li><span class="num">2</span><span class="body">They <b>present these peptides on the cell surface</b> for inspection by T-cells.</span></li>
+          <li><span class="num">3</span><span class="body">T-cells detect abnormal peptides from <b>virus-infected</b> or <b>cancer-mutated</b> cells and trigger their destruction.</span></li>
+        </ol>
+        <div class="card card-accent" style="margin-top: 30px;">
+          <h3>Why computational prediction matters</h3>
+          <p>Predicting which peptides a given MHC class I protein will present is the <b class="accent">foundation of neoantigen prioritisation and immunopeptidomics research</b>, upstream of experimental validation.</p>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center;">
+        <!-- inline SVG: MHC presenting peptide to T-cell -->
+        <svg viewBox="0 0 400 420" width="100%" style="max-width: 400px;">
+          <!-- cell -->
+          <ellipse cx="200" cy="320" rx="180" ry="80" fill="#1e3a52" stroke="#4aa3df" stroke-width="2"/>
+          <text x="200" y="390" fill="#8da1b8" font-size="13" text-anchor="middle" font-family="Inter, sans-serif">cell</text>
+          <!-- MHC on surface -->
+          <rect x="130" y="200" width="30" height="50" fill="#ffb000" rx="4"/>
+          <text x="145" y="275" fill="#ffb000" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">MHC-I</text>
+          <!-- peptide held up -->
+          <circle cx="135" cy="190" r="6" fill="#46c56f"/>
+          <circle cx="145" cy="186" r="6" fill="#46c56f"/>
+          <circle cx="155" cy="190" r="6" fill="#46c56f"/>
+          <text x="145" y="170" fill="#46c56f" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">peptide</text>
+          <!-- 2nd MHC -->
+          <rect x="245" y="195" width="30" height="55" fill="#ffb000" rx="4"/>
+          <circle cx="250" cy="185" r="6" fill="#e3604e"/>
+          <circle cx="260" cy="181" r="6" fill="#e3604e"/>
+          <circle cx="270" cy="185" r="6" fill="#e3604e"/>
+          <text x="260" y="165" fill="#e3604e" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">abnormal</text>
+          <!-- T-cell approaching -->
+          <circle cx="260" cy="80" r="40" fill="#4aa3df" opacity="0.8"/>
+          <text x="260" y="85" fill="#0b0f17" font-size="18" text-anchor="middle" font-weight="700" font-family="Inter, sans-serif">T-cell</text>
+          <!-- arrow -->
+          <line x1="260" y1="130" x2="260" y2="175" stroke="#e3604e" stroke-width="2" stroke-dasharray="5,3"/>
+          <polygon points="260,185 254,172 266,172" fill="#e3604e"/>
+          <text x="300" y="155" fill="#e3604e" font-size="12" font-family="Inter, sans-serif">detect</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== Slide 3 — ML FRAMING =============== -->
+  <section class="slide" id="s3">
+    <div class="section-tag">2 / Problem framing</div>
+    <h2>Computationally, this is a sequence-ranking problem</h2>
+    <div class="card card-accent" style="margin-bottom: 30px;">
+      <h3 style="color: var(--accent); font-size: 28px; margin: 0;">Ranking under a context key</h3>
+      <p style="font-size: 22px; margin-top: 10px; color: var(--muted);">
+        A recurring ML pattern: score many short candidates for one fixed conditioner.
+      </p>
+    </div>
+    <div class="two-col">
+      <div class="card card-blue">
+        <h3>Input / output</h3>
+        <div class="kv"><div class="k">Conditioner</div><div class="v">One HLA allele (34-residue pseudo-sequence)</div></div>
+        <div class="kv"><div class="k">Candidates</div><div class="v">10<sup>2</sup> – 10<sup>4</sup> peptide sequences (8–11 amino acids)</div></div>
+        <div class="kv"><div class="k">Output</div><div class="v">Rank over candidates by binding affinity (BA) and presentation / eluted-ligand (EL)</div></div>
+      </div>
+      <div class="card">
+        <h3>Why ranking fidelity matters</h3>
+        <p>Downstream wet-lab validation is <b>expensive</b>. A ranked candidate list of 10<sup>3</sup> peptides may yield 10–30 that are experimentally tested.</p>
+        <p style="margin-top: 12px;">Small ranking errors at the top compound into large experimental waste. The pipeline is rate-limited by the <b>false-positive rate</b> of the upstream ranker.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== Slide 4 — OUR MODEL =============== -->
+  <section class="slide" id="s4">
+    <div class="section-tag">3 / Model</div>
+    <h2>DeepNeo-CL &nbsp; — &nbsp; a compact PLM for pMHC-I ranking</h2>
+    <div class="two-col">
+      <div>
+        <table>
+          <thead><tr><th>Component</th><th>Choice</th></tr></thead>
+          <tbody>
+            <tr><td>Trunk</td><td><code>ESM2-35M</code> (12 layers, d=480)</td></tr>
+            <tr><td>Context fusion</td><td>Peptide–HLA <b>cross-attention</b></td></tr>
+            <tr><td>Side features</td><td>V37 position-resolved physchem</td></tr>
+            <tr><td>Heads</td><td>BA (censored log-IC50) + EL (focal BCE)</td></tr>
+            <tr><td>Aux loss</td><td>Within-HLA pairwise rank hinge</td></tr>
+            <tr><td>Reweighting</td><td>LDS + effective-number subgroup</td></tr>
+            <tr><td>Refinement</td><td>Supervised contrastive, 4 epochs</td></tr>
+            <tr><td>Deployed</td><td>5-fold ensemble, batch-rank fusion</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="card card-accent">
+          <h3>Scale</h3>
+          <p style="font-size: 48px; font-weight: 800; color: var(--accent); margin: 10px 0;">35 M</p>
+          <p>parameters in the trunk</p>
+          <p style="margin-top: 12px; font-size: 18px; color: var(--muted);">
+            Comparable task-level accuracy to NetMHCpan's larger ensemble pipeline (see Results).
+          </p>
+        </div>
+        <div class="card card-blue" style="margin-top: 20px;">
+          <h3>Training data</h3>
+          <p>Official NetMHCpan-4.1 five-fold BA + EL partitions (folds <code>c000–c004</code>), partitioned at the <b>(peptide, HLA)-pair level</b>.</p>
+          <p class="caption">Reynisson et al. 2020, <i>Nucleic Acids Res.</i></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== Slide 5 — EVALUATION PROBLEM =============== -->
+  <section class="slide" id="s5">
+    <div class="section-tag">4 / The evaluation problem</div>
+    <h2>Why reported gains in this field are hard to trust</h2>
+    <div class="two-col">
+      <div class="card card-red">
+        <h3 style="color: var(--red);">① Train–test leakage</h3>
+        <p>NetMHCpan is the field's reference predictor. Its public training corpus contains ~160 K peptide–HLA pairs.</p>
+        <p style="margin-top: 10px;">
+          Most published benchmarks (TransPHLA, IEDB auto_bench) <b>share rows</b> with that corpus.
+        </p>
+        <p style="margin-top: 10px;">
+          If the overlap is not removed, your "test set" is partly a training set, and reported gains are not generalisation.
+        </p>
+        <p class="cite" style="margin-top: 14px;">
+          Kapoor &amp; Narayanan 2023, <i>Patterns</i> &nbsp;·&nbsp;
+          Bernett et al. 2024, <i>Nat. Methods</i>
+        </p>
+      </div>
+      <div class="card card-red">
+        <h3 style="color: var(--red);">② Unadjusted multiple testing</h3>
+        <p>Benchmarks score across <b>dozens of HLA alleles</b>; each is treated as an independent comparison.</p>
+        <p style="margin-top: 10px;">
+          With a per-allele α = 0.05 and no correction, pure chance delivers one "significant win" per 20 alleles.
+        </p>
+        <p style="margin-top: 10px;">
+          With 100 alleles, ~5 chance wins — often reported as evidence of superiority.
+        </p>
+        <p class="cite" style="margin-top: 14px;">
+          Standard family-wise error-rate correction (Holm 1979) applies and is widely ignored in this literature.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== Slide 6 — OUR CONTRACT =============== -->
+  <section class="slide" id="s6">
+    <div class="section-tag">5 / Our evaluation contract</div>
+    <h2>The three-condition superiority rule</h2>
+    <div class="card card-accent" style="margin-bottom: 24px;">
+      <p style="font-size: 24px;">A signed Δ (DeepNeo − baseline) is reported as a <b>real</b> win only if <b class="accent">all three</b> hold:</p>
+    </div>
+    <ol class="numbered" style="font-size: 22px;">
+      <li><span class="num">1</span><span class="body"><b>Paired DeLong</b> <i>p</i> &lt; 0.05 on the same rows.</span></li>
+      <li><span class="num">2</span><span class="body"><b>Per-allele Wilcoxon signed-rank</b> matches the pooled Δ sign, with <b>Holm-adjusted</b> <i>p</i> &lt; 0.05 across the family of four TransPHLA comparison rows.</span></li>
+      <li><span class="num">3</span><span class="body"><b>Allele-clustered bootstrap 95% CI</b> on Δ excludes zero (B = 1,000; <i>n</i> = 118,143 rows).</span></li>
+    </ol>
+    <div class="card card-blue" style="margin-top: 24px;">
+      <h3>Preceded by exact-pair decontamination</h3>
+      <p>Every evaluation row that also appears in NetMHCpan-4.1's training-pair union is <b>removed before scoring</b>. On TransPHLA: 43,509 of 161,652 rows removed (26.9%) → <b>118,143 clean rows</b>.</p>
+    </div>
+  </section>
+
+  <!-- =============== Slide 7 — TRANSPHLA RESULT =============== -->
+  <section class="slide" id="s7">
+    <div class="section-tag">6 / Headline result · TransPHLA</div>
+    <h2>Decontaminated TransPHLA &nbsp;(<i>n</i> = 118,143 clean rows)</h2>
+    <table>
+      <thead>
+        <tr><th>Comparison</th><th class="num-cell">DeepNeo</th><th class="num-cell">NMP-4.1</th><th class="num-cell">Δ AUROC</th><th class="num-cell">Wilcoxon <i>p</i></th><th>Verdict</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight"><td>v4.1 fusion vs fusion</td><td class="num-cell">0.9573</td><td class="num-cell">0.9575</td><td class="num-cell">−0.0002</td><td class="num-cell">0.28</td><td class="green"><b>TIED</b></td></tr>
+        <tr><td>v4.1 BA vs BA</td><td class="num-cell">0.9363</td><td class="num-cell">0.9500</td><td class="num-cell red">−0.0137</td><td class="num-cell">7.2×10⁻⁴</td><td class="red">NMP higher (Holm 1.7×10⁻³)</td></tr>
+        <tr><td>v4.1 EL vs EL</td><td class="num-cell">0.9640</td><td class="num-cell">0.9581</td><td class="num-cell">+0.0059</td><td class="num-cell">0.56</td><td>Pooled DeepNeo; Holm-tied</td></tr>
+        <tr><td>v4.1 fusion vs NMP-BA</td><td class="num-cell">0.9573</td><td class="num-cell">0.9500</td><td class="num-cell">+0.0073</td><td class="num-cell">0.038</td><td>Pooled + CI; not Holm-robust (0.15)</td></tr>
+      </tbody>
+    </table>
+    <div class="card card-green" style="margin-top: 24px;">
+      <h3 style="color: var(--green);">What this says</h3>
+      <p>At the deployed fusion level, <b>DeepNeo-CL matches NetMHCpan-4.1</b> on the large third-party TransPHLA benchmark — not better, not worse. The only Holm-robust asymmetry across the four rows is NetMHCpan's BA-head advantage.</p>
+    </div>
+    <p class="cite" style="margin-top: 14px;">Source: <code>supplementary_data/transphla_rescored_fusion_fixed.json</code> + Holm/bootstrap SI ledgers · reproduced in Table 1</p>
+  </section>
+
+  <!-- =============== Slide 8 — IEDB WEEKLY =============== -->
+  <section class="slide" id="s8">
+    <div class="section-tag">7 / IEDB weekly leaderboard</div>
+    <h2>IEDB <code>auto_bench</code> weekly: 46 human-allele weeks (2020–2026)</h2>
+    <div class="two-col two-col-wide-l" style="margin-top: 10px;">
+      <div class="figure-wrap">
+        <img src="figures/fig_weekly_ranking_ba.png" alt="IEDB weekly BA ranking board">
+      </div>
+      <div>
+        <div class="card card-blue">
+          <h3>BA board &nbsp;(14 ranking-eligible predictors)</h3>
+          <div class="kv"><div class="k">DeepNeo-CL mean rank</div><div class="v"><b class="accent">6.85</b> / 14</div></div>
+          <div class="kv"><div class="k">Mean week AUROC</div><div class="v">0.7951</div></div>
+          <div class="kv"><div class="k">Rank-1 weeks</div><div class="v">14 (incl. ties); 9 outright</div></div>
+          <div class="kv"><div class="k">Consistency leaders</div><div class="v">NetMHCpan-4.0 BA (4.98) · NetMHCpan-4.1 BA (5.14)</div></div>
+        </div>
+        <div class="card card-green" style="margin-top: 16px;">
+          <h3>EL board &nbsp;(3-predictor MS-EL)</h3>
+          <div class="kv"><div class="k">DeepNeo-CL</div><div class="v"><b class="green">1.80</b> &nbsp;→ leads</div></div>
+          <div class="kv"><div class="k">NetMHCpan-4.1 EL</div><div class="v">2.01</div></div>
+          <div class="kv"><div class="k">Rank-1 weeks</div><div class="v">24 / 46 (19 outright)</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="cite" style="margin-top: 10px;">Source: <code>supplementary_data/weekly_ranking_v41_2020_2026_singlecol_v2.json</code></p>
+  </section>
+
+  <!-- =============== Slide 9 — WHERE NMP WINS =============== -->
+  <section class="slide" id="s9">
+    <div class="section-tag">8 / Honest reporting</div>
+    <h2>Where NetMHCpan still wins</h2>
+    <div class="card card-red">
+      <h3 style="color: var(--red);">BA-head vs BA-head on TransPHLA (Table 1, row 2)</h3>
+      <div class="two-col" style="margin-top: 10px;">
+        <div>
+          <div class="kv"><div class="k">Δ AUROC</div><div class="v red"><b>−0.0137</b> (NMP higher)</div></div>
+          <div class="kv"><div class="k">Wilcoxon <i>p</i></div><div class="v">7.2 × 10⁻⁴</div></div>
+          <div class="kv"><div class="k">Holm-adjusted <i>p</i></div><div class="v"><b>1.7 × 10⁻³</b> &nbsp;·&nbsp; <span class="red">Holm-robust</span></div></div>
+          <div class="kv"><div class="k">Bootstrap 95% CI</div><div class="v">[−0.0199, −0.0075]</div></div>
+        </div>
+        <div>
+          <p>This is in Table 1. It is <b>not hidden</b>.</p>
+          <p style="margin-top: 10px;">The claim we make is <b>not</b> "DeepNeo-CL beats NetMHCpan everywhere". The claim is: <b>at the deployed fusion level, it matches</b>, and the only Holm-robust asymmetry across the four rows is NetMHCpan's BA-head lead.</p>
+        </div>
+      </div>
+    </div>
+    <div class="card card-accent" style="margin-top: 20px;">
+      <h3>What this looks like under <b>no</b> multiplicity correction</h3>
+      <p>Without Holm adjustment, the deployed fusion's pooled edge (vs NMP-BA, +0.0073) can be reported as a win. Under the full three-condition rule it is <b>not Holm-robust</b> (Holm <i>p</i> = 0.151). Different protocols, different verdicts.</p>
+    </div>
+  </section>
+
+  <!-- =============== Slide 10 — TRANSDUCTIVE OVERFITTING =============== -->
+  <section class="slide" id="s10">
+    <div class="section-tag">9 / Case study · evaluation-leakage failure</div>
+    <h2>A documented transductive-overfitting failure</h2>
+    <p class="lead" style="margin-bottom: 20px;">We fit a second-stage pocket rescorer by 5-fold cross-validation <b>on the evaluation benchmark itself</b>.</p>
+    <div class="mega">
+      <div>
+        <div class="num good">0.862</div>
+        <div class="label">in-sample AUROC<br>(transductive)</div>
+      </div>
+      <div class="arrow">→</div>
+      <div>
+        <div class="num bad">0.442</div>
+        <div class="label">held-out alleles<br>(inductive) · below chance</div>
+      </div>
+    </div>
+    <div class="card card-red" style="margin-top: 10px;">
+      <h3 style="color: var(--red);">What happened</h3>
+      <p>Using evaluation-set labels to fit an inference-time head is a form of leakage that ordinary train/test hygiene does not catch. The apparent gain is in-sample; the collapse is consistent with evaluation-set fitting, not transferable discrimination.</p>
+      <p style="margin-top: 10px;">The component is <b>withdrawn</b> from all deployment claims and reported here as a documented negative for inference-time leakage.</p>
+    </div>
+    <p class="cite" style="margin-top: 10px;">Source: <code>supplementary_data/inductive_reranker_result.json</code> · See also Kapoor 2023, Rosenblatt 2024, Bernett 2024, Joeres 2025.</p>
+  </section>
+
+  <!-- =============== Slide 11 — TAKEAWAY =============== -->
+  <section class="slide" id="s11">
+    <div class="section-tag">10 / Takeaway</div>
+    <h2>What this paper actually claims</h2>
+    <div class="three-col">
+      <div class="card card-accent">
+        <h3>① Model</h3>
+        <p>A compact <b>35 M-parameter PLM</b> for peptide–MHC class I ranking, trained on the official NetMHCpan-4.1 folds.</p>
+      </div>
+      <div class="card card-blue">
+        <h3>② Protocol</h3>
+        <p>A <b>leakage-aware, multiplicity-controlled</b> evaluation contract, applied verbatim in Results and ligated to the methodology literature cited.</p>
+      </div>
+      <div class="card card-green">
+        <h3>③ Negatives</h3>
+        <p>Two concrete evaluation-failure case studies on <b>our own data</b> — a successor-corpus holdout overlap and a transductive-overfitting rescorer collapse.</p>
+      </div>
+    </div>
+    <div class="card card-accent" style="margin-top: 30px;">
+      <h3>Scope restrictions</h3>
+      <p>Class I MHC &nbsp;·&nbsp; canonical 8–11-mer peptides &nbsp;·&nbsp; no clinical, Class II, PTM, or TCR-specificity claim.</p>
+    </div>
+  </section>
+
+  <!-- =============== Slide 12 — RESOURCES / CTA =============== -->
+  <section class="slide" id="s12">
+    <div class="section-tag">Resources</div>
+    <h2>Where to find the paper, code, and evidence</h2>
+    <div class="two-col" style="margin-top: 10px;">
+      <div class="card card-blue">
+        <h3>Paper</h3>
+        <p style="font-size: 20px;"><b>Efficient Protein Language Models for Peptide–MHC Ranking: A Leakage-Aware Evaluation Protocol under Multiplicity Control</b></p>
+        <p style="margin-top: 14px;">MDPI <i>Information</i> · Special Issue: Emerging Trends in Machine Learning &amp; Natural Language Processing</p>
+        <p class="meta" style="margin-top: 14px;">Under review · October 2026</p>
+      </div>
+      <div class="card card-accent">
+        <h3>Code · evidence · compliance reports</h3>
+        <p class="mono" style="font-size: 20px; color: var(--accent);">github.com/KevinSimple/<br>deepneo-pub</p>
+        <p style="margin-top: 14px;">
+          <code>mdpi_submission/compliance/</code> — two formal compliance reports<br>
+          <code>mdpi_submission/evidence/</code> — 515-claim SI JSON ledgers<br>
+          <code>mdpi_submission/reviews/</code> — pre-submission panel reviews
+        </p>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 40px;">
+      <p style="font-size: 24px; color: var(--muted);">Kevin Wang &nbsp;·&nbsp; Parma Nand</p>
+      <p class="meta">Auckland University of Technology</p>
+      <p style="margin-top: 20px; font-size: 20px; color: var(--accent);">Thanks for watching.</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- footer (common to all slides) -->
+<div class="footer">
+  <div class="paper">DeepNeo-CL · Wang &amp; Nand · MDPI <i>Information</i> 2026</div>
+  <div class="page"><span id="pageIdx">1</span> / 12</div>
+</div>
+<div class="controls">← → arrow · space · page down · F → fullscreen · R → restart</div>
+
+<script>
+  const N = 12;
+  let idx = 0;
+  const slides = document.querySelectorAll('.slide');
+  const pageIdx = document.getElementById('pageIdx');
+  const prog = document.getElementById('progress');
+
+  // build progress bar segments
+  for (let i = 0; i < N; i++) {
+    const s = document.createElement('div');
+    s.className = 'seg';
+    prog.appendChild(s);
+  }
+  const segs = prog.querySelectorAll('.seg');
+
+  function show(i) {
+    slides.forEach((s, k) => s.classList.toggle('active', k === i));
+    segs.forEach((s, k) => s.classList.toggle('done', k <= i));
+    pageIdx.textContent = i + 1;
+  }
+  show(0);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+      idx = Math.min(idx + 1, N - 1); show(idx);
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      idx = Math.max(idx - 1, 0); show(idx);
+    } else if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    } else if (e.key === 'r' || e.key === 'R') {
+      idx = 0; show(idx);
+    } else if (e.key === 'Home') { idx = 0; show(idx); }
+      else if (e.key === 'End') { idx = N - 1; show(idx); }
+  });
+  document.addEventListener('click', (e) => {
+    if (e.clientX > window.innerWidth / 2) { idx = Math.min(idx + 1, N - 1); show(idx); }
+    else { idx = Math.max(idx - 1, 0); show(idx); }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b0f17"/>
+      <stop offset="1" stop-color="#0b1b2b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg2)"/>
+  <!-- big numbers hook -->
+  <text x="640" y="200" font-family="Segoe UI, Helvetica, Arial" font-weight="700" font-size="48" fill="#94a8bd" text-anchor="middle" letter-spacing="2">AUROC on the evaluation benchmark</text>
+
+  <!-- 0.862 -->
+  <text x="340" y="430" font-family="Segoe UI, Helvetica, Arial" font-weight="800" font-size="200" fill="#46c56f" text-anchor="middle">0.862</text>
+  <text x="340" y="480" font-family="Segoe UI, Helvetica, Arial" font-size="30" fill="#94a8bd" text-anchor="middle">in-sample</text>
+
+  <!-- arrow -->
+  <text x="640" y="410" font-family="Segoe UI, Helvetica, Arial" font-size="140" fill="#e3604e" text-anchor="middle">→</text>
+
+  <!-- 0.442 -->
+  <text x="940" y="430" font-family="Segoe UI, Helvetica, Arial" font-weight="800" font-size="200" fill="#e3604e" text-anchor="middle">0.442</text>
+  <text x="940" y="480" font-family="Segoe UI, Helvetica, Arial" font-size="30" fill="#94a8bd" text-anchor="middle">held-out alleles</text>
+
+  <!-- caption -->
+  <text x="640" y="620" font-family="Segoe UI, Helvetica, Arial" font-weight="700" font-size="54" fill="#ffb000" text-anchor="middle">A case study in evaluation leakage</text>
+  <text x="640" y="675" font-family="Segoe UI, Helvetica, Arial" font-size="26" fill="#94a8bd" text-anchor="middle">DeepNeo-CL &nbsp;·&nbsp; MDPI Information 2026</text>
+</svg>

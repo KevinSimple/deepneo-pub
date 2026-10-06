@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0f17"/>
+      <stop offset="1" stop-color="#1a2838"/>
+    </linearGradient>
+    <linearGradient id="accentBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffb000"/>
+      <stop offset="1" stop-color="#ff6b00"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg1)"/>
+  <!-- accent bar left -->
+  <rect x="0" y="0" width="16" height="720" fill="url(#accentBar)"/>
+  <!-- subject tag -->
+  <text x="80" y="130" font-family="Segoe UI, Helvetica, Arial" font-size="26" fill="#94a8bd" letter-spacing="4">PEPTIDE – MHC &nbsp;·&nbsp; EVALUATION INTEGRITY</text>
+  <!-- big headline -->
+  <text x="80" y="260" font-family="Segoe UI, Helvetica, Arial" font-weight="700" font-size="100" fill="#e8eef5">A compact PLM</text>
+  <text x="80" y="370" font-family="Segoe UI, Helvetica, Arial" font-weight="700" font-size="100" fill="#e8eef5">matches NetMHCpan</text>
+  <text x="80" y="480" font-family="Segoe UI, Helvetica, Arial" font-weight="700" font-size="100" fill="#ffb000">under honest evaluation</text>
+  <!-- subheadline -->
+  <text x="80" y="580" font-family="Segoe UI, Helvetica, Arial" font-size="32" fill="#94a8bd">DeepNeo-CL · leakage-aware · multiplicity-controlled</text>
+  <!-- bottom credits -->
+  <text x="80" y="680" font-family="Segoe UI, Helvetica, Arial" font-size="22" fill="#4aa3df">github.com/KevinSimple/deepneo-pub &nbsp;·&nbsp; MDPI Information 2026</text>
+</svg>

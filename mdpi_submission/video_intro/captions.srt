@@ -1,0 +1,103 @@
+1
+00:00:00,000 --> 00:00:08,000
+Imagine your body as a city of billions of cells, each one holding up tiny protein fragments on its surface
+
+2
+00:00:08,000 --> 00:00:15,000
+so the immune system can inspect what's being made inside. When something goes wrong — a virus, or a cancer mutation — a T-cell comes along and kills the cell.
+
+3
+00:00:15,000 --> 00:00:24,000
+That inspection process is run by MHC class I proteins. They bind to short peptides from inside the cell and present them on the surface.
+
+4
+00:00:24,000 --> 00:00:33,000
+Predicting which peptides a given MHC will present is one of the most important computational problems in immunology.
+
+5
+00:00:33,000 --> 00:00:45,000
+It's the foundation of neoantigen vaccine design and cancer immunotherapy.
+
+6
+00:00:45,000 --> 00:00:55,000
+In our paper, we approach this as a machine-learning problem: sequence ranking under a context key.
+
+7
+00:00:55,000 --> 00:01:02,000
+Ten-thousand candidate peptides, one HLA allele, rank them.
+
+8
+00:01:02,000 --> 00:01:10,000
+We built DeepNeo-CL — a compact transformer, 35 million parameters, trained on the official NetMHCpan-4.1 folds.
+
+9
+00:01:10,000 --> 00:01:20,000
+But the paper isn't really about the model. It's about how we evaluate.
+
+10
+00:01:20,000 --> 00:01:35,000
+Here's the problem. The most-cited predictor in this field, NetMHCpan, trains on peptide-HLA pairs that end up in almost every public benchmark.
+
+11
+00:01:35,000 --> 00:01:50,000
+If you don't remove the overlap, your test set is partly a train set, and your reported gains aren't real.
+
+12
+00:01:50,000 --> 00:02:05,000
+On top of that, every paper reports results across dozens of HLA alleles — and treats each one as an independent win, so pure chance gives you lots of "significant" results.
+
+13
+00:02:05,000 --> 00:02:18,000
+So we did two things. We removed every shared training pair before scoring, and applied Holm's multiple-testing correction across the family of allele-level comparisons.
+
+14
+00:02:18,000 --> 00:02:25,000
+Here's what happens under that honest protocol.
+
+15
+00:02:25,000 --> 00:02:40,000
+On the TransPHLA benchmark — 118-thousand clean rows after decontamination — our compact PLM matches NetMHCpan-4.1 at the fused score we deploy.
+
+16
+00:02:40,000 --> 00:02:45,000
+Not better, not worse. Matched.
+
+17
+00:02:45,000 --> 00:02:58,000
+On the IEDB weekly leaderboard — 14 predictors scored over 46 weeks — we sit mid-field for binding affinity,
+
+18
+00:02:58,000 --> 00:03:05,000
+and we lead the three-predictor eluted-ligand board.
+
+19
+00:03:05,000 --> 00:03:15,000
+NetMHCpan still beats us on the pure binding-affinity head. That's in Table 1. We don't hide it.
+
+20
+00:03:15,000 --> 00:03:27,000
+And here's the most interesting failure. We tried a second-stage rescoring head, fit by cross-validation on the evaluation benchmark itself.
+
+21
+00:03:27,000 --> 00:03:32,000
+In-sample AUROC jumped to 0.862.
+
+22
+00:03:32,000 --> 00:03:37,000
+Under a fair, allele-held-out protocol, it dropped to 0.442 — below chance.
+
+23
+00:03:37,000 --> 00:03:43,000
+The classic transductive-overfitting trap. We withdrew the component.
+
+24
+00:03:43,000 --> 00:03:55,000
+The takeaway: a compact protein language model can rank peptide-MHC pairs competitively against a strong industrial baseline — when the comparison is leakage-controlled.
+
+25
+00:03:55,000 --> 00:04:02,000
+Code and benchmark results at github.com/KevinSimple/deepneo-pub. Paper under review at MDPI Information.
+
+26
+00:04:02,000 --> 00:04:05,000
+Thanks for watching.
