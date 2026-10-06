@@ -251,25 +251,32 @@
   <section class="slide" id="s3">
     <div class="section-tag">2 / Problem framing</div>
     <h2>Computationally, this is a sequence-ranking problem</h2>
-    <div class="card card-accent" style="margin-bottom: 30px;">
+    <div class="card card-accent" style="margin-bottom: 20px;">
       <h3 style="color: var(--accent); font-size: 28px; margin: 0;">Ranking under a context key</h3>
       <p style="font-size: 22px; margin-top: 10px; color: var(--muted);">
         A recurring ML pattern: score many short candidates for one fixed conditioner.
       </p>
     </div>
-    <div class="two-col">
-      <div class="card card-blue">
-        <h3>Input / output</h3>
-        <div class="kv"><div class="k">Conditioner</div><div class="v">One HLA allele (34-residue pseudo-sequence)</div></div>
-        <div class="kv"><div class="k">Candidates</div><div class="v">10<sup>2</sup> – 10<sup>4</sup> peptide sequences (8–11 amino acids)</div></div>
-        <div class="kv"><div class="k">Output</div><div class="v">Rank over candidates by binding affinity (BA) and presentation / eluted-ligand (EL)</div></div>
+    <div class="two-col two-col-wide-r">
+      <div>
+        <div class="card card-blue" style="margin-bottom: 16px;">
+          <h3>Input / output</h3>
+          <div class="kv"><div class="k">Conditioner</div><div class="v">One HLA allele (34-residue pseudo-sequence)</div></div>
+          <div class="kv"><div class="k">Candidates</div><div class="v">10<sup>2</sup> – 10<sup>4</sup> peptide sequences (8–11 aa)</div></div>
+          <div class="kv"><div class="k">Output</div><div class="v">Rank by BA + EL → fusion</div></div>
+        </div>
+        <div class="card">
+          <h3>Why ranking fidelity matters</h3>
+          <p>Small ranking errors at the top compound into large experimental waste. The pipeline is rate-limited by the <b>false-positive rate</b> of the upstream ranker.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Why ranking fidelity matters</h3>
-        <p>Downstream wet-lab validation is <b>expensive</b>. A ranked candidate list of 10<sup>3</sup> peptides may yield 10–30 that are experimentally tested.</p>
-        <p style="margin-top: 12px;">Small ranking errors at the top compound into large experimental waste. The pipeline is rate-limited by the <b>false-positive rate</b> of the upstream ranker.</p>
+      <div style="display: flex; align-items: center; justify-content: center;">
+        <div class="figure-wrap" style="max-height: 48vh;">
+          <img src="figures/fig_data_flow.png" alt="DeepNeo-CL data flow: training corpora → model → deployed output → decontamination → benchmarks">
+        </div>
       </div>
     </div>
+    <p class="cite" style="margin-top: 8px;">Figure: end-to-end pipeline — training corpora, model, decontamination firewall, and independent evaluation benchmarks.</p>
   </section>
 
   <!-- =============== Slide 4 — OUR MODEL =============== -->
@@ -293,19 +300,15 @@
         </table>
       </div>
       <div>
-        <div class="card card-accent">
+        <div class="card card-accent" style="margin-bottom: 14px;">
           <h3>Scale</h3>
           <p style="font-size: 48px; font-weight: 800; color: var(--accent); margin: 10px 0;">35 M</p>
-          <p>parameters in the trunk</p>
-          <p style="margin-top: 12px; font-size: 18px; color: var(--muted);">
-            Comparable task-level accuracy to NetMHCpan's larger ensemble pipeline (see Results).
-          </p>
+          <p>parameters in the trunk · 5-fold ensemble</p>
         </div>
-        <div class="card card-blue" style="margin-top: 20px;">
-          <h3>Training data</h3>
-          <p>Official NetMHCpan-4.1 five-fold BA + EL partitions (folds <code>c000–c004</code>), partitioned at the <b>(peptide, HLA)-pair level</b>.</p>
-          <p class="caption">Reynisson et al. 2020, <i>Nucleic Acids Res.</i></p>
+        <div class="figure-wrap" style="max-height: 28vh;">
+          <img src="figures/fig_training_dynamics.png" alt="Training dynamics: loss and validation AUROC across epochs for two folds, showing BA-only → multi-task transition">
         </div>
+        <p class="cite" style="margin-top: 6px;">Training dynamics: BA-only warmup → multi-task (BA + EL) · validation AUROC converges ~0.91</p>
       </div>
     </div>
   </section>
@@ -314,35 +317,34 @@
   <section class="slide" id="s5">
     <div class="section-tag">4 / The evaluation problem</div>
     <h2>Why reported gains in this field are hard to trust</h2>
-    <div class="two-col">
+    <div class="two-col" style="margin-bottom: 16px;">
       <div class="card card-red">
         <h3 style="color: var(--red);">① Train–test leakage</h3>
-        <p>NetMHCpan is the field's reference predictor. Its public training corpus contains ~160 K peptide–HLA pairs.</p>
-        <p style="margin-top: 10px;">
-          Most published benchmarks (TransPHLA, IEDB auto_bench) <b>share rows</b> with that corpus.
-        </p>
+        <p>NetMHCpan's public training corpus contains ~160 K peptide–HLA pairs. Most benchmarks <b>share rows</b> with that corpus.</p>
         <p style="margin-top: 10px;">
           If the overlap is not removed, your "test set" is partly a training set, and reported gains are not generalisation.
         </p>
         <p class="cite" style="margin-top: 14px;">
-          Kapoor &amp; Narayanan 2023, <i>Patterns</i> &nbsp;·&nbsp;
-          Bernett et al. 2024, <i>Nat. Methods</i>
+          Kapoor &amp; Narayanan 2023 &nbsp;·&nbsp; Bernett et al. 2024
         </p>
       </div>
       <div class="card card-red">
         <h3 style="color: var(--red);">② Unadjusted multiple testing</h3>
-        <p>Benchmarks score across <b>dozens of HLA alleles</b>; each is treated as an independent comparison.</p>
+        <p>Benchmarks score across <b>dozens of HLA alleles</b>; each treated as independent.</p>
         <p style="margin-top: 10px;">
-          With a per-allele α = 0.05 and no correction, pure chance delivers one "significant win" per 20 alleles.
-        </p>
-        <p style="margin-top: 10px;">
-          With 100 alleles, ~5 chance wins — often reported as evidence of superiority.
+          With 100 alleles and α = 0.05, ~5 chance wins — often reported as evidence of superiority.
         </p>
         <p class="cite" style="margin-top: 14px;">
-          Standard family-wise error-rate correction (Holm 1979) applies and is widely ignored in this literature.
+          Standard FWER correction (Holm 1979) is widely ignored in this literature.
         </p>
       </div>
     </div>
+    <div style="display: flex; align-items: center; justify-content: center;">
+      <div class="figure-wrap" style="max-height: 30vh;">
+        <img src="figures/fig_contamination_ledger.png" alt="Training-set membership of NetMHCpan generations across benchmarks — up to 26.9% overlap on TransPHLA">
+      </div>
+    </div>
+    <p class="cite" style="margin-top: 6px;">Contamination ledger: TransPHLA shares 26.9% of rows with NetMHCpan-4.1 training corpus; IEDB auto_bench 15–22%.</p>
   </section>
 
   <!-- =============== Slide 6 — OUR CONTRACT =============== -->
@@ -367,22 +369,31 @@
   <section class="slide" id="s7">
     <div class="section-tag">6 / Headline result · TransPHLA</div>
     <h2>Decontaminated TransPHLA &nbsp;(<i>n</i> = 118,143 clean rows)</h2>
-    <table>
-      <thead>
-        <tr><th>Comparison</th><th class="num-cell">DeepNeo</th><th class="num-cell">NMP-4.1</th><th class="num-cell">Δ AUROC</th><th class="num-cell">Wilcoxon <i>p</i></th><th>Verdict</th></tr>
-      </thead>
-      <tbody>
-        <tr class="highlight"><td>v4.1 fusion vs fusion</td><td class="num-cell">0.9573</td><td class="num-cell">0.9575</td><td class="num-cell">−0.0002</td><td class="num-cell">0.28</td><td class="green"><b>TIED</b></td></tr>
-        <tr><td>v4.1 BA vs BA</td><td class="num-cell">0.9363</td><td class="num-cell">0.9500</td><td class="num-cell red">−0.0137</td><td class="num-cell">7.2×10⁻⁴</td><td class="red">NMP higher (Holm 1.7×10⁻³)</td></tr>
-        <tr><td>v4.1 EL vs EL</td><td class="num-cell">0.9640</td><td class="num-cell">0.9581</td><td class="num-cell">+0.0059</td><td class="num-cell">0.56</td><td>Pooled DeepNeo; Holm-tied</td></tr>
-        <tr><td>v4.1 fusion vs NMP-BA</td><td class="num-cell">0.9573</td><td class="num-cell">0.9500</td><td class="num-cell">+0.0073</td><td class="num-cell">0.038</td><td>Pooled + CI; not Holm-robust (0.15)</td></tr>
-      </tbody>
-    </table>
-    <div class="card card-green" style="margin-top: 24px;">
-      <h3 style="color: var(--green);">What this says</h3>
-      <p>At the deployed fusion level, <b>DeepNeo-CL matches NetMHCpan-4.1</b> on the large third-party TransPHLA benchmark — not better, not worse. The only Holm-robust asymmetry across the four rows is NetMHCpan's BA-head advantage.</p>
+    <div class="two-col two-col-wide-l">
+      <div>
+        <table style="font-size: 16px;">
+          <thead>
+            <tr><th>Comparison</th><th class="num-cell">DeepNeo</th><th class="num-cell">NMP-4.1</th><th class="num-cell">Δ</th><th>Verdict</th></tr>
+          </thead>
+          <tbody>
+            <tr class="highlight"><td>Fusion vs Fusion</td><td class="num-cell">0.9573</td><td class="num-cell">0.9575</td><td class="num-cell">−0.0002</td><td class="green"><b>TIED</b></td></tr>
+            <tr><td>BA vs BA</td><td class="num-cell">0.9363</td><td class="num-cell">0.9500</td><td class="num-cell red">−0.0137</td><td class="red">NMP (Holm)</td></tr>
+            <tr><td>EL vs EL</td><td class="num-cell">0.9640</td><td class="num-cell">0.9581</td><td class="num-cell">+0.0059</td><td>Holm-tied</td></tr>
+            <tr><td>Fusion vs NMP-BA</td><td class="num-cell">0.9573</td><td class="num-cell">0.9500</td><td class="num-cell">+0.0073</td><td>Not Holm-robust</td></tr>
+          </tbody>
+        </table>
+        <div class="card card-green" style="margin-top: 16px;">
+          <h3 style="color: var(--green);">What this says</h3>
+          <p style="font-size: 18px;">At the deployed fusion level, <b>DeepNeo-CL matches NetMHCpan-4.1</b> — not better, not worse. The only Holm-robust asymmetry is NetMHCpan's BA-head advantage.</p>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: center;">
+        <div class="figure-wrap" style="max-height: 42vh;">
+          <img src="figures/fig_roc_pr_decontam.png" alt="ROC and PR curves on decontaminated TransPHLA (n=118,143)">
+        </div>
+      </div>
     </div>
-    <p class="cite" style="margin-top: 14px;">Source: <code>supplementary_data/transphla_rescored_fusion_fixed.json</code> + Holm/bootstrap SI ledgers · reproduced in Table 1</p>
+    <p class="cite" style="margin-top: 8px;">Source: <code>transphla_rescored_fusion_fixed.json</code> + Holm/bootstrap SI ledgers · reproduced in Table 1</p>
   </section>
 
   <!-- =============== Slide 8 — IEDB WEEKLY =============== -->
@@ -390,50 +401,62 @@
     <div class="section-tag">7 / IEDB weekly leaderboard</div>
     <h2>IEDB <code>auto_bench</code> weekly: 46 human-allele weeks (2020–2026)</h2>
     <div class="two-col two-col-wide-l" style="margin-top: 10px;">
-      <div class="figure-wrap">
-        <img src="figures/fig_weekly_ranking_ba.png" alt="IEDB weekly BA ranking board">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div class="figure-wrap" style="max-height: 32vh;">
+          <img src="figures/fig_weekly_ranking_ba.png" alt="IEDB weekly BA ranking board — mean rank and rank-1 counts">
+        </div>
+        <div class="figure-wrap" style="max-height: 22vh;">
+          <img src="figures/fig_weekly_head2head_ba.png" alt="DeepNeo vs NetMHCpan-4.1 head-to-head: 13 wins, 5 ties, 28 losses on BA">
+        </div>
       </div>
       <div>
         <div class="card card-blue">
-          <h3>BA board &nbsp;(14 ranking-eligible predictors)</h3>
-          <div class="kv"><div class="k">DeepNeo-CL mean rank</div><div class="v"><b class="accent">6.85</b> / 14</div></div>
-          <div class="kv"><div class="k">Mean week AUROC</div><div class="v">0.7951</div></div>
+          <h3>BA board &nbsp;(14 predictors)</h3>
+          <div class="kv"><div class="k">Mean rank</div><div class="v"><b class="accent">6.85</b> / 14</div></div>
+          <div class="kv"><div class="k">Mean AUROC</div><div class="v">0.7951</div></div>
           <div class="kv"><div class="k">Rank-1 weeks</div><div class="v">14 (incl. ties); 9 outright</div></div>
-          <div class="kv"><div class="k">Consistency leaders</div><div class="v">NetMHCpan-4.0 BA (4.98) · NetMHCpan-4.1 BA (5.14)</div></div>
+          <div class="kv"><div class="k">Leaders</div><div class="v">NMP-4.0 (4.98) · NMP-4.1 (5.14)</div></div>
         </div>
-        <div class="card card-green" style="margin-top: 16px;">
+        <div class="card card-green" style="margin-top: 12px;">
           <h3>EL board &nbsp;(3-predictor MS-EL)</h3>
           <div class="kv"><div class="k">DeepNeo-CL</div><div class="v"><b class="green">1.80</b> &nbsp;→ leads</div></div>
-          <div class="kv"><div class="k">NetMHCpan-4.1 EL</div><div class="v">2.01</div></div>
+          <div class="kv"><div class="k">NMP-4.1 EL</div><div class="v">2.01</div></div>
           <div class="kv"><div class="k">Rank-1 weeks</div><div class="v">24 / 46 (19 outright)</div></div>
+        </div>
+        <div class="card" style="margin-top: 12px;">
+          <h3>Head-to-head BA (paired weeks)</h3>
+          <p style="font-size: 18px;"><span class="blue">DeepNeo wins 13</span> · Tie 5 · <span class="green">NMP wins 28</span></p>
+          <p style="font-size: 16px; color: var(--muted); margin-top: 6px;">Paired-mean ΔAUROC = −0.012 · Wilcoxon <i>p</i> = 0.045</p>
         </div>
       </div>
     </div>
-    <p class="cite" style="margin-top: 10px;">Source: <code>supplementary_data/weekly_ranking_v41_2020_2026_singlecol_v2.json</code></p>
+    <p class="cite" style="margin-top: 6px;">Source: <code>weekly_ranking_v41_2020_2026_singlecol_v2.json</code></p>
   </section>
 
   <!-- =============== Slide 9 — WHERE NMP WINS =============== -->
   <section class="slide" id="s9">
     <div class="section-tag">8 / Honest reporting</div>
     <h2>Where NetMHCpan still wins</h2>
-    <div class="card card-red">
-      <h3 style="color: var(--red);">BA-head vs BA-head on TransPHLA (Table 1, row 2)</h3>
-      <div class="two-col" style="margin-top: 10px;">
-        <div>
+    <div class="two-col two-col-wide-l">
+      <div>
+        <div class="card card-red" style="margin-bottom: 16px;">
+          <h3 style="color: var(--red);">BA-head vs BA-head (Table 1, row 2)</h3>
           <div class="kv"><div class="k">Δ AUROC</div><div class="v red"><b>−0.0137</b> (NMP higher)</div></div>
           <div class="kv"><div class="k">Wilcoxon <i>p</i></div><div class="v">7.2 × 10⁻⁴</div></div>
           <div class="kv"><div class="k">Holm-adjusted <i>p</i></div><div class="v"><b>1.7 × 10⁻³</b> &nbsp;·&nbsp; <span class="red">Holm-robust</span></div></div>
           <div class="kv"><div class="k">Bootstrap 95% CI</div><div class="v">[−0.0199, −0.0075]</div></div>
         </div>
-        <div>
-          <p>This is in Table 1. It is <b>not hidden</b>.</p>
-          <p style="margin-top: 10px;">The claim we make is <b>not</b> "DeepNeo-CL beats NetMHCpan everywhere". The claim is: <b>at the deployed fusion level, it matches</b>, and the only Holm-robust asymmetry across the four rows is NetMHCpan's BA-head lead.</p>
+        <div class="card card-accent">
+          <h3>Different protocols → different verdicts</h3>
+          <p style="font-size: 18px;">Without Holm adjustment, the fusion's pooled edge (+0.0073) can be reported as a win. Under the three-condition rule it is <b>not Holm-robust</b> (Holm <i>p</i> = 0.151).</p>
         </div>
       </div>
-    </div>
-    <div class="card card-accent" style="margin-top: 20px;">
-      <h3>What this looks like under <b>no</b> multiplicity correction</h3>
-      <p>Without Holm adjustment, the deployed fusion's pooled edge (vs NMP-BA, +0.0073) can be reported as a win. Under the full three-condition rule it is <b>not Holm-robust</b> (Holm <i>p</i> = 0.151). Different protocols, different verdicts.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: center;">
+        <div class="figure-wrap" style="max-height: 36vh;">
+          <img src="figures/fig_holm_family.png" alt="Forest plot: Δ AUROC with allele-clustered 95% CI and Holm-adjusted Wilcoxon p for all four Table 2 comparisons">
+        </div>
+        <p class="caption" style="text-align: center;">Forest plot: only BA-head (blue) excludes zero after Holm correction.</p>
+      </div>
     </div>
   </section>
 

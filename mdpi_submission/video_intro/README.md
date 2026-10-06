@@ -13,14 +13,16 @@ This folder is a self-contained slide pack: HTML deck, narration script, B-roll 
 
 | File | Purpose |
 |---|---|
-| `slides.html` | Self-contained 12-slide HTML deck. Open in Chrome → F to fullscreen → arrow keys to advance. Dark/light auto. |
+| `slides.html` | Self-contained 12-slide HTML deck with 7 integrated paper figures. Open in Chrome → F to fullscreen → arrow keys to advance. Dark/light auto. |
 | `NARRATION_SCRIPT.md` | 525-word narration script with timing marks (0:00 – 3:45) in 7 blocks |
+| `STORYBOARD.md` | **Scene-by-scene production guide**: maps narration → slides → figures → B-roll → transitions for the video editor |
+| `YOUTUBE_METADATA.md` | **Ready-to-paste YouTube upload fields**: title, description with timestamps, tags, category, thumbnail and caption instructions |
 | `OPENART_PROMPTS.md` | 3 optional B-roll clip prompts for OpenArt Video (opening, mid, outro) |
 | `captions.srt` | 26-entry SRT caption file for YouTube auto-upload |
 | `thumbnail_option1.svg` | Thumbnail A — headline-claim style |
 | `thumbnail_option2.svg` | Thumbnail B — 0.862 → 0.442 number hook (**recommended** — highest curiosity gap) |
 | `thumbnail_option3.svg` | Thumbnail C — question-based opener |
-| `figures/` | PNG renders of the paper's figures referenced by the slide deck |
+| `figures/` | 14 PNG renders of the paper's figures; 7 are integrated into the slide deck |
 
 ---
 
