@@ -258,55 +258,253 @@
         </div>
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
-        <svg viewBox="0 0 420 460" width="100%" style="max-width: 380px;">
-          <!-- cell membrane -->
+        <svg viewBox="0 0 520 560" width="100%" style="max-width: 460px;" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="cellGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="var(--navy)" stop-opacity="0.15"/>
-              <stop offset="100%" stop-color="var(--navy)" stop-opacity="0.05"/>
+            <!-- gradients -->
+            <linearGradient id="cytoGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#d5e8d4" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#b8d8b0" stop-opacity="0.25"/>
             </linearGradient>
-            <linearGradient id="mhcGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="var(--navy-light)"/>
-              <stop offset="100%" stop-color="var(--navy)"/>
+            <linearGradient id="erGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#dae8fc" stop-opacity="0.7"/>
+              <stop offset="100%" stop-color="#bdd7ee" stop-opacity="0.4"/>
             </linearGradient>
+            <linearGradient id="mhcAlpha" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4a90d9"/>
+              <stop offset="50%" stop-color="#2e6db4"/>
+              <stop offset="100%" stop-color="#1B4F72"/>
+            </linearGradient>
+            <linearGradient id="b2mGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#7ec8e3"/>
+              <stop offset="100%" stop-color="#4a9cc7"/>
+            </linearGradient>
+            <linearGradient id="tcrGrad" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0%" stop-color="#c0392b"/>
+              <stop offset="100%" stop-color="#e74c3c"/>
+            </linearGradient>
+            <linearGradient id="tcellGrad" x1="0.3" y1="0" x2="0.7" y2="1">
+              <stop offset="0%" stop-color="#fdebd0"/>
+              <stop offset="100%" stop-color="#f5cba7"/>
+            </linearGradient>
+            <linearGradient id="nucleusGrad" x1="0.3" y1="0" x2="0.7" y2="1">
+              <stop offset="0%" stop-color="#a9cce3"/>
+              <stop offset="100%" stop-color="#7fb3d3"/>
+            </linearGradient>
+            <linearGradient id="protGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#8e44ad"/>
+              <stop offset="100%" stop-color="#6c3483"/>
+            </linearGradient>
+            <radialGradient id="vesicleGrad" cx="0.4" cy="0.35" r="0.6">
+              <stop offset="0%" stop-color="#f9e79f"/>
+              <stop offset="100%" stop-color="#f4d03f" stop-opacity="0.7"/>
+            </radialGradient>
+            <filter id="cellGlow" x="-5%" y="-5%" width="110%" height="110%">
+              <feGaussianBlur stdDeviation="2" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+              <feDropShadow dx="1" dy="1" stdDeviation="2" flood-color="#000" flood-opacity="0.12"/>
+            </filter>
+            <!-- phospholipid head -->
+            <radialGradient id="lipidHead" cx="0.4" cy="0.3" r="0.7">
+              <stop offset="0%" stop-color="#f0b27a"/>
+              <stop offset="100%" stop-color="#d68910"/>
+            </radialGradient>
           </defs>
-          <!-- cell body -->
-          <ellipse cx="210" cy="350" rx="190" ry="85" fill="url(#cellGrad)" stroke="var(--navy)" stroke-width="1.5" stroke-opacity="0.4"/>
-          <text x="210" y="408" fill="var(--dim)" font-size="13" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="600" letter-spacing="1">CELL</text>
-          <!-- membrane line -->
-          <line x1="20" y1="270" x2="400" y2="270" stroke="var(--navy)" stroke-width="2" stroke-opacity="0.25" stroke-dasharray="6,4"/>
-          <text x="405" y="275" fill="var(--dim)" font-size="10" font-family="Source Sans 3, sans-serif" text-anchor="start">membrane</text>
-          <!-- MHC-I left: normal peptide -->
-          <rect x="100" y="215" width="24" height="58" fill="url(#mhcGrad)" rx="3" opacity="0.8"/>
-          <rect x="128" y="215" width="24" height="58" fill="url(#mhcGrad)" rx="3" opacity="0.8"/>
-          <!-- peptide groove -->
-          <rect x="122" y="200" width="10" height="18" fill="var(--green)" rx="2"/>
-          <circle cx="117" cy="207" r="5" fill="var(--green)" opacity="0.8"/>
-          <circle cx="137" cy="207" r="5" fill="var(--green)" opacity="0.8"/>
-          <text x="126" y="188" fill="var(--green)" font-size="11" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="600">normal</text>
-          <text x="126" y="294" fill="var(--navy)" font-size="11" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">MHC-I</text>
-          <!-- MHC-I right: mutant peptide -->
-          <rect x="258" y="210" width="24" height="62" fill="url(#mhcGrad)" rx="3" opacity="0.8"/>
-          <rect x="286" y="210" width="24" height="62" fill="url(#mhcGrad)" rx="3" opacity="0.8"/>
-          <!-- mutant peptide -->
-          <rect x="280" y="193" width="10" height="20" fill="var(--red)" rx="2"/>
-          <circle cx="275" cy="201" r="5" fill="var(--red)" opacity="0.9"/>
-          <circle cx="295" cy="201" r="5" fill="var(--red)" opacity="0.9"/>
-          <text x="285" y="183" fill="var(--red)" font-size="11" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">mutant</text>
-          <text x="285" y="294" fill="var(--navy)" font-size="11" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">MHC-I</text>
-          <!-- T-cell -->
-          <circle cx="285" cy="90" r="48" fill="var(--navy-bg)" stroke="var(--navy)" stroke-width="2"/>
-          <text x="285" y="86" fill="var(--navy)" font-size="15" text-anchor="middle" font-weight="700" font-family="Source Sans 3, sans-serif">T-cell</text>
-          <text x="285" y="102" fill="var(--navy)" font-size="11" text-anchor="middle" font-family="Source Sans 3, sans-serif">(CD8+)</text>
-          <!-- TCR recognition arrow -->
-          <line x1="285" y1="142" x2="285" y2="185" stroke="var(--red)" stroke-width="2"/>
-          <polygon points="285,190 279,178 291,178" fill="var(--red)"/>
-          <text x="320" y="168" fill="var(--red)" font-size="11" font-family="Source Sans 3, sans-serif" font-weight="600">TCR binds</text>
-          <!-- check / ignore -->
-          <text x="126" y="145" fill="var(--green)" font-size="24" text-anchor="middle" font-family="Source Sans 3, sans-serif">&#10003;</text>
-          <text x="126" y="163" fill="var(--dim)" font-size="10" text-anchor="middle" font-family="Source Sans 3, sans-serif">ignored</text>
-          <!-- kill annotation -->
-          <text x="285" y="443" fill="var(--red)" font-size="11" text-anchor="middle" font-weight="600" font-family="Source Sans 3, sans-serif">&#8594; cell killed</text>
+
+          <!-- ═══ TUMOUR / ANTIGEN-PRESENTING CELL ═══ -->
+          <!-- cytoplasm background -->
+          <ellipse cx="260" cy="420" rx="240" ry="120" fill="url(#cytoGrad)" stroke="#82b366" stroke-width="1.5" stroke-opacity="0.5"/>
+          <text x="260" y="530" fill="#5a6a7a" font-size="11" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="600" letter-spacing="1.5" text-transform="uppercase">Tumour cell cytoplasm</text>
+
+          <!-- nucleus -->
+          <ellipse cx="130" cy="450" rx="62" ry="42" fill="url(#nucleusGrad)" stroke="#5499c7" stroke-width="1.2" opacity="0.7" filter="url(#softShadow)"/>
+          <text x="130" y="446" fill="#1B4F72" font-size="10" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="600">Nucleus</text>
+          <text x="130" y="458" fill="#2c6fa0" font-size="8" text-anchor="middle" font-family="Source Sans 3, sans-serif">(mutant gene)</text>
+          <!-- DNA helix hint inside nucleus -->
+          <path d="M108,438 Q115,432 122,438 Q129,444 136,438 Q143,432 150,438" fill="none" stroke="#1B4F72" stroke-width="1" stroke-opacity="0.4"/>
+          <path d="M108,442 Q115,448 122,442 Q129,436 136,442 Q143,448 150,442" fill="none" stroke="#1B4F72" stroke-width="1" stroke-opacity="0.4"/>
+
+          <!-- ═══ PROTEASOME ═══ -->
+          <!-- barrel shape -->
+          <rect x="215" y="410" width="50" height="55" rx="8" fill="url(#protGrad)" stroke="#5b2c6f" stroke-width="1.2" filter="url(#softShadow)"/>
+          <!-- barrel rings -->
+          <ellipse cx="240" cy="418" rx="22" ry="5" fill="none" stroke="#d7bde2" stroke-width="0.8"/>
+          <ellipse cx="240" cy="430" rx="22" ry="5" fill="none" stroke="#d7bde2" stroke-width="0.8"/>
+          <ellipse cx="240" cy="442" rx="22" ry="5" fill="none" stroke="#d7bde2" stroke-width="0.8"/>
+          <ellipse cx="240" cy="454" rx="22" ry="5" fill="none" stroke="#d7bde2" stroke-width="0.8"/>
+          <text x="240" y="483" fill="#6c3483" font-size="9.5" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">Proteasome</text>
+          <!-- protein going in (wavy line) -->
+          <path d="M185,425 Q195,418 200,425 Q205,432 210,425" fill="none" stroke="#27ae60" stroke-width="1.8" stroke-linecap="round"/>
+          <text x="178" y="420" fill="#27ae60" font-size="8" text-anchor="end" font-family="Source Sans 3, sans-serif" font-weight="600">protein</text>
+          <!-- peptide fragments coming out -->
+          <line x1="268" y1="430" x2="288" y2="425" stroke="#e67e22" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="290" cy="424" r="2.5" fill="#e67e22"/>
+          <line x1="268" y1="440" x2="292" y2="440" stroke="#e67e22" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="294" cy="440" r="2.5" fill="#e67e22"/>
+          <text x="308" y="436" fill="#d35400" font-size="8" font-family="Source Sans 3, sans-serif" font-weight="600">peptide</text>
+          <text x="308" y="446" fill="#d35400" font-size="8" font-family="Source Sans 3, sans-serif" font-weight="600">fragments</text>
+
+          <!-- ═══ ER + TAP TRANSPORTER ═══ -->
+          <!-- ER lumen -->
+          <path d="M320,380 Q380,360 420,385 Q440,400 430,430 Q420,455 380,460 Q340,465 320,445 Q300,430 320,380 Z" fill="url(#erGrad)" stroke="#5b9bd5" stroke-width="1.2" stroke-dasharray="4,2" filter="url(#softShadow)"/>
+          <text x="378" y="395" fill="#2e75b6" font-size="9" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">ER lumen</text>
+          <!-- TAP transporter channel -->
+          <rect x="312" y="415" width="18" height="30" rx="4" fill="#e8a838" stroke="#d68910" stroke-width="1" opacity="0.9"/>
+          <text x="321" y="406" fill="#b7950b" font-size="8" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">TAP</text>
+          <!-- peptide through TAP -->
+          <path d="M296,440 L310,435 L318,430" fill="none" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#arrowOrange)"/>
+          <!-- MHC-I assembling in ER -->
+          <g transform="translate(370, 425)">
+            <rect x="-8" y="-5" width="6" height="22" rx="2" fill="#4a90d9" opacity="0.6"/>
+            <rect x="4" y="-5" width="6" height="22" rx="2" fill="#4a90d9" opacity="0.6"/>
+            <rect x="-5" y="-3" width="12" height="4" rx="1" fill="#7ec8e3" opacity="0.6"/>
+            <text x="1" y="30" fill="#2e75b6" font-size="7" text-anchor="middle" font-family="Source Sans 3, sans-serif">loading</text>
+          </g>
+
+          <!-- ═══ VESICLE to surface ═══ -->
+          <circle cx="420" cy="355" r="14" fill="url(#vesicleGrad)" stroke="#d4ac0d" stroke-width="1" filter="url(#softShadow)"/>
+          <text x="420" y="340" fill="#7d6608" font-size="7.5" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="600">vesicle</text>
+          <!-- curved arrow from ER to surface -->
+          <path d="M420,340 Q425,310 405,290" fill="none" stroke="#7d6608" stroke-width="1.2" stroke-dasharray="3,2"/>
+          <polygon points="403,292 408,284 412,294" fill="#7d6608"/>
+
+          <!-- ═══ PHOSPHOLIPID BILAYER MEMBRANE ═══ -->
+          <!-- outer leaflet -->
+          <g id="outerLeaflet">
+            <g transform="translate(30,270)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="4" x2="-2" y2="16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="4" x2="2" y2="16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(45,268)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="4" x2="-2" y2="16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="4" x2="2" y2="16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(60,267)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="4" x2="-2" y2="16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="4" x2="2" y2="16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(75,266)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="4" x2="-2" y2="16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="4" x2="2" y2="16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(90,265)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="4" x2="-2" y2="16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="4" x2="2" y2="16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <!-- gap for MHC-I -->
+            <g transform="translate(195,264)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="4" x2="-2" y2="16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="4" x2="2" y2="16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(210,264)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="4" x2="-2" y2="16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="4" x2="2" y2="16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <!-- gap for MHC-I with mutant -->
+            <g transform="translate(325,264)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="4" x2="-2" y2="16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="4" x2="2" y2="16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(340,264)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="4" x2="-2" y2="16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="4" x2="2" y2="16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(435,266)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="4" x2="-2" y2="16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="4" x2="2" y2="16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(450,267)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="4" x2="-2" y2="16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="4" x2="2" y2="16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(465,268)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="4" x2="-2" y2="16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="4" x2="2" y2="16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(480,270)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="4" x2="-2" y2="16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="4" x2="2" y2="16" stroke="#c68c1e" stroke-width="1.2"/></g>
+          </g>
+          <!-- inner leaflet -->
+          <g id="innerLeaflet">
+            <g transform="translate(30,300)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="-4" x2="-2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="-4" x2="2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(45,298)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="-4" x2="-2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="-4" x2="2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(60,297)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="-4" x2="-2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="-4" x2="2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(75,296)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="-4" x2="-2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="-4" x2="2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(90,295)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="-4" x2="-2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="-4" x2="2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(195,294)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="-4" x2="-2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="-4" x2="2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(210,294)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="-4" x2="-2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="-4" x2="2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(325,294)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="-4" x2="-2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="-4" x2="2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(340,294)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="-4" x2="-2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="-4" x2="2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(435,296)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="-4" x2="-2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="-4" x2="2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(450,297)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="-4" x2="-2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="-4" x2="2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(465,298)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="-4" x2="-2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="-4" x2="2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/></g>
+            <g transform="translate(480,300)"><circle r="4.5" fill="url(#lipidHead)"/><line x1="0" y1="-4" x2="-2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/><line x1="0" y1="-4" x2="2" y2="-16" stroke="#c68c1e" stroke-width="1.2"/></g>
+          </g>
+          <text x="497" y="290" fill="#5a6a7a" font-size="8.5" font-family="Source Sans 3, sans-serif" font-weight="600" text-anchor="start">cell</text>
+          <text x="497" y="300" fill="#5a6a7a" font-size="8.5" font-family="Source Sans 3, sans-serif" font-weight="600" text-anchor="start">membrane</text>
+          <text x="12" y="316" fill="#5a6a7a" font-size="8" font-family="Source Sans 3, sans-serif" font-style="italic" text-anchor="start">intracellular</text>
+          <text x="12" y="260" fill="#5a6a7a" font-size="8" font-family="Source Sans 3, sans-serif" font-style="italic" text-anchor="start">extracellular</text>
+
+          <!-- ═══ MHC-I WITH NORMAL PEPTIDE (left) ═══ -->
+          <g transform="translate(130, 200)" filter="url(#softShadow)">
+            <!-- transmembrane stalk -->
+            <rect x="-4" y="60" width="10" height="35" rx="3" fill="url(#mhcAlpha)" opacity="0.7"/>
+            <!-- alpha-1 helix -->
+            <path d="M-18,8 Q-20,-8 -12,-15 Q-4,-22 0,-15 L0,55 Q-8,58 -16,52 L-18,8 Z" fill="url(#mhcAlpha)" opacity="0.85"/>
+            <!-- alpha-2 helix -->
+            <path d="M20,8 Q22,-8 14,-15 Q6,-22 2,-15 L2,55 Q10,58 18,52 L20,8 Z" fill="url(#mhcAlpha)" opacity="0.85"/>
+            <!-- peptide binding groove floor -->
+            <rect x="-12" y="10" width="26" height="38" rx="3" fill="#aed6f1" opacity="0.5"/>
+            <!-- beta-2-microglobulin -->
+            <ellipse cx="22" cy="68" rx="12" ry="16" fill="url(#b2mGrad)" opacity="0.75"/>
+            <text x="22" y="72" fill="#fff" font-size="6.5" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">&beta;2m</text>
+            <!-- normal self-peptide (green beads) -->
+            <circle cx="-6" cy="18" r="4" fill="#27ae60"/><circle cx="1" cy="24" r="3.5" fill="#2ecc71"/><circle cx="8" cy="19" r="4" fill="#27ae60"/><circle cx="3" cy="32" r="3.5" fill="#2ecc71"/><circle cx="-4" cy="37" r="3.5" fill="#27ae60"/><circle cx="6" cy="40" r="3" fill="#2ecc71"/>
+            <text x="1" y="-6" fill="#27ae60" font-size="10" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">self peptide</text>
+            <text x="1" y="110" fill="#1B4F72" font-size="10" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">MHC-I</text>
+          </g>
+          <!-- tolerance checkmark -->
+          <text x="130" y="155" fill="#27ae60" font-size="28" text-anchor="middle" font-family="Source Sans 3, sans-serif">&#10003;</text>
+          <text x="130" y="173" fill="#5a6a7a" font-size="9" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="600">T-cell tolerant</text>
+
+          <!-- ═══ MHC-I WITH NEOANTIGEN (right) ═══ -->
+          <g transform="translate(370, 195)" filter="url(#softShadow)">
+            <!-- transmembrane stalk -->
+            <rect x="-4" y="63" width="10" height="35" rx="3" fill="url(#mhcAlpha)" opacity="0.7"/>
+            <!-- alpha-1 helix -->
+            <path d="M-18,8 Q-20,-8 -12,-15 Q-4,-22 0,-15 L0,55 Q-8,58 -16,52 L-18,8 Z" fill="url(#mhcAlpha)" opacity="0.85"/>
+            <!-- alpha-2 helix -->
+            <path d="M20,8 Q22,-8 14,-15 Q6,-22 2,-15 L2,55 Q10,58 18,52 L20,8 Z" fill="url(#mhcAlpha)" opacity="0.85"/>
+            <!-- groove floor -->
+            <rect x="-12" y="10" width="26" height="38" rx="3" fill="#aed6f1" opacity="0.5"/>
+            <!-- beta-2-microglobulin -->
+            <ellipse cx="22" cy="70" rx="12" ry="16" fill="url(#b2mGrad)" opacity="0.75"/>
+            <text x="22" y="74" fill="#fff" font-size="6.5" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">&beta;2m</text>
+            <!-- MUTANT neoantigen peptide (red/orange beads with star mutation) -->
+            <circle cx="-6" cy="18" r="4" fill="#e67e22"/><circle cx="1" cy="24" r="3.5" fill="#e67e22"/><circle cx="8" cy="19" r="4" fill="#c0392b"/><circle cx="3" cy="32" r="3.5" fill="#e67e22"/><circle cx="-4" cy="37" r="3.5" fill="#e67e22"/><circle cx="6" cy="40" r="3" fill="#e67e22"/>
+            <!-- mutation star marker -->
+            <polygon points="8,13 9.5,16 13,16.5 10.5,18.5 11,22 8,20.5 5,22 5.5,18.5 3,16.5 6.5,16" fill="#e74c3c" stroke="#c0392b" stroke-width="0.5"/>
+            <text x="1" y="-6" fill="#c0392b" font-size="10" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">neoantigen</text>
+            <text x="1" y="113" fill="#1B4F72" font-size="10" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">MHC-I</text>
+          </g>
+
+          <!-- ═══ CD8+ T-CELL ═══ -->
+          <g filter="url(#softShadow)">
+            <!-- T-cell body - irregular lymphocyte shape -->
+            <path d="M370,72 Q395,30 420,45 Q455,20 468,55 Q490,50 485,80 Q495,105 470,115 Q460,140 430,130 Q400,145 385,120 Q355,125 350,100 Q335,85 350,72 Z" fill="url(#tcellGrad)" stroke="#d68910" stroke-width="1.5"/>
+            <!-- nucleus -->
+            <ellipse cx="420" cy="82" rx="32" ry="26" fill="#d4a574" opacity="0.5" stroke="#c0956c" stroke-width="0.8"/>
+            <text x="420" y="75" fill="#7b4f2a" font-size="12" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="800">CD8⁺</text>
+            <text x="420" y="90" fill="#7b4f2a" font-size="11" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">T-cell</text>
+          </g>
+
+          <!-- ═══ TCR RECEPTOR ═══ -->
+          <!-- TCR extending from T-cell toward MHC-I+neoantigen -->
+          <g filter="url(#softShadow)">
+            <!-- TCR stalk -->
+            <rect x="366" y="130" width="8" height="28" rx="3" fill="url(#tcrGrad)"/>
+            <!-- TCR alpha chain -->
+            <path d="M362,158 Q358,170 362,180 Q364,188 370,192" fill="none" stroke="#e74c3c" stroke-width="3.5" stroke-linecap="round"/>
+            <!-- TCR beta chain -->
+            <path d="M378,158 Q382,170 378,180 Q376,188 370,192" fill="none" stroke="#c0392b" stroke-width="3.5" stroke-linecap="round"/>
+            <!-- binding contact -->
+            <ellipse cx="370" cy="192" rx="6" ry="3" fill="#f5b041" stroke="#e67e22" stroke-width="1" opacity="0.8"/>
+          </g>
+          <text x="340" y="160" fill="#c0392b" font-size="9" text-anchor="end" font-family="Source Sans 3, sans-serif" font-weight="700">TCR</text>
+          <!-- recognition lightning/signal -->
+          <g opacity="0.8">
+            <line x1="395" y1="145" x2="405" y2="155" stroke="#f39c12" stroke-width="1.5"/>
+            <line x1="405" y1="155" x2="398" y2="158" stroke="#f39c12" stroke-width="1.5"/>
+            <line x1="398" y1="158" x2="408" y2="170" stroke="#f39c12" stroke-width="1.5"/>
+          </g>
+
+          <!-- ═══ LABELS AND ANNOTATIONS ═══ -->
+          <!-- arrow: kill signal -->
+          <text x="458" y="145" fill="#c0392b" font-size="9" font-family="Source Sans 3, sans-serif" font-weight="700">recognition</text>
+          <text x="458" y="156" fill="#c0392b" font-size="9" font-family="Source Sans 3, sans-serif" font-weight="700">&rarr; cell killing</text>
+
+          <!-- flow arrows -->
+          <!-- nucleus → proteasome -->
+          <path d="M178,430 L210,430" fill="none" stroke="#5a6a7a" stroke-width="1.2" marker-end="url(#arrowGrey)"/>
+          <defs>
+            <marker id="arrowGrey" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5a6a7a"/></marker>
+            <marker id="arrowOrange" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#e67e22"/></marker>
+          </defs>
+
+          <!-- step numbers -->
+          <circle cx="195" cy="410" r="8" fill="#1B4F72"/><text x="195" y="414" fill="#fff" font-size="9" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">1</text>
+          <circle cx="305" cy="410" r="8" fill="#1B4F72"/><text x="305" y="414" fill="#fff" font-size="9" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">2</text>
+          <circle cx="420" cy="330" r="8" fill="#1B4F72"/><text x="420" y="334" fill="#fff" font-size="9" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">3</text>
+          <circle cx="370" cy="145" r="8" fill="#c0392b"/><text x="370" y="149" fill="#fff" font-size="9" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">4</text>
+
+          <!-- step labels at bottom -->
+          <text x="260" y="555" fill="#5a6a7a" font-size="8" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-style="italic">
+            &#x2460; Proteasomal degradation &#x2461; TAP transport &#x2462; Surface display &#x2463; T-cell recognition
+          </text>
         </svg>
       </div>
     </div>
