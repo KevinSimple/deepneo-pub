@@ -552,31 +552,23 @@
     <div class="section-tag">3 / Model</div>
     <h2>DeepNeo-CL &mdash; a compact PLM for pMHC-I ranking</h2>
     <div class="two-col fill">
-      <div>
-        <table>
-          <thead><tr><th>Component</th><th>Choice</th></tr></thead>
-          <tbody>
-            <tr><td>Trunk</td><td><code>ESM2-35M</code> (12 layers, d=480)</td></tr>
-            <tr><td>Context fusion</td><td>Peptide&ndash;HLA <b>cross-attention</b></td></tr>
-            <tr><td>Side features</td><td>V37 position-resolved physchem</td></tr>
-            <tr><td>Heads</td><td>BA (censored log-IC<sub>50</sub>) + EL (focal BCE)</td></tr>
-            <tr><td>Aux loss</td><td>Within-HLA pairwise rank hinge</td></tr>
-            <tr><td>Reweighting</td><td>LDS + effective-number subgroup</td></tr>
-            <tr><td>Refinement</td><td>Supervised contrastive, 4 epochs</td></tr>
-            <tr><td>Deployed</td><td>5-fold ensemble, batch-rank fusion</td></tr>
-          </tbody>
-        </table>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div class="card card-navy" style="text-align: center; padding: 16px 20px;">
+          <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 2px; font-weight: 600;">Total parameters</p>
+          <p style="font-family: var(--mono); font-size: 48px; font-weight: 600; color: var(--navy); margin: 4px 0; line-height: 1;">35 M</p>
+        </div>
+        <div class="card">
+          <div class="kv" style="margin-bottom: 12px;"><div class="k">Trunk</div><div class="v"><code>ESM2-35M</code> &middot; 12 layers, d=480</div></div>
+          <div class="kv" style="margin-bottom: 12px;"><div class="k">Context</div><div class="v">Peptide&ndash;HLA <b>cross-attention</b></div></div>
+          <div class="kv" style="margin-bottom: 12px;"><div class="k">Heads</div><div class="v">BA + EL &rarr; batch-rank fusion</div></div>
+          <div class="kv"><div class="k">Deployed</div><div class="v">5-fold ensemble</div></div>
+        </div>
       </div>
       <div style="display: flex; flex-direction: column; min-height: 0;">
-        <div class="card card-navy" style="margin-bottom: 10px; text-align: center; padding: 12px 20px;">
-          <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 2px; font-weight: 600;">Total parameters</p>
-          <p style="font-family: var(--mono); font-size: 36px; font-weight: 600; color: var(--navy); margin: 2px 0; line-height: 1;">35 M</p>
-          <p style="font-size: 13px; color: var(--muted);">5-fold ensemble &middot; batch-rank fusion</p>
-        </div>
         <div class="figure-wrap" style="flex: 1; min-height: 0;">
-          <img src="figures/fig_training_dynamics.png" alt="Training dynamics: loss and validation AUROC across epochs" style="max-height: 38vh;">
+          <img src="figures/fig_training_dynamics.png" alt="Training dynamics: loss and validation AUROC across epochs" style="max-height: 50vh;">
         </div>
-        <p class="cite" style="margin-top: 4px;">Training dynamics: BA-only warmup &rarr; multi-task (BA + EL) &middot; validation AUROC converges ~0.91</p>
+        <p class="cite" style="margin-top: 6px;">Training dynamics: BA-only warmup &rarr; multi-task (BA + EL) &middot; validation AUROC converges ~0.91</p>
       </div>
     </div>
   </section>
@@ -627,23 +619,22 @@
   <section class="slide" id="s7">
     <div class="section-tag">6 / Headline result &middot; TransPHLA</div>
     <h2>Decontaminated TransPHLA (<i>n</i> = 118,143)</h2>
-    <div class="two-col two-col-wide-l fill">
+    <div class="card card-green" style="margin-bottom: 16px; padding: 14px 24px;">
+      <p style="font-size: 19px; margin: 0;">At the deployed fusion level: <b style="color: var(--green);">DeepNeo-CL matches NetMHCpan-4.1</b> &mdash; AUROC 0.9573 vs 0.9575 (<span class="verdict-badge verdict-tied">TIED</span>)</p>
+    </div>
+    <div class="two-col fill">
       <div>
         <table style="font-size: 14px;">
           <thead>
-            <tr><th>Comparison</th><th class="num-cell">DeepNeo</th><th class="num-cell">NMP-4.1</th><th class="num-cell">&Delta;</th><th style="text-align:center">Verdict</th></tr>
+            <tr><th>Comparison</th><th class="num-cell">&Delta; AUROC</th><th style="text-align:center">Verdict</th></tr>
           </thead>
           <tbody>
-            <tr class="highlight"><td>Fusion vs Fusion</td><td class="num-cell">0.9573</td><td class="num-cell">0.9575</td><td class="num-cell">&minus;0.0002</td><td style="text-align:center"><span class="verdict-badge verdict-tied">TIED</span></td></tr>
-            <tr><td>BA vs BA</td><td class="num-cell">0.9363</td><td class="num-cell">0.9500</td><td class="num-cell" style="color:var(--red)">&minus;0.0137</td><td style="text-align:center"><span class="verdict-badge verdict-loss">NMP wins</span></td></tr>
-            <tr><td>EL vs EL</td><td class="num-cell">0.9640</td><td class="num-cell">0.9581</td><td class="num-cell">+0.0059</td><td style="text-align:center"><span class="verdict-badge verdict-tied">Holm-tied</span></td></tr>
-            <tr><td>Fusion vs NMP-BA</td><td class="num-cell">0.9573</td><td class="num-cell">0.9500</td><td class="num-cell">+0.0073</td><td style="text-align:center; color: var(--muted); font-size: 12px;">Not Holm-robust</td></tr>
+            <tr class="highlight"><td>Fusion vs Fusion</td><td class="num-cell">&minus;0.0002</td><td style="text-align:center"><span class="verdict-badge verdict-tied">TIED</span></td></tr>
+            <tr><td>BA vs BA</td><td class="num-cell" style="color:var(--red)">&minus;0.0137</td><td style="text-align:center"><span class="verdict-badge verdict-loss">NMP wins</span></td></tr>
+            <tr><td>EL vs EL</td><td class="num-cell">+0.0059</td><td style="text-align:center"><span class="verdict-badge verdict-tied">Holm-tied</span></td></tr>
           </tbody>
         </table>
-        <div class="card card-green" style="margin-top: 14px;">
-          <h3 style="color: var(--green);">Interpretation</h3>
-          <p>At the deployed fusion level, <b>DeepNeo-CL matches NetMHCpan-4.1</b>. The only Holm-robust asymmetry is NetMHCpan&rsquo;s BA-head advantage.</p>
-        </div>
+        <p class="cite" style="margin-top: 10px;">The only Holm-robust asymmetry is NetMHCpan&rsquo;s BA-head advantage.</p>
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
         <div class="figure-wrap">
@@ -651,7 +642,7 @@
         </div>
       </div>
     </div>
-    <p class="cite" style="margin-top: 6px;">Source: <code>transphla_rescored_fusion_fixed.json</code> + Holm/bootstrap SI ledgers &middot; Table 1</p>
+    <p class="cite" style="margin-top: 6px;">Source: Table 1 + Holm/bootstrap SI ledgers</p>
   </section>
 
   <!-- ═══ Slide 8 — IEDB WEEKLY ═══ -->
@@ -667,24 +658,17 @@
           <img src="figures/fig_weekly_head2head_ba.png" alt="DeepNeo vs NMP-4.1 head-to-head" style="max-height: 22vh;">
         </div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
         <div class="card card-navy">
-          <h3>BA board (14 predictors)</h3>
-          <div class="kv"><div class="k">Mean rank</div><div class="v"><b style="color: var(--navy);">6.85</b> / 14</div></div>
-          <div class="kv"><div class="k">Mean AUROC</div><div class="v">0.7951</div></div>
-          <div class="kv"><div class="k">Rank-1 weeks</div><div class="v">14 (incl. ties); 9 outright</div></div>
-          <div class="kv"><div class="k">Leaders</div><div class="v">NMP-4.0 (4.98) &middot; NMP-4.1 (5.14)</div></div>
+          <h3>BA board &mdash; 14 predictors</h3>
+          <p style="font-size: 17px; margin-bottom: 6px;">Mean rank <b style="color: var(--navy);">6.85</b> / 14 &mdash; mid-field</p>
+          <p style="font-size: 14px; color: var(--muted);">Leaders: NMP-4.0 (4.98) &middot; NMP-4.1 (5.14)</p>
+          <p style="font-size: 14px; color: var(--muted); margin-top: 6px;">Head-to-head: DeepNeo wins 13 &middot; Tie 5 &middot; NMP wins 28</p>
         </div>
         <div class="card card-green">
-          <h3 style="color: var(--green);">EL board (3-predictor MS-EL)</h3>
-          <div class="kv"><div class="k">DeepNeo-CL</div><div class="v"><b style="color: var(--green);">1.80</b> &rarr; leads</div></div>
-          <div class="kv"><div class="k">NMP-4.1 EL</div><div class="v">2.01</div></div>
-          <div class="kv"><div class="k">Rank-1 weeks</div><div class="v">24 / 46 (19 outright)</div></div>
-        </div>
-        <div class="card">
-          <h3>Head-to-head BA (paired weeks)</h3>
-          <p style="font-size: 15px;"><span class="navy">DeepNeo wins 13</span> &middot; Tie 5 &middot; <span style="color:var(--muted);">NMP wins 28</span></p>
-          <p style="font-size: 13px; color: var(--muted); margin-top: 4px;">Paired-mean &Delta;AUROC = &minus;0.012 &middot; Wilcoxon <i>p</i> = 0.045</p>
+          <h3 style="color: var(--green);">EL board &mdash; DeepNeo leads</h3>
+          <p style="font-size: 17px; margin-bottom: 6px;">Mean rank <b style="color: var(--green);">1.80</b> vs NMP-4.1 at 2.01</p>
+          <p style="font-size: 14px; color: var(--muted);">Rank-1 in 24 / 46 weeks (19 outright)</p>
         </div>
       </div>
     </div>
@@ -698,11 +682,10 @@
     <div class="two-col two-col-wide-l fill">
       <div>
         <div class="card card-red" style="margin-bottom: 14px;">
-          <h3 style="color: var(--red);">BA-head vs BA-head (Table 1, row 2)</h3>
-          <div class="kv"><div class="k">&Delta; AUROC</div><div class="v" style="color:var(--red)"><b>&minus;0.0137</b> (NMP higher)</div></div>
-          <div class="kv"><div class="k">Wilcoxon <i>p</i></div><div class="v">7.2 &times; 10&supmin;&sup3;</div></div>
-          <div class="kv"><div class="k">Holm-adj. <i>p</i></div><div class="v"><b>1.7 &times; 10&supmin;&sup3;</b> &middot; <span style="color:var(--red)">Holm-robust</span></div></div>
-          <div class="kv"><div class="k">Bootstrap 95% CI</div><div class="v">[&minus;0.0199, &minus;0.0075]</div></div>
+          <h3 style="color: var(--red);">BA-head vs BA-head</h3>
+          <p style="font-size: 17px; margin-bottom: 8px;">&Delta; AUROC = <b style="color: var(--red);">&minus;0.0137</b> &mdash; NMP higher</p>
+          <p style="font-size: 15px;">Holm-adjusted <i>p</i> = <b>1.7 &times; 10&supmin;&sup3;</b> &middot; Bootstrap CI excludes zero</p>
+          <p style="font-size: 14px; color: var(--muted); margin-top: 6px;">All three conditions met &rarr; <span style="color:var(--red); font-weight: 700;">Holm-robust NMP win</span></p>
         </div>
         <div class="card card-accent">
           <h3 style="color: var(--accent);">Different protocols &rarr; different verdicts</h3>
