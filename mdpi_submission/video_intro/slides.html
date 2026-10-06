@@ -3,308 +3,331 @@
 <head>
 <meta charset="utf-8">
 <title>DeepNeo-CL intro — 12-slide deck</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;0,900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
+  /* ── design: clean institutional science, IEDB/NIH-inspired ── */
   :root {
-    --bg: #0b0f17;
-    --bg2: #121826;
-    --fg: #e8eef5;
-    --muted: #8da1b8;
-    --dim: #556372;
-    --accent: #ffb000;
-    --blue: #4aa3df;
-    --blue-dim: #1e3a52;
-    --green: #46c56f;
-    --green-dim: #1e3d26;
-    --red: #e3604e;
-    --red-dim: #3d1a14;
-    --card: #16202e;
-    --border: #2a3647;
+    --bg: #ffffff;
+    --bg2: #f4f6f9;
+    --fg: #1a2332;
+    --muted: #5a6a7a;
+    --dim: #8c99a8;
+    --navy: #1B4F72;
+    --navy-light: #2980B9;
+    --navy-bg: #eaf2f8;
+    --accent: #d35400;
+    --accent-bg: #fef5ec;
+    --green: #1e7e34;
+    --green-bg: #edf7ef;
+    --red: #c0392b;
+    --red-bg: #fbeae8;
+    --card: #ffffff;
+    --border: #d5dce6;
+    --shadow: rgba(27,79,114,0.08);
+    --title: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    --body: 'Source Sans 3', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --mono: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body {
-    height: 100%;
-    background: var(--bg);
-    color: var(--fg);
-    font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-    overflow: hidden;
-    -webkit-font-smoothing: antialiased;
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1520; --bg2: #182030; --fg: #e2e8f0; --muted: #94a3b8;
+      --dim: #64748b; --navy: #5dade2; --navy-light: #85c1e9;
+      --navy-bg: #1a2d42; --accent: #f39c12; --accent-bg: #2d2210;
+      --green: #58d68d; --green-bg: #1a2e20; --red: #e74c3c; --red-bg: #2e1a18;
+      --card: #1a2535; --border: #2c3e50; --shadow: rgba(0,0,0,0.3);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1520; --bg2: #182030; --fg: #e2e8f0; --muted: #94a3b8;
+    --dim: #64748b; --navy: #5dade2; --navy-light: #85c1e9;
+    --navy-bg: #1a2d42; --accent: #f39c12; --accent-bg: #2d2210;
+    --green: #58d68d; --green-bg: #1a2e20; --red: #e74c3c; --red-bg: #2e1a18;
+    --card: #1a2535; --border: #2c3e50; --shadow: rgba(0,0,0,0.3);
+    color-scheme: dark;
   }
 
-  /* ---------- deck + slide chrome ---------- */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%; background: var(--bg); color: var(--fg);
+    font-family: var(--body);
+    overflow: hidden; -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── deck chrome ── */
   .deck { height: 100vh; width: 100vw; position: relative; }
   .slide {
     position: absolute; inset: 0;
-    padding: 72px 80px 60px;
-    opacity: 0;
-    transform: translateY(8px);
+    padding: 64px 72px 56px;
+    opacity: 0; transform: translateY(6px);
     pointer-events: none;
-    transition: opacity 0.45s cubic-bezier(.4,0,.2,1), transform 0.45s cubic-bezier(.4,0,.2,1);
+    transition: opacity 0.4s cubic-bezier(.4,0,.2,1), transform 0.4s cubic-bezier(.4,0,.2,1);
     display: flex; flex-direction: column;
   }
-  .slide.active {
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
-    z-index: 1;
-  }
+  .slide.active { opacity: 1; transform: none; pointer-events: auto; z-index: 1; }
 
-  /* progress bar (top) */
+  /* progress */
   .progress {
     position: fixed; top: 0; left: 0; right: 0;
-    height: 4px; display: flex; z-index: 20;
-    background: var(--bg2);
+    height: 3px; display: flex; z-index: 20; background: var(--bg2);
   }
   .progress .seg { flex: 1; margin: 0 1px; background: var(--border); transition: background 0.3s; }
-  .progress .seg.done { background: var(--accent); }
+  .progress .seg.done { background: var(--navy); }
 
-  /* section tag (upper left) */
+  /* section tag */
   .section-tag {
-    position: absolute; top: 24px; left: 80px;
-    font-size: 14px; font-weight: 700; letter-spacing: 3px;
-    color: var(--accent); text-transform: uppercase;
+    position: absolute; top: 20px; left: 72px;
+    font-family: var(--body); font-size: 12px; font-weight: 700;
+    letter-spacing: 2.5px; color: var(--navy);
+    text-transform: uppercase; opacity: 0.7;
   }
-  /* paper footer */
+  /* footer */
   .footer {
-    position: fixed; bottom: 20px; left: 80px; right: 80px;
+    position: fixed; bottom: 16px; left: 72px; right: 72px;
     display: flex; justify-content: space-between; align-items: center;
-    font-size: 13px; color: var(--dim); z-index: 10;
-    border-top: 1px solid var(--border); padding-top: 10px;
+    font-size: 12px; color: var(--dim); z-index: 10;
+    border-top: 1px solid var(--border); padding-top: 8px;
+    font-family: var(--body);
   }
   .footer .paper { font-weight: 600; color: var(--muted); }
   .footer .page { font-variant-numeric: tabular-nums; }
   .controls {
-    position: fixed; bottom: 4px; left: 50%; transform: translateX(-50%);
-    font-size: 11px; color: var(--dim); opacity: 0.55; z-index: 10;
+    position: fixed; bottom: 2px; left: 50%; transform: translateX(-50%);
+    font-size: 10px; color: var(--dim); opacity: 0.4; z-index: 10;
   }
 
-  /* ---------- typography ---------- */
-  h1 { font-size: 68px; font-weight: 800; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 20px; }
-  h1.title-big { font-size: 92px; }
-  h2 { font-size: 40px; font-weight: 700; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 32px; color: var(--fg); }
-  h3 { font-size: 24px; font-weight: 600; letter-spacing: 0; margin-bottom: 10px; color: var(--blue); }
-  p  { font-size: 22px; line-height: 1.5; color: var(--fg); max-width: 1300px; }
-  .lead { font-size: 26px; color: var(--muted); line-height: 1.4; }
-  .caption { font-size: 15px; color: var(--muted); font-style: italic; margin-top: 10px; }
-  .cite { font-size: 13px; color: var(--dim); font-style: italic; }
-  .meta { font-size: 16px; color: var(--muted); letter-spacing: 1px; }
+  /* ── typography ── */
+  h1 { font-family: var(--title); font-size: 56px; font-weight: 700; line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 16px; color: var(--navy); }
+  h1.title-big { font-size: 72px; }
+  h2 { font-family: var(--title); font-size: 32px; font-weight: 700; line-height: 1.2; margin-bottom: 24px; color: var(--navy); }
+  h3 { font-family: var(--body); font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--navy); letter-spacing: 0.2px; }
+  p  { font-size: 17px; line-height: 1.55; color: var(--fg); max-width: 1300px; }
+  .lead { font-size: 20px; color: var(--muted); line-height: 1.45; }
+  .caption { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .cite { font-size: 11px; color: var(--dim); font-style: italic; }
+  .meta { font-family: var(--body); font-size: 14px; color: var(--muted); letter-spacing: 0.5px; }
 
   .accent { color: var(--accent); }
   .green { color: var(--green); }
   .red { color: var(--red); }
-  .blue { color: var(--blue); }
+  .navy { color: var(--navy); }
   b, strong { color: var(--fg); font-weight: 700; }
 
-  /* ---------- layout primitives ---------- */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; flex: 1; align-items: start; }
-  .two-col-wide-l { grid-template-columns: 1.4fr 1fr; }
-  .two-col-wide-r { grid-template-columns: 1fr 1.4fr; }
-  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; flex: 1; }
+  /* ── layout ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; flex: 1; align-items: start; }
+  .two-col-wide-l { grid-template-columns: 1.35fr 1fr; }
+  .two-col-wide-r { grid-template-columns: 1fr 1.35fr; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; flex: 1; }
 
   /* cards */
   .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px 28px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 6px; padding: 20px 24px;
+    box-shadow: 0 1px 3px var(--shadow);
   }
-  .card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
-  .card-accent { border-left: 4px solid var(--accent); }
-  .card-blue   { border-left: 4px solid var(--blue); }
-  .card-green  { border-left: 4px solid var(--green); background: var(--green-dim); }
-  .card-red    { border-left: 4px solid var(--red); background: var(--red-dim); }
+  .card-navy   { border-left: 3px solid var(--navy); background: var(--navy-bg); }
+  .card-accent { border-left: 3px solid var(--accent); background: var(--accent-bg); }
+  .card-green  { border-left: 3px solid var(--green); background: var(--green-bg); }
+  .card-red    { border-left: 3px solid var(--red); background: var(--red-bg); }
+  .card h3 { margin-bottom: 10px; }
+  .card p  { font-size: 16px; }
 
-  .card h3 { margin-bottom: 14px; }
-  .card p  { font-size: 20px; }
-
-  /* numbered list items */
+  /* numbered */
   .numbered { list-style: none; padding: 0; }
   .numbered li {
-    display: grid; grid-template-columns: 50px 1fr; gap: 16px;
-    margin-bottom: 20px; align-items: start;
+    display: grid; grid-template-columns: 40px 1fr; gap: 12px;
+    margin-bottom: 16px; align-items: start;
   }
   .numbered li .num {
-    font-size: 32px; font-weight: 800; color: var(--accent);
-    line-height: 1; padding-top: 2px;
+    font-family: var(--title); font-size: 28px; font-weight: 700;
+    color: var(--navy); line-height: 1;
   }
-  .numbered li .body {
-    font-size: 20px; line-height: 1.45; color: var(--fg);
-  }
+  .numbered li .body { font-size: 17px; line-height: 1.5; color: var(--fg); }
 
   /* table */
-  table {
-    width: 100%; border-collapse: collapse; margin: 10px 0;
-    font-size: 18px;
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 15px; }
+  th {
+    background: var(--navy); color: #ffffff; padding: 10px 14px;
+    text-align: left; font-weight: 600; font-size: 13px;
+    letter-spacing: 0.4px; text-transform: uppercase;
   }
-  th { background: var(--bg2); color: var(--accent); padding: 12px 16px;
-       text-align: left; font-weight: 600; font-size: 15px;
-       border-bottom: 2px solid var(--accent); letter-spacing: 0.5px; }
-  td { padding: 10px 16px; border-bottom: 1px solid var(--border); color: var(--fg); vertical-align: top; }
+  td {
+    padding: 9px 14px; border-bottom: 1px solid var(--border);
+    color: var(--fg); vertical-align: top;
+  }
+  tbody tr:nth-child(even) td { background: var(--bg2); }
   tr:last-child td { border-bottom: none; }
-  td.num-cell { font-variant-numeric: tabular-nums; text-align: right; }
-  tr.highlight td { background: rgba(255,176,0,0.08); font-weight: 600; }
-  tbody tr { transition: background 0.2s; }
-  tbody tr:hover td { background: rgba(255,176,0,0.05); }
+  td.num-cell { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; font-size: 14px; }
+  tr.highlight td { background: var(--navy-bg); font-weight: 600; }
 
-  /* key-value row (used in header meta) */
-  .kv { display: grid; grid-template-columns: 180px 1fr; gap: 12px; font-size: 18px; margin-bottom: 10px; }
-  .kv .k { color: var(--muted); font-weight: 600; }
+  /* key-value */
+  .kv { display: grid; grid-template-columns: 150px 1fr; gap: 8px; font-size: 15px; margin-bottom: 8px; }
+  .kv .k { color: var(--muted); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.3px; }
   .kv .v { color: var(--fg); }
 
-  /* big number display */
-  .mega { display: flex; align-items: center; justify-content: center; gap: 60px; margin: 30px 0; }
-  .mega .num {
-    font-size: 160px; font-weight: 800; letter-spacing: -5px; line-height: 1;
-  }
-  .mega .num.good { color: var(--green); text-shadow: 0 0 40px rgba(70,197,111,0.3); }
-  .mega .num.bad { color: var(--red); text-shadow: 0 0 40px rgba(227,96,78,0.3); }
-  .mega .arrow { font-size: 100px; color: var(--red); animation: pulse-arrow 2s ease-in-out infinite; }
-  @keyframes pulse-arrow { 0%,100% { opacity: 0.7; transform: scale(1); } 50% { opacity: 1; transform: scale(1.1); } }
-  .mega .label { font-size: 20px; color: var(--muted); text-align: center; margin-top: 10px; }
+  /* mega numbers */
+  .mega { display: flex; align-items: center; justify-content: center; gap: 48px; margin: 24px 0; }
+  .mega .num { font-family: var(--mono); font-size: 120px; font-weight: 600; letter-spacing: -3px; line-height: 1; }
+  .mega .num.good { color: var(--green); }
+  .mega .num.bad { color: var(--red); }
+  .mega .arrow { font-size: 72px; color: var(--red); animation: pulse-arrow 2.5s ease-in-out infinite; }
+  @keyframes pulse-arrow { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
+  .mega .label { font-size: 16px; color: var(--muted); text-align: center; margin-top: 8px; }
 
   /* figure */
   .figure-wrap {
-    background: white; border-radius: 10px; padding: 12px;
+    background: #ffffff; border-radius: 4px; padding: 10px;
     max-width: 100%; max-height: 55vh;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.25), 0 1px 4px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px var(--shadow);
   }
-  .figure-wrap:hover { transform: scale(1.015); box-shadow: 0 8px 32px rgba(0,0,0,0.35); }
   .figure-wrap img { max-width: 100%; max-height: 100%; display: block; }
-
-  /* code / mono */
-  code, .mono { font-family: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
-                background: var(--bg2); padding: 2px 8px; border-radius: 3px;
-                font-size: 0.9em; color: var(--blue); }
-
-  /* ---------- light-mode variant ---------- */
-  /* title slide gradient */
-  .slide-title { background: radial-gradient(ellipse at 50% 120%, rgba(255,176,0,0.06) 0%, transparent 60%); }
 
   /* verdict badge */
   .verdict-badge {
-    display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 14px;
-    font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+    display: inline-block; padding: 3px 10px; border-radius: 3px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+    font-family: var(--body);
   }
-  .verdict-tied { background: var(--green-dim); color: var(--green); border: 1px solid var(--green); }
-  .verdict-loss { background: var(--red-dim); color: var(--red); border: 1px solid var(--red); }
+  .verdict-tied { background: var(--green-bg); color: var(--green); border: 1px solid var(--green); }
+  .verdict-loss { background: var(--red-bg); color: var(--red); border: 1px solid var(--red); }
 
-  /* subtle separator line */
-  .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 20px 0; }
-
-  @media (prefers-color-scheme: light) {
-    :root { --bg:#ffffff; --bg2:#f3f6fa; --fg:#1a1a1a; --muted:#4a5560; --dim:#8a95a3;
-            --card:#f8fafc; --border:#dbe2eb; --blue:#0b4f8a; --accent:#c08000;
-            --green:#1a6b2e; --red:#b03a2e;
-            --green-dim:#e8f5ea; --red-dim:#f9e5e2; --blue-dim:#e8eef5; }
-    .slide-title { background: radial-gradient(ellipse at 50% 120%, rgba(192,128,0,0.06) 0%, transparent 60%); }
-    .figure-wrap { box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.05); }
-    .card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+  code, .mono {
+    font-family: var(--mono); background: var(--bg2);
+    padding: 2px 6px; border-radius: 3px; font-size: 0.85em; color: var(--navy);
   }
+
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+  /* title slide header bar */
+  .title-bar {
+    background: var(--navy); color: #fff; padding: 12px 32px;
+    border-radius: 6px; text-align: center; margin-bottom: 28px;
+    font-family: var(--body); font-size: 13px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .slide { transition: none; }
     .mega .arrow { animation: none; }
-    .card, .figure-wrap { transition: none; }
   }
 </style>
 </head>
 <body>
 
-<!-- Progress bar segments: generated by JS -->
 <div class="progress" id="progress"></div>
 
 <div class="deck">
 
-  <!-- =============== Slide 1 — TITLE =============== -->
-  <section class="slide slide-title active" id="s1">
-    <div style="margin: auto; text-align: center; max-width: 1100px;">
-      <div class="meta accent" style="margin-bottom: 24px; letter-spacing: 4px;">DEEPNEO-CL · MDPI INFORMATION · OCTOBER 2026</div>
-      <h1 class="title-big accent">DeepNeo-CL</h1>
-      <h2 style="font-size: 36px; color: var(--fg); max-width: 1100px; margin: 20px auto 10px;">
-        A compact protein language model<br>for peptide–MHC class I ranking
-      </h2>
-      <p class="lead" style="margin: 24px auto 40px; max-width: 900px;">
+  <!-- ═══ Slide 1 — TITLE ═══ -->
+  <section class="slide active" id="s1">
+    <div style="margin: auto; text-align: center; max-width: 1000px;">
+      <div class="title-bar">MDPI Information · Special Issue: Emerging Trends in ML &amp; NLP · October 2026</div>
+      <h1 class="title-big" style="color: var(--navy); margin-bottom: 8px;">DeepNeo-CL</h1>
+      <p style="font-family: var(--title); font-size: 26px; color: var(--fg); line-height: 1.35; margin: 0 auto 8px; max-width: 900px;">
+        A Compact Protein Language Model<br>for Peptide–MHC Class I Ranking
+      </p>
+      <p style="font-size: 18px; color: var(--accent); font-weight: 600; margin: 12px auto 32px;">
         A leakage-aware evaluation protocol under multiplicity control
       </p>
       <div class="divider"></div>
-      <div style="padding-top: 20px;">
-        <p class="lead" style="color: var(--fg); margin-bottom: 10px; font-size: 28px;">Kevin Wang &nbsp;·&nbsp; Parma Nand</p>
-        <p class="meta">School of Design and Creative Technologies &nbsp;·&nbsp; Auckland University of Technology</p>
-        <p class="meta" style="margin-top: 20px; color: var(--blue);">
-          MDPI <i>Information</i> &nbsp;·&nbsp; Special Issue: Emerging Trends in Machine Learning &amp; Natural Language Processing
-        </p>
-        <p class="meta" style="margin-top: 12px; color: var(--dim);">
-          <span class="mono">github.com/KevinSimple/deepneo-pub</span>
+      <div style="padding-top: 16px;">
+        <p style="font-size: 22px; font-weight: 600; color: var(--fg); margin-bottom: 6px;">Kevin Wang &nbsp;&middot;&nbsp; Parma Nand</p>
+        <p class="meta">School of Design and Creative Technologies &middot; Auckland University of Technology</p>
+        <p style="margin-top: 18px;">
+          <code style="font-size: 15px; padding: 6px 16px; border-radius: 4px;">github.com/KevinSimple/deepneo-pub</code>
         </p>
       </div>
     </div>
   </section>
 
-  <!-- =============== Slide 2 — BIOLOGY =============== -->
+  <!-- ═══ Slide 2 — BIOLOGY ═══ -->
   <section class="slide" id="s2">
     <div class="section-tag">1 / Context</div>
     <h2>A central problem in computational immunology</h2>
-    <div class="two-col" style="margin-top: 20px;">
+    <div class="two-col" style="margin-top: 12px;">
       <div>
         <ol class="numbered">
-          <li><span class="num">1</span><span class="body"><b>MHC class I proteins</b> bind short protein fragments ("peptides") from inside each cell.</span></li>
+          <li><span class="num">1</span><span class="body"><b>MHC class I proteins</b> bind short protein fragments (peptides) from inside each cell.</span></li>
           <li><span class="num">2</span><span class="body">They <b>present these peptides on the cell surface</b> for inspection by T-cells.</span></li>
           <li><span class="num">3</span><span class="body">T-cells detect abnormal peptides from <b>virus-infected</b> or <b>cancer-mutated</b> cells and trigger their destruction.</span></li>
         </ol>
-        <div class="card card-accent" style="margin-top: 30px;">
-          <h3>Why computational prediction matters</h3>
-          <p>Predicting which peptides a given MHC class I protein will present is the <b class="accent">foundation of neoantigen prioritisation and immunopeptidomics research</b>, upstream of experimental validation.</p>
+        <div class="card card-accent" style="margin-top: 20px;">
+          <h3 style="color: var(--accent);">Why computational prediction matters</h3>
+          <p>Predicting which peptides a given MHC will present is the <b>foundation of neoantigen prioritisation</b>, upstream of experimental validation and immunotherapy design.</p>
         </div>
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
-        <!-- inline SVG: MHC presenting peptide to T-cell -->
-        <svg viewBox="0 0 400 420" width="100%" style="max-width: 400px;">
-          <!-- cell -->
-          <ellipse cx="200" cy="320" rx="180" ry="80" fill="#1e3a52" stroke="#4aa3df" stroke-width="2"/>
-          <text x="200" y="390" fill="#8da1b8" font-size="13" text-anchor="middle" font-family="Inter, sans-serif">cell</text>
-          <!-- MHC on surface -->
-          <rect x="130" y="200" width="30" height="50" fill="#ffb000" rx="4"/>
-          <text x="145" y="275" fill="#ffb000" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">MHC-I</text>
-          <!-- peptide held up -->
-          <circle cx="135" cy="190" r="6" fill="#46c56f"/>
-          <circle cx="145" cy="186" r="6" fill="#46c56f"/>
-          <circle cx="155" cy="190" r="6" fill="#46c56f"/>
-          <text x="145" y="170" fill="#46c56f" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">peptide</text>
-          <!-- 2nd MHC -->
-          <rect x="245" y="195" width="30" height="55" fill="#ffb000" rx="4"/>
-          <circle cx="250" cy="185" r="6" fill="#e3604e"/>
-          <circle cx="260" cy="181" r="6" fill="#e3604e"/>
-          <circle cx="270" cy="185" r="6" fill="#e3604e"/>
-          <text x="260" y="165" fill="#e3604e" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">abnormal</text>
-          <!-- T-cell approaching -->
-          <circle cx="260" cy="80" r="40" fill="#4aa3df" opacity="0.8"/>
-          <text x="260" y="85" fill="#0b0f17" font-size="18" text-anchor="middle" font-weight="700" font-family="Inter, sans-serif">T-cell</text>
-          <!-- arrow -->
-          <line x1="260" y1="130" x2="260" y2="175" stroke="#e3604e" stroke-width="2" stroke-dasharray="5,3"/>
-          <polygon points="260,185 254,172 266,172" fill="#e3604e"/>
-          <text x="300" y="155" fill="#e3604e" font-size="12" font-family="Inter, sans-serif">detect</text>
+        <svg viewBox="0 0 420 460" width="100%" style="max-width: 380px;">
+          <!-- cell membrane -->
+          <defs>
+            <linearGradient id="cellGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--navy)" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="var(--navy)" stop-opacity="0.05"/>
+            </linearGradient>
+            <linearGradient id="mhcGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--navy-light)"/>
+              <stop offset="100%" stop-color="var(--navy)"/>
+            </linearGradient>
+          </defs>
+          <!-- cell body -->
+          <ellipse cx="210" cy="350" rx="190" ry="85" fill="url(#cellGrad)" stroke="var(--navy)" stroke-width="1.5" stroke-opacity="0.4"/>
+          <text x="210" y="408" fill="var(--dim)" font-size="13" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="600" letter-spacing="1">CELL</text>
+          <!-- membrane line -->
+          <line x1="20" y1="270" x2="400" y2="270" stroke="var(--navy)" stroke-width="2" stroke-opacity="0.25" stroke-dasharray="6,4"/>
+          <text x="405" y="275" fill="var(--dim)" font-size="10" font-family="Source Sans 3, sans-serif" text-anchor="start">membrane</text>
+          <!-- MHC-I left: normal peptide -->
+          <rect x="100" y="215" width="24" height="58" fill="url(#mhcGrad)" rx="3" opacity="0.8"/>
+          <rect x="128" y="215" width="24" height="58" fill="url(#mhcGrad)" rx="3" opacity="0.8"/>
+          <!-- peptide groove -->
+          <rect x="122" y="200" width="10" height="18" fill="var(--green)" rx="2"/>
+          <circle cx="117" cy="207" r="5" fill="var(--green)" opacity="0.8"/>
+          <circle cx="137" cy="207" r="5" fill="var(--green)" opacity="0.8"/>
+          <text x="126" y="188" fill="var(--green)" font-size="11" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="600">normal</text>
+          <text x="126" y="294" fill="var(--navy)" font-size="11" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">MHC-I</text>
+          <!-- MHC-I right: mutant peptide -->
+          <rect x="258" y="210" width="24" height="62" fill="url(#mhcGrad)" rx="3" opacity="0.8"/>
+          <rect x="286" y="210" width="24" height="62" fill="url(#mhcGrad)" rx="3" opacity="0.8"/>
+          <!-- mutant peptide -->
+          <rect x="280" y="193" width="10" height="20" fill="var(--red)" rx="2"/>
+          <circle cx="275" cy="201" r="5" fill="var(--red)" opacity="0.9"/>
+          <circle cx="295" cy="201" r="5" fill="var(--red)" opacity="0.9"/>
+          <text x="285" y="183" fill="var(--red)" font-size="11" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">mutant</text>
+          <text x="285" y="294" fill="var(--navy)" font-size="11" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="700">MHC-I</text>
+          <!-- T-cell -->
+          <circle cx="285" cy="90" r="48" fill="var(--navy-bg)" stroke="var(--navy)" stroke-width="2"/>
+          <text x="285" y="86" fill="var(--navy)" font-size="15" text-anchor="middle" font-weight="700" font-family="Source Sans 3, sans-serif">T-cell</text>
+          <text x="285" y="102" fill="var(--navy)" font-size="11" text-anchor="middle" font-family="Source Sans 3, sans-serif">(CD8+)</text>
+          <!-- TCR recognition arrow -->
+          <line x1="285" y1="142" x2="285" y2="185" stroke="var(--red)" stroke-width="2"/>
+          <polygon points="285,190 279,178 291,178" fill="var(--red)"/>
+          <text x="320" y="168" fill="var(--red)" font-size="11" font-family="Source Sans 3, sans-serif" font-weight="600">TCR binds</text>
+          <!-- check / ignore -->
+          <text x="126" y="145" fill="var(--green)" font-size="24" text-anchor="middle" font-family="Source Sans 3, sans-serif">&#10003;</text>
+          <text x="126" y="163" fill="var(--dim)" font-size="10" text-anchor="middle" font-family="Source Sans 3, sans-serif">ignored</text>
+          <!-- kill annotation -->
+          <text x="285" y="443" fill="var(--red)" font-size="11" text-anchor="middle" font-weight="600" font-family="Source Sans 3, sans-serif">&#8594; cell killed</text>
         </svg>
       </div>
     </div>
   </section>
 
-  <!-- =============== Slide 3 — ML FRAMING =============== -->
+  <!-- ═══ Slide 3 — ML FRAMING ═══ -->
   <section class="slide" id="s3">
     <div class="section-tag">2 / Problem framing</div>
     <h2>Computationally, this is a sequence-ranking problem</h2>
-    <div class="card card-accent" style="margin-bottom: 20px;">
-      <h3 style="color: var(--accent); font-size: 28px; margin: 0;">Ranking under a context key</h3>
-      <p style="font-size: 22px; margin-top: 10px; color: var(--muted);">
-        A recurring ML pattern: score many short candidates for one fixed conditioner.
+    <div class="card card-navy" style="margin-bottom: 16px; padding: 16px 24px;">
+      <p style="font-size: 18px; margin: 0; color: var(--fg);">
+        <b style="color: var(--navy);">Ranking under a context key</b> &mdash; score many short candidates for one fixed conditioner.
       </p>
     </div>
     <div class="two-col two-col-wide-r">
       <div>
-        <div class="card card-blue" style="margin-bottom: 16px;">
-          <h3>Input / output</h3>
+        <div class="card card-navy" style="margin-bottom: 14px;">
+          <h3>Input / Output</h3>
           <div class="kv"><div class="k">Conditioner</div><div class="v">One HLA allele (34-residue pseudo-sequence)</div></div>
-          <div class="kv"><div class="k">Candidates</div><div class="v">10<sup>2</sup> – 10<sup>4</sup> peptide sequences (8–11 aa)</div></div>
-          <div class="kv"><div class="k">Output</div><div class="v">Rank by BA + EL → fusion</div></div>
+          <div class="kv"><div class="k">Candidates</div><div class="v">10&sup2;&ndash;10&sup4; peptide sequences (8&ndash;11 aa)</div></div>
+          <div class="kv"><div class="k">Output</div><div class="v">Rank by BA + EL &rarr; fusion score</div></div>
         </div>
         <div class="card">
           <h3>Why ranking fidelity matters</h3>
@@ -313,26 +336,26 @@
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
         <div class="figure-wrap" style="max-height: 48vh;">
-          <img src="figures/fig_data_flow.png" alt="DeepNeo-CL data flow: training corpora → model → deployed output → decontamination → benchmarks">
+          <img src="figures/fig_data_flow.png" alt="DeepNeo-CL data flow: training corpora → model → decontamination → benchmarks">
         </div>
       </div>
     </div>
-    <p class="cite" style="margin-top: 8px;">Figure: end-to-end pipeline — training corpora, model, decontamination firewall, and independent evaluation benchmarks.</p>
+    <p class="cite" style="margin-top: 8px;">Figure: end-to-end pipeline &mdash; training corpora, model, decontamination firewall, and independent evaluation benchmarks.</p>
   </section>
 
-  <!-- =============== Slide 4 — OUR MODEL =============== -->
+  <!-- ═══ Slide 4 — MODEL ═══ -->
   <section class="slide" id="s4">
     <div class="section-tag">3 / Model</div>
-    <h2>DeepNeo-CL &nbsp; — &nbsp; a compact PLM for pMHC-I ranking</h2>
+    <h2>DeepNeo-CL &mdash; a compact PLM for pMHC-I ranking</h2>
     <div class="two-col">
       <div>
         <table>
           <thead><tr><th>Component</th><th>Choice</th></tr></thead>
           <tbody>
             <tr><td>Trunk</td><td><code>ESM2-35M</code> (12 layers, d=480)</td></tr>
-            <tr><td>Context fusion</td><td>Peptide–HLA <b>cross-attention</b></td></tr>
+            <tr><td>Context fusion</td><td>Peptide&ndash;HLA <b>cross-attention</b></td></tr>
             <tr><td>Side features</td><td>V37 position-resolved physchem</td></tr>
-            <tr><td>Heads</td><td>BA (censored log-IC50) + EL (focal BCE)</td></tr>
+            <tr><td>Heads</td><td>BA (censored log-IC<sub>50</sub>) + EL (focal BCE)</td></tr>
             <tr><td>Aux loss</td><td>Within-HLA pairwise rank hinge</td></tr>
             <tr><td>Reweighting</td><td>LDS + effective-number subgroup</td></tr>
             <tr><td>Refinement</td><td>Supervised contrastive, 4 epochs</td></tr>
@@ -341,300 +364,275 @@
         </table>
       </div>
       <div>
-        <div class="card card-accent" style="margin-bottom: 14px;">
-          <h3>Scale</h3>
-          <p style="font-size: 48px; font-weight: 800; color: var(--accent); margin: 10px 0;">35 M</p>
-          <p>parameters in the trunk · 5-fold ensemble</p>
+        <div class="card card-navy" style="margin-bottom: 14px; text-align: center;">
+          <p style="font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 4px; font-weight: 600;">Total parameters</p>
+          <p style="font-family: var(--mono); font-size: 48px; font-weight: 600; color: var(--navy); margin: 4px 0; line-height: 1;">35 M</p>
+          <p style="font-size: 14px; color: var(--muted);">5-fold ensemble &middot; batch-rank fusion</p>
         </div>
         <div class="figure-wrap" style="max-height: 28vh;">
-          <img src="figures/fig_training_dynamics.png" alt="Training dynamics: loss and validation AUROC across epochs for two folds, showing BA-only → multi-task transition">
+          <img src="figures/fig_training_dynamics.png" alt="Training dynamics: loss and validation AUROC across epochs">
         </div>
-        <p class="cite" style="margin-top: 6px;">Training dynamics: BA-only warmup → multi-task (BA + EL) · validation AUROC converges ~0.91</p>
+        <p class="cite" style="margin-top: 4px;">Training dynamics: BA-only warmup &rarr; multi-task (BA + EL) &middot; validation AUROC converges ~0.91</p>
       </div>
     </div>
   </section>
 
-  <!-- =============== Slide 5 — EVALUATION PROBLEM =============== -->
+  <!-- ═══ Slide 5 — EVALUATION PROBLEM ═══ -->
   <section class="slide" id="s5">
     <div class="section-tag">4 / The evaluation problem</div>
     <h2>Why reported gains in this field are hard to trust</h2>
-    <div class="two-col" style="margin-bottom: 16px;">
+    <div class="two-col" style="margin-bottom: 14px;">
       <div class="card card-red">
-        <h3 style="color: var(--red);">① Train–test leakage</h3>
-        <p>NetMHCpan's public training corpus contains ~160 K peptide–HLA pairs. Most benchmarks <b>share rows</b> with that corpus.</p>
-        <p style="margin-top: 10px;">
-          If the overlap is not removed, your "test set" is partly a training set, and reported gains are not generalisation.
-        </p>
-        <p class="cite" style="margin-top: 14px;">
-          Kapoor &amp; Narayanan 2023 &nbsp;·&nbsp; Bernett et al. 2024
-        </p>
+        <h3 style="color: var(--red);">Problem 1: Train&ndash;test leakage</h3>
+        <p>NetMHCpan&rsquo;s training corpus (~160K peptide&ndash;HLA pairs) <b>overlaps</b> with most public benchmarks. Without removal, test-set gains reflect memorisation, not generalisation.</p>
+        <p class="cite" style="margin-top: 10px;">Kapoor &amp; Narayanan 2023 &middot; Bernett et al. 2024</p>
       </div>
       <div class="card card-red">
-        <h3 style="color: var(--red);">② Unadjusted multiple testing</h3>
-        <p>Benchmarks score across <b>dozens of HLA alleles</b>; each treated as independent.</p>
-        <p style="margin-top: 10px;">
-          With 100 alleles and α = 0.05, ~5 chance wins — often reported as evidence of superiority.
-        </p>
-        <p class="cite" style="margin-top: 14px;">
-          Standard FWER correction (Holm 1979) is widely ignored in this literature.
-        </p>
+        <h3 style="color: var(--red);">Problem 2: Unadjusted multiple testing</h3>
+        <p>Benchmarks score across <b>dozens of HLA alleles</b>, each treated as independent. With 100 alleles at &alpha;=0.05, ~5 chance &ldquo;wins&rdquo; appear by noise alone.</p>
+        <p class="cite" style="margin-top: 10px;">FWER correction (Holm 1979) widely ignored in this literature.</p>
       </div>
     </div>
     <div style="display: flex; align-items: center; justify-content: center;">
-      <div class="figure-wrap" style="max-height: 30vh;">
-        <img src="figures/fig_contamination_ledger.png" alt="Training-set membership of NetMHCpan generations across benchmarks — up to 26.9% overlap on TransPHLA">
+      <div class="figure-wrap" style="max-height: 28vh;">
+        <img src="figures/fig_contamination_ledger.png" alt="Training-set membership overlap: up to 26.9% on TransPHLA">
       </div>
     </div>
-    <p class="cite" style="margin-top: 6px;">Contamination ledger: TransPHLA shares 26.9% of rows with NetMHCpan-4.1 training corpus; IEDB auto_bench 15–22%.</p>
+    <p class="cite" style="margin-top: 6px;">Contamination ledger: TransPHLA shares 26.9% of rows with NetMHCpan-4.1 training corpus; IEDB auto_bench 15&ndash;22%.</p>
   </section>
 
-  <!-- =============== Slide 6 — OUR CONTRACT =============== -->
+  <!-- ═══ Slide 6 — OUR CONTRACT ═══ -->
   <section class="slide" id="s6">
     <div class="section-tag">5 / Our evaluation contract</div>
     <h2>The three-condition superiority rule</h2>
-    <div class="card card-accent" style="margin-bottom: 24px;">
-      <p style="font-size: 24px;">A signed Δ (DeepNeo − baseline) is reported as a <b>real</b> win only if <b class="accent">all three</b> hold:</p>
+    <div class="card card-accent" style="margin-bottom: 20px; padding: 14px 24px;">
+      <p style="font-size: 17px; margin: 0;">A signed &Delta; (DeepNeo &minus; baseline) is reported as a <b>real</b> win only if <b style="color: var(--accent);">all three</b> conditions hold:</p>
     </div>
-    <ol class="numbered" style="font-size: 22px;">
+    <ol class="numbered">
       <li><span class="num">1</span><span class="body"><b>Paired DeLong</b> <i>p</i> &lt; 0.05 on the same rows.</span></li>
-      <li><span class="num">2</span><span class="body"><b>Per-allele Wilcoxon signed-rank</b> matches the pooled Δ sign, with <b>Holm-adjusted</b> <i>p</i> &lt; 0.05 across the family of four TransPHLA comparison rows.</span></li>
-      <li><span class="num">3</span><span class="body"><b>Allele-clustered bootstrap 95% CI</b> on Δ excludes zero (B = 1,000; <i>n</i> = 118,143 rows).</span></li>
+      <li><span class="num">2</span><span class="body"><b>Per-allele Wilcoxon signed-rank</b> matches the pooled &Delta; sign, with <b>Holm-adjusted</b> <i>p</i> &lt; 0.05 across the family of four TransPHLA comparisons.</span></li>
+      <li><span class="num">3</span><span class="body"><b>Allele-clustered bootstrap 95% CI</b> on &Delta; excludes zero (B = 1,000; <i>n</i> = 118,143 rows).</span></li>
     </ol>
-    <div class="card card-blue" style="margin-top: 24px;">
+    <div class="card card-navy" style="margin-top: 20px;">
       <h3>Preceded by exact-pair decontamination</h3>
-      <p>Every evaluation row that also appears in NetMHCpan-4.1's training-pair union is <b>removed before scoring</b>. On TransPHLA: 43,509 of 161,652 rows removed (26.9%) → <b>118,143 clean rows</b>.</p>
+      <p>Every evaluation row also in NetMHCpan-4.1&rsquo;s training-pair union is <b>removed before scoring</b>. On TransPHLA: 43,509 of 161,652 rows removed (26.9%) &rarr; <b>118,143 clean rows</b>.</p>
     </div>
   </section>
 
-  <!-- =============== Slide 7 — TRANSPHLA RESULT =============== -->
+  <!-- ═══ Slide 7 — TRANSPHLA RESULT ═══ -->
   <section class="slide" id="s7">
-    <div class="section-tag">6 / Headline result · TransPHLA</div>
-    <h2>Decontaminated TransPHLA &nbsp;(<i>n</i> = 118,143 clean rows)</h2>
+    <div class="section-tag">6 / Headline result &middot; TransPHLA</div>
+    <h2>Decontaminated TransPHLA (<i>n</i> = 118,143)</h2>
     <div class="two-col two-col-wide-l">
       <div>
-        <table style="font-size: 16px;">
+        <table style="font-size: 14px;">
           <thead>
-            <tr><th>Comparison</th><th class="num-cell">DeepNeo</th><th class="num-cell">NMP-4.1</th><th class="num-cell">Δ</th><th>Verdict</th></tr>
+            <tr><th>Comparison</th><th class="num-cell">DeepNeo</th><th class="num-cell">NMP-4.1</th><th class="num-cell">&Delta;</th><th style="text-align:center">Verdict</th></tr>
           </thead>
           <tbody>
-            <tr class="highlight"><td>Fusion vs Fusion</td><td class="num-cell">0.9573</td><td class="num-cell">0.9575</td><td class="num-cell">−0.0002</td><td><span class="verdict-badge verdict-tied">TIED</span></td></tr>
-            <tr><td>BA vs BA</td><td class="num-cell">0.9363</td><td class="num-cell">0.9500</td><td class="num-cell red">−0.0137</td><td><span class="verdict-badge verdict-loss">NMP (Holm)</span></td></tr>
-            <tr><td>EL vs EL</td><td class="num-cell">0.9640</td><td class="num-cell">0.9581</td><td class="num-cell">+0.0059</td><td><span class="verdict-badge verdict-tied">Holm-tied</span></td></tr>
-            <tr><td>Fusion vs NMP-BA</td><td class="num-cell">0.9573</td><td class="num-cell">0.9500</td><td class="num-cell">+0.0073</td><td style="color:var(--muted);">Not Holm-robust</td></tr>
+            <tr class="highlight"><td>Fusion vs Fusion</td><td class="num-cell">0.9573</td><td class="num-cell">0.9575</td><td class="num-cell">&minus;0.0002</td><td style="text-align:center"><span class="verdict-badge verdict-tied">TIED</span></td></tr>
+            <tr><td>BA vs BA</td><td class="num-cell">0.9363</td><td class="num-cell">0.9500</td><td class="num-cell" style="color:var(--red)">&minus;0.0137</td><td style="text-align:center"><span class="verdict-badge verdict-loss">NMP wins</span></td></tr>
+            <tr><td>EL vs EL</td><td class="num-cell">0.9640</td><td class="num-cell">0.9581</td><td class="num-cell">+0.0059</td><td style="text-align:center"><span class="verdict-badge verdict-tied">Holm-tied</span></td></tr>
+            <tr><td>Fusion vs NMP-BA</td><td class="num-cell">0.9573</td><td class="num-cell">0.9500</td><td class="num-cell">+0.0073</td><td style="text-align:center; color: var(--muted); font-size: 12px;">Not Holm-robust</td></tr>
           </tbody>
         </table>
-        <div class="card card-green" style="margin-top: 16px;">
-          <h3 style="color: var(--green);">What this says</h3>
-          <p style="font-size: 18px;">At the deployed fusion level, <b>DeepNeo-CL matches NetMHCpan-4.1</b> — not better, not worse. The only Holm-robust asymmetry is NetMHCpan's BA-head advantage.</p>
+        <div class="card card-green" style="margin-top: 14px;">
+          <h3 style="color: var(--green);">Interpretation</h3>
+          <p>At the deployed fusion level, <b>DeepNeo-CL matches NetMHCpan-4.1</b>. The only Holm-robust asymmetry is NetMHCpan&rsquo;s BA-head advantage.</p>
         </div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: center;">
-        <div class="figure-wrap" style="max-height: 42vh;">
+      <div style="display: flex; align-items: center; justify-content: center;">
+        <div class="figure-wrap" style="max-height: 44vh;">
           <img src="figures/fig_roc_pr_decontam.png" alt="ROC and PR curves on decontaminated TransPHLA (n=118,143)">
         </div>
       </div>
     </div>
-    <p class="cite" style="margin-top: 8px;">Source: <code>transphla_rescored_fusion_fixed.json</code> + Holm/bootstrap SI ledgers · reproduced in Table 1</p>
+    <p class="cite" style="margin-top: 6px;">Source: <code>transphla_rescored_fusion_fixed.json</code> + Holm/bootstrap SI ledgers &middot; Table 1</p>
   </section>
 
-  <!-- =============== Slide 8 — IEDB WEEKLY =============== -->
+  <!-- ═══ Slide 8 — IEDB WEEKLY ═══ -->
   <section class="slide" id="s8">
     <div class="section-tag">7 / IEDB weekly leaderboard</div>
-    <h2>IEDB <code>auto_bench</code> weekly: 46 human-allele weeks (2020–2026)</h2>
-    <div class="two-col two-col-wide-l" style="margin-top: 10px;">
-      <div style="display: flex; flex-direction: column; gap: 10px;">
-        <div class="figure-wrap" style="max-height: 32vh;">
-          <img src="figures/fig_weekly_ranking_ba.png" alt="IEDB weekly BA ranking board — mean rank and rank-1 counts">
+    <h2>IEDB <code>auto_bench</code> weekly &mdash; 46 human-allele weeks (2020&ndash;2026)</h2>
+    <div class="two-col two-col-wide-l" style="margin-top: 8px;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="figure-wrap" style="max-height: 30vh;">
+          <img src="figures/fig_weekly_ranking_ba.png" alt="IEDB weekly BA ranking board">
         </div>
-        <div class="figure-wrap" style="max-height: 22vh;">
-          <img src="figures/fig_weekly_head2head_ba.png" alt="DeepNeo vs NetMHCpan-4.1 head-to-head: 13 wins, 5 ties, 28 losses on BA">
+        <div class="figure-wrap" style="max-height: 20vh;">
+          <img src="figures/fig_weekly_head2head_ba.png" alt="DeepNeo vs NMP-4.1 head-to-head">
         </div>
       </div>
-      <div>
-        <div class="card card-blue">
-          <h3>BA board &nbsp;(14 predictors)</h3>
-          <div class="kv"><div class="k">Mean rank</div><div class="v"><b class="accent">6.85</b> / 14</div></div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div class="card card-navy">
+          <h3>BA board (14 predictors)</h3>
+          <div class="kv"><div class="k">Mean rank</div><div class="v"><b style="color: var(--navy);">6.85</b> / 14</div></div>
           <div class="kv"><div class="k">Mean AUROC</div><div class="v">0.7951</div></div>
           <div class="kv"><div class="k">Rank-1 weeks</div><div class="v">14 (incl. ties); 9 outright</div></div>
-          <div class="kv"><div class="k">Leaders</div><div class="v">NMP-4.0 (4.98) · NMP-4.1 (5.14)</div></div>
+          <div class="kv"><div class="k">Leaders</div><div class="v">NMP-4.0 (4.98) &middot; NMP-4.1 (5.14)</div></div>
         </div>
-        <div class="card card-green" style="margin-top: 12px;">
-          <h3>EL board &nbsp;(3-predictor MS-EL)</h3>
-          <div class="kv"><div class="k">DeepNeo-CL</div><div class="v"><b class="green">1.80</b> &nbsp;→ leads</div></div>
+        <div class="card card-green">
+          <h3 style="color: var(--green);">EL board (3-predictor MS-EL)</h3>
+          <div class="kv"><div class="k">DeepNeo-CL</div><div class="v"><b style="color: var(--green);">1.80</b> &rarr; leads</div></div>
           <div class="kv"><div class="k">NMP-4.1 EL</div><div class="v">2.01</div></div>
           <div class="kv"><div class="k">Rank-1 weeks</div><div class="v">24 / 46 (19 outright)</div></div>
         </div>
-        <div class="card" style="margin-top: 12px;">
+        <div class="card">
           <h3>Head-to-head BA (paired weeks)</h3>
-          <p style="font-size: 18px;"><span class="blue">DeepNeo wins 13</span> · Tie 5 · <span class="green">NMP wins 28</span></p>
-          <p style="font-size: 16px; color: var(--muted); margin-top: 6px;">Paired-mean ΔAUROC = −0.012 · Wilcoxon <i>p</i> = 0.045</p>
+          <p style="font-size: 15px;"><span class="navy">DeepNeo wins 13</span> &middot; Tie 5 &middot; <span style="color:var(--muted);">NMP wins 28</span></p>
+          <p style="font-size: 13px; color: var(--muted); margin-top: 4px;">Paired-mean &Delta;AUROC = &minus;0.012 &middot; Wilcoxon <i>p</i> = 0.045</p>
         </div>
       </div>
     </div>
-    <p class="cite" style="margin-top: 6px;">Source: <code>weekly_ranking_v41_2020_2026_singlecol_v2.json</code></p>
+    <p class="cite" style="margin-top: 4px;">Source: <code>weekly_ranking_v41_2020_2026_singlecol_v2.json</code></p>
   </section>
 
-  <!-- =============== Slide 9 — WHERE NMP WINS =============== -->
+  <!-- ═══ Slide 9 — WHERE NMP WINS ═══ -->
   <section class="slide" id="s9">
     <div class="section-tag">8 / Honest reporting</div>
     <h2>Where NetMHCpan still wins</h2>
     <div class="two-col two-col-wide-l">
       <div>
-        <div class="card card-red" style="margin-bottom: 16px;">
+        <div class="card card-red" style="margin-bottom: 14px;">
           <h3 style="color: var(--red);">BA-head vs BA-head (Table 1, row 2)</h3>
-          <div class="kv"><div class="k">Δ AUROC</div><div class="v red"><b>−0.0137</b> (NMP higher)</div></div>
-          <div class="kv"><div class="k">Wilcoxon <i>p</i></div><div class="v">7.2 × 10⁻⁴</div></div>
-          <div class="kv"><div class="k">Holm-adjusted <i>p</i></div><div class="v"><b>1.7 × 10⁻³</b> &nbsp;·&nbsp; <span class="red">Holm-robust</span></div></div>
-          <div class="kv"><div class="k">Bootstrap 95% CI</div><div class="v">[−0.0199, −0.0075]</div></div>
+          <div class="kv"><div class="k">&Delta; AUROC</div><div class="v" style="color:var(--red)"><b>&minus;0.0137</b> (NMP higher)</div></div>
+          <div class="kv"><div class="k">Wilcoxon <i>p</i></div><div class="v">7.2 &times; 10&supmin;&sup3;</div></div>
+          <div class="kv"><div class="k">Holm-adj. <i>p</i></div><div class="v"><b>1.7 &times; 10&supmin;&sup3;</b> &middot; <span style="color:var(--red)">Holm-robust</span></div></div>
+          <div class="kv"><div class="k">Bootstrap 95% CI</div><div class="v">[&minus;0.0199, &minus;0.0075]</div></div>
         </div>
         <div class="card card-accent">
-          <h3>Different protocols → different verdicts</h3>
-          <p style="font-size: 18px;">Without Holm adjustment, the fusion's pooled edge (+0.0073) can be reported as a win. Under the three-condition rule it is <b>not Holm-robust</b> (Holm <i>p</i> = 0.151).</p>
+          <h3 style="color: var(--accent);">Different protocols &rarr; different verdicts</h3>
+          <p>Without Holm adjustment, the fusion&rsquo;s pooled edge (+0.0073) can be reported as a win. Under the three-condition rule it is <b>not Holm-robust</b> (Holm <i>p</i> = 0.151).</p>
         </div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: center;">
+      <div style="display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center;">
         <div class="figure-wrap" style="max-height: 36vh;">
-          <img src="figures/fig_holm_family.png" alt="Forest plot: Δ AUROC with allele-clustered 95% CI and Holm-adjusted Wilcoxon p for all four Table 2 comparisons">
+          <img src="figures/fig_holm_family.png" alt="Forest plot: Δ AUROC with 95% CI and Holm p-values">
         </div>
-        <p class="caption" style="text-align: center;">Forest plot: only BA-head (blue) excludes zero after Holm correction.</p>
+        <p class="caption" style="text-align: center;">Forest plot: only BA-head excludes zero after Holm correction.</p>
       </div>
     </div>
   </section>
 
-  <!-- =============== Slide 10 — TRANSDUCTIVE OVERFITTING =============== -->
-  <section class="slide" id="s10" style="background: radial-gradient(ellipse at 50% 40%, rgba(227,96,78,0.05) 0%, transparent 55%);">
-    <div class="section-tag">9 / Case study · evaluation-leakage failure</div>
+  <!-- ═══ Slide 10 — TRANSDUCTIVE OVERFITTING ═══ -->
+  <section class="slide" id="s10">
+    <div class="section-tag">9 / Case study &middot; evaluation-leakage failure</div>
     <h2>A documented transductive-overfitting failure</h2>
-    <p class="lead" style="margin-bottom: 20px;">We fit a second-stage pocket rescorer by 5-fold cross-validation <b>on the evaluation benchmark itself</b>.</p>
+    <p class="lead" style="margin-bottom: 16px;">We fit a second-stage pocket rescorer by 5-fold CV <b>on the evaluation benchmark itself</b>.</p>
     <div class="mega">
       <div>
         <div class="num good">0.862</div>
         <div class="label">in-sample AUROC<br>(transductive)</div>
       </div>
-      <div class="arrow">→</div>
+      <div class="arrow">&rarr;</div>
       <div>
         <div class="num bad">0.442</div>
-        <div class="label">held-out alleles<br>(inductive) · below chance</div>
+        <div class="label">held-out alleles<br>(inductive) &middot; below chance</div>
       </div>
     </div>
-    <div class="card card-red" style="margin-top: 10px;">
+    <div class="card card-red" style="margin-top: 8px;">
       <h3 style="color: var(--red);">What happened</h3>
-      <p>Using evaluation-set labels to fit an inference-time head is a form of leakage that ordinary train/test hygiene does not catch. The apparent gain is in-sample; the collapse is consistent with evaluation-set fitting, not transferable discrimination.</p>
-      <p style="margin-top: 10px;">The component is <b>withdrawn</b> from all deployment claims and reported here as a documented negative for inference-time leakage.</p>
+      <p>Using evaluation-set labels to fit an inference-time head is leakage that ordinary train/test hygiene does not catch. The apparent gain is in-sample; the collapse is consistent with evaluation-set fitting, not transferable discrimination. The component is <b>withdrawn</b> and reported as a documented negative.</p>
     </div>
-    <p class="cite" style="margin-top: 10px;">Source: <code>supplementary_data/inductive_reranker_result.json</code> · See also Kapoor 2023, Rosenblatt 2024, Bernett 2024, Joeres 2025.</p>
+    <p class="cite" style="margin-top: 8px;">Source: <code>supplementary_data/inductive_reranker_result.json</code> &middot; See also Kapoor 2023, Rosenblatt 2024, Bernett 2024, Joeres 2025.</p>
   </section>
 
-  <!-- =============== Slide 11 — TAKEAWAY =============== -->
+  <!-- ═══ Slide 11 — TAKEAWAY ═══ -->
   <section class="slide" id="s11">
     <div class="section-tag">10 / Takeaway</div>
     <h2>What this paper actually claims</h2>
-    <div class="three-col">
-      <div class="card card-accent">
-        <h3>① Model</h3>
-        <p>A compact <b>35 M-parameter PLM</b> for peptide–MHC class I ranking, trained on the official NetMHCpan-4.1 folds.</p>
+    <div class="three-col" style="margin-bottom: 16px;">
+      <div class="card card-navy">
+        <h3>Model</h3>
+        <p>A compact <b>35M-parameter PLM</b> for peptide&ndash;MHC class I ranking, trained on the official NetMHCpan-4.1 folds.</p>
       </div>
-      <div class="card card-blue">
-        <h3>② Protocol</h3>
-        <p>A <b>leakage-aware, multiplicity-controlled</b> evaluation contract, applied verbatim in Results and ligated to the methodology literature cited.</p>
+      <div class="card card-accent">
+        <h3 style="color: var(--accent);">Protocol</h3>
+        <p>A <b>leakage-aware, multiplicity-controlled</b> evaluation contract, applied verbatim in Results and linked to the methodology literature.</p>
       </div>
       <div class="card card-green">
-        <h3>③ Negatives</h3>
-        <p>Two concrete evaluation-failure case studies on <b>our own data</b> — a successor-corpus holdout overlap and a transductive-overfitting rescorer collapse.</p>
+        <h3 style="color: var(--green);">Negatives</h3>
+        <p>Two evaluation-failure case studies on <b>our own data</b>: a successor-corpus holdout overlap and a transductive-overfitting rescorer collapse.</p>
       </div>
     </div>
-    <div class="card card-accent" style="margin-top: 30px;">
+    <div class="card" style="background: var(--bg2);">
       <h3>Scope restrictions</h3>
-      <p>Class I MHC &nbsp;·&nbsp; canonical 8–11-mer peptides &nbsp;·&nbsp; no clinical, Class II, PTM, or TCR-specificity claim.</p>
+      <p>Class I MHC &middot; canonical 8&ndash;11-mer peptides &middot; no clinical, Class II, PTM, or TCR-specificity claim.</p>
     </div>
   </section>
 
-  <!-- =============== Slide 12 — RESOURCES / CTA =============== -->
+  <!-- ═══ Slide 12 — RESOURCES / CTA ═══ -->
   <section class="slide" id="s12">
     <div class="section-tag">Resources</div>
     <h2>Where to find the paper, code, and evidence</h2>
-    <div class="two-col" style="margin-top: 10px;">
-      <div class="card card-blue">
+    <div class="two-col" style="margin-top: 8px;">
+      <div class="card card-navy">
         <h3>Paper</h3>
-        <p style="font-size: 20px;"><b>Efficient Protein Language Models for Peptide–MHC Ranking: A Leakage-Aware Evaluation Protocol under Multiplicity Control</b></p>
-        <p style="margin-top: 14px;">MDPI <i>Information</i> · Special Issue: Emerging Trends in Machine Learning &amp; Natural Language Processing</p>
-        <p class="meta" style="margin-top: 14px;">Under review · October 2026</p>
+        <p><b>Efficient Protein Language Models for Peptide&ndash;MHC Ranking: A Leakage-Aware Evaluation Protocol under Multiplicity Control</b></p>
+        <p style="margin-top: 10px; font-size: 15px;">MDPI <i>Information</i> &middot; Special Issue: Emerging Trends in Machine Learning &amp; NLP</p>
+        <p class="meta" style="margin-top: 10px;">Under review &middot; October 2026</p>
       </div>
       <div class="card card-accent">
-        <h3>Code · evidence · compliance reports</h3>
-        <p class="mono" style="font-size: 20px; color: var(--accent);">github.com/KevinSimple/<br>deepneo-pub</p>
-        <p style="margin-top: 14px;">
-          <code>mdpi_submission/compliance/</code> — two formal compliance reports<br>
-          <code>mdpi_submission/evidence/</code> — 515-claim SI JSON ledgers<br>
-          <code>mdpi_submission/reviews/</code> — pre-submission panel reviews
+        <h3 style="color: var(--accent);">Code &middot; evidence &middot; compliance</h3>
+        <p style="margin-bottom: 12px;"><code style="font-size: 16px; padding: 4px 10px;">github.com/KevinSimple/deepneo-pub</code></p>
+        <p style="font-size: 14px; line-height: 1.7;">
+          <code>compliance/</code> &mdash; two formal compliance reports<br>
+          <code>evidence/</code> &mdash; 515-claim SI JSON ledgers<br>
+          <code>reviews/</code> &mdash; pre-submission panel reviews
         </p>
       </div>
     </div>
     <div class="divider"></div>
-    <div style="text-align: center; margin-top: 20px;">
-      <p style="font-size: 24px; color: var(--fg);">Kevin Wang &nbsp;·&nbsp; Parma Nand</p>
-      <p class="meta" style="margin-top: 6px;">Auckland University of Technology</p>
-      <p style="margin-top: 24px; font-size: 22px; color: var(--accent); font-weight: 600;">Thanks for watching.</p>
+    <div style="text-align: center;">
+      <p style="font-size: 20px; font-weight: 600; color: var(--fg);">Kevin Wang &middot; Parma Nand</p>
+      <p class="meta" style="margin-top: 4px;">Auckland University of Technology</p>
+      <p style="margin-top: 16px; font-size: 18px; color: var(--navy); font-weight: 600;">Thanks for watching.</p>
     </div>
   </section>
 
 </div>
 
-<!-- footer (common to all slides) -->
 <div class="footer">
-  <div class="paper">DeepNeo-CL · Wang &amp; Nand · MDPI <i>Information</i> 2026</div>
+  <div class="paper">DeepNeo-CL &middot; Wang &amp; Nand &middot; MDPI <i>Information</i> 2026</div>
   <div class="page"><span id="pageIdx">1</span> / 12</div>
 </div>
-<div class="controls">← → · space · F fullscreen · R restart · ? help</div>
+<div class="controls">&larr; &rarr; &middot; space &middot; F fullscreen &middot; R restart &middot; ? help</div>
 
-<!-- keyboard help overlay -->
-<div id="helpOverlay" style="display:none; position:fixed; inset:0; z-index:100; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px);">
-  <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:left; max-width:500px;">
-    <h2 style="font-size:28px; color:var(--accent); margin-bottom:24px;">Keyboard shortcuts</h2>
-    <div style="display:grid; grid-template-columns:140px 1fr; gap:12px 24px; font-size:18px;">
-      <code>→  Space  PgDn</code><span style="color:var(--muted);">Next slide</span>
-      <code>←  PgUp</code><span style="color:var(--muted);">Previous slide</span>
-      <code>Home</code><span style="color:var(--muted);">First slide</span>
-      <code>End</code><span style="color:var(--muted);">Last slide</span>
+<div id="helpOverlay" style="display:none; position:fixed; inset:0; z-index:100; background:rgba(0,0,0,0.8); backdrop-filter:blur(6px);">
+  <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:left; max-width:480px; background:var(--card); border-radius:8px; padding:32px 36px; border:1px solid var(--border);">
+    <h2 style="font-family: var(--title); font-size:24px; color:var(--navy); margin-bottom:20px;">Keyboard shortcuts</h2>
+    <div style="display:grid; grid-template-columns:130px 1fr; gap:10px 20px; font-size:15px;">
+      <code>&rarr; Space PgDn</code><span style="color:var(--muted);">Next slide</span>
+      <code>&larr; PgUp</code><span style="color:var(--muted);">Previous slide</span>
+      <code>Home / End</code><span style="color:var(--muted);">First / Last</span>
       <code>F</code><span style="color:var(--muted);">Toggle fullscreen</span>
-      <code>R</code><span style="color:var(--muted);">Restart from slide 1</span>
-      <code>?</code><span style="color:var(--muted);">Toggle this help</span>
-      <code>Click left/right</code><span style="color:var(--muted);">Prev / Next</span>
-      <code>Swipe ← →</code><span style="color:var(--muted);">Prev / Next (touch)</span>
+      <code>R</code><span style="color:var(--muted);">Restart</span>
+      <code>?</code><span style="color:var(--muted);">Toggle help</span>
+      <code>Swipe &larr;&rarr;</code><span style="color:var(--muted);">Prev / Next (touch)</span>
     </div>
-    <p style="margin-top:30px; color:var(--dim); font-size:14px;">Press any key or tap to close</p>
+    <p style="margin-top:20px; color:var(--dim); font-size:12px;">Press any key or tap to close</p>
   </div>
 </div>
 
 <script>
   const N = 12;
-  let idx = 0;
-  let helpOpen = false;
+  let idx = 0, helpOpen = false;
   const slides = document.querySelectorAll('.slide');
   const pageIdx = document.getElementById('pageIdx');
   const prog = document.getElementById('progress');
   const helpEl = document.getElementById('helpOverlay');
 
-  for (let i = 0; i < N; i++) {
-    const s = document.createElement('div');
-    s.className = 'seg';
-    prog.appendChild(s);
-  }
+  for (let i = 0; i < N; i++) { const s = document.createElement('div'); s.className = 'seg'; prog.appendChild(s); }
   const segs = prog.querySelectorAll('.seg');
 
   function staggerIn(slide) {
-    const items = slide.querySelectorAll('.card, .numbered li, .figure-wrap, table, .mega > div');
+    const items = slide.querySelectorAll('.card, .numbered li, .figure-wrap, table, .mega > div, .title-bar');
     items.forEach((el, j) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(12px)';
-      el.style.transition = 'none';
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          el.style.transition = `opacity 0.4s ${j * 0.07}s ease, transform 0.4s ${j * 0.07}s ease`;
-          el.style.opacity = '1';
-          el.style.transform = 'none';
-        });
-      });
+      el.style.opacity = '0'; el.style.transform = 'translateY(10px)'; el.style.transition = 'none';
+      requestAnimationFrame(() => { requestAnimationFrame(() => {
+        el.style.transition = `opacity 0.35s ${j * 0.06}s ease, transform 0.35s ${j * 0.06}s ease`;
+        el.style.opacity = '1'; el.style.transform = 'none';
+      }); });
     });
   }
 
@@ -646,46 +644,35 @@
   }
   show(0);
 
-  function toggleHelp() {
-    helpOpen = !helpOpen;
-    helpEl.style.display = helpOpen ? 'block' : 'none';
-  }
+  function toggleHelp() { helpOpen = !helpOpen; helpEl.style.display = helpOpen ? 'block' : 'none'; }
 
   document.addEventListener('keydown', (e) => {
     if (helpOpen && e.key !== '?') { toggleHelp(); return; }
     if (e.key === '?') { toggleHelp(); return; }
-    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
-      e.preventDefault(); idx = Math.min(idx + 1, N - 1); show(idx);
-    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-      e.preventDefault(); idx = Math.max(idx - 1, 0); show(idx);
-    } else if (e.key === 'f' || e.key === 'F') {
-      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
-      else document.exitFullscreen();
-    } else if (e.key === 'r' || e.key === 'R') {
-      idx = 0; show(idx);
-    } else if (e.key === 'Home') { idx = 0; show(idx); }
-      else if (e.key === 'End') { idx = N - 1; show(idx); }
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); idx = Math.min(idx+1, N-1); show(idx); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); idx = Math.max(idx-1, 0); show(idx); }
+    else if (e.key === 'f' || e.key === 'F') { if (!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); }
+    else if (e.key === 'r' || e.key === 'R') { idx = 0; show(idx); }
+    else if (e.key === 'Home') { idx = 0; show(idx); }
+    else if (e.key === 'End') { idx = N-1; show(idx); }
   });
 
   helpEl.addEventListener('click', () => { if (helpOpen) toggleHelp(); });
-
   document.addEventListener('click', (e) => {
     if (helpOpen || e.target.closest('#helpOverlay')) return;
-    if (e.clientX > window.innerWidth / 2) { idx = Math.min(idx + 1, N - 1); show(idx); }
-    else { idx = Math.max(idx - 1, 0); show(idx); }
+    if (e.clientX > window.innerWidth / 2) { idx = Math.min(idx+1, N-1); show(idx); }
+    else { idx = Math.max(idx-1, 0); show(idx); }
   });
 
-  // touch / swipe support
   let touchX0 = null;
-  document.addEventListener('touchstart', (e) => { touchX0 = e.changedTouches[0].clientX; }, {passive: true});
+  document.addEventListener('touchstart', (e) => { touchX0 = e.changedTouches[0].clientX; }, {passive:true});
   document.addEventListener('touchend', (e) => {
     if (touchX0 === null) return;
-    const dx = e.changedTouches[0].clientX - touchX0;
-    touchX0 = null;
+    const dx = e.changedTouches[0].clientX - touchX0; touchX0 = null;
     if (Math.abs(dx) < 50) return;
-    if (dx < 0) { idx = Math.min(idx + 1, N - 1); show(idx); }
-    else { idx = Math.max(idx - 1, 0); show(idx); }
-  }, {passive: true});
+    if (dx < 0) { idx = Math.min(idx+1, N-1); show(idx); }
+    else { idx = Math.max(idx-1, 0); show(idx); }
+  }, {passive:true});
 </script>
 </body>
 </html>
