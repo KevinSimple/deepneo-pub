@@ -114,7 +114,8 @@
   b, strong { color: var(--fg); font-weight: 700; }
 
   /* ── layout ── */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; flex: 1; align-items: center; min-height: 0; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; min-height: 0; }
+  .two-col.fill { flex: 1; }
   .two-col-wide-l { grid-template-columns: 1.3fr 1fr; }
   .two-col-wide-r { grid-template-columns: 1fr 1.3fr; }
   .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; flex: 1; }
@@ -176,18 +177,16 @@
 
   /* figure */
   .figure-wrap {
-    background: #ffffff; border-radius: 4px; padding: 8px;
+    background: #ffffff; border-radius: 4px; padding: 6px;
     max-width: 100%;
     border: 1px solid var(--border);
     box-shadow: 0 2px 8px var(--shadow);
-    overflow: hidden;
+    overflow: visible;
     display: flex; align-items: center; justify-content: center;
-    min-height: 0;
   }
   .figure-wrap img {
-    max-width: 100%; width: 100%; height: auto;
+    max-width: 100%; width: auto; height: auto;
     display: block; object-fit: contain;
-    max-height: 50vh;
   }
 
   /* verdict badge */
@@ -526,7 +525,7 @@
         <b style="color: var(--navy);">Ranking under a context key</b> &mdash; score many short candidates for one fixed conditioner.
       </p>
     </div>
-    <div class="two-col two-col-wide-r">
+    <div class="two-col two-col-wide-r fill">
       <div>
         <div class="card card-navy" style="margin-bottom: 14px;">
           <h3>Input / Output</h3>
@@ -541,18 +540,18 @@
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
         <div class="figure-wrap">
-          <img src="figures/fig_data_flow.png" alt="DeepNeo-CL data flow: training corpora → model → decontamination → benchmarks">
+          <img src="figures/fig_data_flow.png" alt="DeepNeo-CL data flow: training corpora → model → decontamination → benchmarks" style="max-height: 58vh;">
         </div>
       </div>
     </div>
-    <p class="cite" style="margin-top: 8px;">Figure: end-to-end pipeline &mdash; training corpora, model, decontamination firewall, and independent evaluation benchmarks.</p>
+    <p class="cite" style="margin-top: 6px;">Figure: end-to-end pipeline &mdash; training corpora, model, decontamination firewall, and independent evaluation benchmarks.</p>
   </section>
 
   <!-- ═══ Slide 4 — MODEL ═══ -->
   <section class="slide" id="s4">
     <div class="section-tag">3 / Model</div>
     <h2>DeepNeo-CL &mdash; a compact PLM for pMHC-I ranking</h2>
-    <div class="two-col">
+    <div class="two-col fill">
       <div>
         <table>
           <thead><tr><th>Component</th><th>Choice</th></tr></thead>
@@ -600,7 +599,7 @@
     </div>
     <div style="display: flex; align-items: center; justify-content: center; flex: 1; min-height: 0;">
       <div class="figure-wrap" style="max-height: 100%;">
-        <img src="figures/fig_contamination_ledger.png" alt="Training-set membership overlap: up to 26.9% on TransPHLA">
+        <img src="figures/fig_contamination_ledger.png" alt="Training-set membership overlap: up to 26.9% on TransPHLA" style="max-height: 35vh;">
       </div>
     </div>
     <p class="cite" style="margin-top: 6px;">Contamination ledger: TransPHLA shares 26.9% of rows with NetMHCpan-4.1 training corpus; IEDB auto_bench 15&ndash;22%.</p>
@@ -628,7 +627,7 @@
   <section class="slide" id="s7">
     <div class="section-tag">6 / Headline result &middot; TransPHLA</div>
     <h2>Decontaminated TransPHLA (<i>n</i> = 118,143)</h2>
-    <div class="two-col two-col-wide-l">
+    <div class="two-col two-col-wide-l fill">
       <div>
         <table style="font-size: 14px;">
           <thead>
@@ -648,7 +647,7 @@
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
         <div class="figure-wrap">
-          <img src="figures/fig_roc_pr_decontam.png" alt="ROC and PR curves on decontaminated TransPHLA (n=118,143)">
+          <img src="figures/fig_roc_pr_decontam.png" alt="ROC and PR curves on decontaminated TransPHLA (n=118,143)" style="max-height: 52vh;">
         </div>
       </div>
     </div>
@@ -659,13 +658,13 @@
   <section class="slide" id="s8">
     <div class="section-tag">7 / IEDB weekly leaderboard</div>
     <h2>IEDB <code>auto_bench</code> weekly &mdash; 46 human-allele weeks (2020&ndash;2026)</h2>
-    <div class="two-col two-col-wide-l" style="margin-top: 8px;">
+    <div class="two-col two-col-wide-l fill" style="margin-top: 8px;">
       <div style="display: flex; flex-direction: column; gap: 8px; min-height: 0;">
-        <div class="figure-wrap" style="flex: 3;">
-          <img src="figures/fig_weekly_ranking_ba.png" alt="IEDB weekly BA ranking board">
+        <div class="figure-wrap">
+          <img src="figures/fig_weekly_ranking_ba.png" alt="IEDB weekly BA ranking board" style="max-height: 32vh;">
         </div>
-        <div class="figure-wrap" style="flex: 2;">
-          <img src="figures/fig_weekly_head2head_ba.png" alt="DeepNeo vs NMP-4.1 head-to-head">
+        <div class="figure-wrap">
+          <img src="figures/fig_weekly_head2head_ba.png" alt="DeepNeo vs NMP-4.1 head-to-head" style="max-height: 22vh;">
         </div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 10px;">
@@ -696,7 +695,7 @@
   <section class="slide" id="s9">
     <div class="section-tag">8 / Honest reporting</div>
     <h2>Where NetMHCpan still wins</h2>
-    <div class="two-col two-col-wide-l">
+    <div class="two-col two-col-wide-l fill">
       <div>
         <div class="card card-red" style="margin-bottom: 14px;">
           <h3 style="color: var(--red);">BA-head vs BA-head (Table 1, row 2)</h3>
@@ -712,7 +711,7 @@
       </div>
       <div style="display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center; min-height: 0;">
         <div class="figure-wrap">
-          <img src="figures/fig_holm_family.png" alt="Forest plot: Δ AUROC with 95% CI and Holm p-values">
+          <img src="figures/fig_holm_family.png" alt="Forest plot: Δ AUROC with 95% CI and Holm p-values" style="max-height: 45vh;">
         </div>
         <p class="caption" style="text-align: center;">Forest plot: only BA-head excludes zero after Holm correction.</p>
       </div>
