@@ -84,12 +84,17 @@ Full claim-to-evidence mapping: `../evidence/CLAIM_EVIDENCE_TABLE.md` · 515/515
 
 ---
 
-## For an iterating agent
+## For an iterating cloud agent
 
-If you are a cloud agent working in this folder:
+**Start here**: open [`AGENT_INSTRUCTIONS.md`](AGENT_INSTRUCTIONS.md) — the full workflow for generating pop-sci CS-friendly biology content for the deck.
 
-- The deck is **one self-contained HTML file**. Edit `slides.html` directly.
+**Content-generation prompt**: [`PROMPT_FOR_CONTENT_AI.md`](PROMPT_FOR_CONTENT_AI.md) — the exact prompt to send to a content-generating AI (ChatGPT-4+, Claude Opus, Perplexity Pro, Gemini Pro).
+
+Short version:
+
+- The deck is **one self-contained HTML file** (`slides.html`). Edit it directly, no build step.
 - Images in `figures/` are referenced relatively; preserve the filenames or update the `<img src>` paths.
 - Narration script and captions are **not auto-linked** — if you change narration or slide ordering, update `NARRATION_SCRIPT.md`, `captions.srt`, and the slide-to-narration table above.
 - Thumbnails are standalone SVGs; export to PNG with `rsvg-convert` or similar for YouTube.
-- All frozen manuscript numbers must stay unchanged. Verify against `../evidence/CLAIM_EVIDENCE_TABLE.md`.
+- All frozen manuscript numbers must stay unchanged. Verify every number against [`../evidence/CLAIM_EVIDENCE_TABLE.md`](../evidence/CLAIM_EVIDENCE_TABLE.md).
+- Hard scope: no clinical / Class II MHC / PTM / TCR-specificity claims; no paper-2 references; no tone-rule-forbidden words.
