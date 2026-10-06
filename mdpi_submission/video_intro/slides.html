@@ -58,7 +58,7 @@
   .deck { height: 100vh; width: 100vw; position: relative; }
   .slide {
     position: absolute; inset: 0;
-    padding: 64px 72px 56px;
+    padding: 48px 56px 44px;
     opacity: 0; transform: translateY(6px);
     pointer-events: none;
     transition: opacity 0.4s cubic-bezier(.4,0,.2,1), transform 0.4s cubic-bezier(.4,0,.2,1);
@@ -76,14 +76,14 @@
 
   /* section tag */
   .section-tag {
-    position: absolute; top: 20px; left: 72px;
+    position: absolute; top: 16px; left: 56px;
     font-family: var(--body); font-size: 12px; font-weight: 700;
     letter-spacing: 2.5px; color: var(--navy);
     text-transform: uppercase; opacity: 0.7;
   }
   /* footer */
   .footer {
-    position: fixed; bottom: 16px; left: 72px; right: 72px;
+    position: fixed; bottom: 12px; left: 56px; right: 56px;
     display: flex; justify-content: space-between; align-items: center;
     font-size: 12px; color: var(--dim); z-index: 10;
     border-top: 1px solid var(--border); padding-top: 8px;
@@ -114,9 +114,9 @@
   b, strong { color: var(--fg); font-weight: 700; }
 
   /* ── layout ── */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; flex: 1; align-items: start; }
-  .two-col-wide-l { grid-template-columns: 1.35fr 1fr; }
-  .two-col-wide-r { grid-template-columns: 1fr 1.35fr; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; flex: 1; align-items: center; min-height: 0; }
+  .two-col-wide-l { grid-template-columns: 1.3fr 1fr; }
+  .two-col-wide-r { grid-template-columns: 1fr 1.3fr; }
   .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; flex: 1; }
 
   /* cards */
@@ -176,12 +176,19 @@
 
   /* figure */
   .figure-wrap {
-    background: #ffffff; border-radius: 4px; padding: 10px;
-    max-width: 100%; max-height: 55vh;
+    background: #ffffff; border-radius: 4px; padding: 8px;
+    max-width: 100%;
     border: 1px solid var(--border);
     box-shadow: 0 2px 8px var(--shadow);
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 0;
   }
-  .figure-wrap img { max-width: 100%; max-height: 100%; display: block; }
+  .figure-wrap img {
+    max-width: 100%; width: 100%; height: auto;
+    display: block; object-fit: contain;
+    max-height: 50vh;
+  }
 
   /* verdict badge */
   .verdict-badge {
@@ -533,7 +540,7 @@
         </div>
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
-        <div class="figure-wrap" style="max-height: 48vh;">
+        <div class="figure-wrap">
           <img src="figures/fig_data_flow.png" alt="DeepNeo-CL data flow: training corpora → model → decontamination → benchmarks">
         </div>
       </div>
@@ -561,14 +568,14 @@
           </tbody>
         </table>
       </div>
-      <div>
-        <div class="card card-navy" style="margin-bottom: 14px; text-align: center;">
-          <p style="font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 4px; font-weight: 600;">Total parameters</p>
-          <p style="font-family: var(--mono); font-size: 48px; font-weight: 600; color: var(--navy); margin: 4px 0; line-height: 1;">35 M</p>
-          <p style="font-size: 14px; color: var(--muted);">5-fold ensemble &middot; batch-rank fusion</p>
+      <div style="display: flex; flex-direction: column; min-height: 0;">
+        <div class="card card-navy" style="margin-bottom: 10px; text-align: center; padding: 12px 20px;">
+          <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 2px; font-weight: 600;">Total parameters</p>
+          <p style="font-family: var(--mono); font-size: 36px; font-weight: 600; color: var(--navy); margin: 2px 0; line-height: 1;">35 M</p>
+          <p style="font-size: 13px; color: var(--muted);">5-fold ensemble &middot; batch-rank fusion</p>
         </div>
-        <div class="figure-wrap" style="max-height: 28vh;">
-          <img src="figures/fig_training_dynamics.png" alt="Training dynamics: loss and validation AUROC across epochs">
+        <div class="figure-wrap" style="flex: 1; min-height: 0;">
+          <img src="figures/fig_training_dynamics.png" alt="Training dynamics: loss and validation AUROC across epochs" style="max-height: 38vh;">
         </div>
         <p class="cite" style="margin-top: 4px;">Training dynamics: BA-only warmup &rarr; multi-task (BA + EL) &middot; validation AUROC converges ~0.91</p>
       </div>
@@ -591,8 +598,8 @@
         <p class="cite" style="margin-top: 10px;">FWER correction (Holm 1979) widely ignored in this literature.</p>
       </div>
     </div>
-    <div style="display: flex; align-items: center; justify-content: center;">
-      <div class="figure-wrap" style="max-height: 28vh;">
+    <div style="display: flex; align-items: center; justify-content: center; flex: 1; min-height: 0;">
+      <div class="figure-wrap" style="max-height: 100%;">
         <img src="figures/fig_contamination_ledger.png" alt="Training-set membership overlap: up to 26.9% on TransPHLA">
       </div>
     </div>
@@ -640,7 +647,7 @@
         </div>
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
-        <div class="figure-wrap" style="max-height: 44vh;">
+        <div class="figure-wrap">
           <img src="figures/fig_roc_pr_decontam.png" alt="ROC and PR curves on decontaminated TransPHLA (n=118,143)">
         </div>
       </div>
@@ -653,11 +660,11 @@
     <div class="section-tag">7 / IEDB weekly leaderboard</div>
     <h2>IEDB <code>auto_bench</code> weekly &mdash; 46 human-allele weeks (2020&ndash;2026)</h2>
     <div class="two-col two-col-wide-l" style="margin-top: 8px;">
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div class="figure-wrap" style="max-height: 30vh;">
+      <div style="display: flex; flex-direction: column; gap: 8px; min-height: 0;">
+        <div class="figure-wrap" style="flex: 3;">
           <img src="figures/fig_weekly_ranking_ba.png" alt="IEDB weekly BA ranking board">
         </div>
-        <div class="figure-wrap" style="max-height: 20vh;">
+        <div class="figure-wrap" style="flex: 2;">
           <img src="figures/fig_weekly_head2head_ba.png" alt="DeepNeo vs NMP-4.1 head-to-head">
         </div>
       </div>
@@ -703,8 +710,8 @@
           <p>Without Holm adjustment, the fusion&rsquo;s pooled edge (+0.0073) can be reported as a win. Under the three-condition rule it is <b>not Holm-robust</b> (Holm <i>p</i> = 0.151).</p>
         </div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center;">
-        <div class="figure-wrap" style="max-height: 36vh;">
+      <div style="display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center; min-height: 0;">
+        <div class="figure-wrap">
           <img src="figures/fig_holm_family.png" alt="Forest plot: Δ AUROC with 95% CI and Holm p-values">
         </div>
         <p class="caption" style="text-align: center;">Forest plot: only BA-head excludes zero after Holm correction.</p>
