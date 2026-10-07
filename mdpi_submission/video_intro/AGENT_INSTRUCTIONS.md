@@ -44,10 +44,12 @@ Cross-check every quantitative claim in the updated deck against the SI JSON led
 
 | Slide | Numbers to verify | Ledger file |
 |---|---|---|
+| 4 | Ablation ladder AUROCs and step deltas | `ablation_ladder.json` |
+| 5 | Contamination percentages (26.9%, 21.4%, 22.7%, 15.1%) | `transphla_rescored_fusion_fixed.json` + `autobench_decontam_vs_41.json` |
 | 7 | Table 1 AUROCs, Δ, verdicts, Holm p, bootstrap CI | `transphla_rescored_fusion_fixed.json` + `table2_holm_adjusted.json` + `paired_bootstrap_ci.json` |
-| 8 | Mean rank, AUROC, rank-1 counts, head-to-head W/T/L | `weekly_ranking_v41_2020_2026_singlecol_v2.json` |
+| 8 | Mean rank, AUROC, rank-1 counts, head-to-head W/T/L, per-ref p=0.65 | `weekly_ranking_v41_2020_2026_singlecol_v2.json` + `weekly_perref_wilcoxon_vs_nmp41.json` |
 | 9 | BA-head Δ = −0.0137, Holm p = 1.7×10⁻³, CI bounds | `table2_holm_adjusted.json` + `paired_bootstrap_ci.json` |
-| 10 | Rescorer 0.862 → 0.442 | `inductive_reranker_result.json` |
+| 10 | Rescorer 0.828 → 0.862 → 0.442, cross-benchmark values | `inductive_reranker_result.json` |
 
 **If any number does not match, do not commit.** Fix the discrepancy first.
 
@@ -124,6 +126,38 @@ The following numbers are frozen and must appear exactly as listed:
 | 0.442 | Inductive rescorer AUROC |
 
 ---
+
+## Biology visuals for CS readers
+
+The primary audience is CS/ML. Biology content must be visually engaging and immediately understandable without domain knowledge.
+
+### Visual principles
+
+1. **Inline SVG over text** — whenever a slide explains a biological process, draw it as an inline SVG diagram rather than describing it in bullet points. The deck already has a detailed cell-biology SVG on slide 2 and a pipeline SVG on slide 3 — extend this visual language.
+
+2. **Colour-coded actors** — use consistent colours across all biology visuals:
+   - Green = healthy / self peptides / normal function
+   - Red/orange = mutant / neoantigen / problem
+   - Blue/navy = MHC machinery / model components
+   - Amber/accent = DeepNeo-specific / highlighted
+
+3. **Process diagrams with numbered steps** — show biology as a flow (①②③④), not as definitions. CS readers understand pipelines; use that mental model.
+
+4. **CS analogies in card text** — when a card explains biology, include a one-line CS analogy:
+   - "MHC-I groove = a fixed-shape classifier that accepts or rejects peptide inputs"
+   - "T-cell surveillance = distributed anomaly detection across all cells"
+   - "Neoantigen = a mutant input that triggers a true-positive detection"
+
+5. **Side-by-side mappings** where appropriate:
+   - Left column: biology concept → Right column: ML equivalent
+   - e.g. "HLA allele" → "context key", "peptide" → "candidate", "binding" → "positive class"
+
+### What NOT to do
+
+- Do not use stock photographs of lab equipment or microscopy images
+- Do not add external image URLs or CDN-hosted assets
+- Do not use complex molecular structures (PDB renders) — schematic diagrams are clearer
+- Do not add biology jargon without an immediate plain-English equivalent
 
 ## Design reference
 
