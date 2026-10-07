@@ -254,13 +254,13 @@
     <div class="two-col" style="margin-top: 12px;">
       <div>
         <ol class="numbered">
-          <li><span class="num">1</span><span class="body"><b>MHC class I proteins</b> bind short protein fragments (peptides) from inside each cell.</span></li>
-          <li><span class="num">2</span><span class="body">They <b>present these peptides on the cell surface</b> for inspection by T-cells.</span></li>
-          <li><span class="num">3</span><span class="body">T-cells detect abnormal peptides from <b>virus-infected</b> or <b>cancer-mutated</b> cells and trigger their destruction.</span></li>
+          <li><span class="num">1</span><span class="body"><b>Proteasome</b> shreds cellular proteins into short peptide fragments (8&ndash;11 residues).<br><span style="font-size: 14px; color: var(--muted);">ML analogy: a <b>tokeniser</b> that segments a protein into fixed-length inputs.</span></span></li>
+          <li><span class="num">2</span><span class="body"><b>MHC-I groove</b> on the cell surface either accepts or rejects each peptide based on shape fit.<br><span style="font-size: 14px; color: var(--muted);">ML analogy: a <b>fixed-shape binary classifier</b> &mdash; the allele is the context key, the peptide is the candidate.</span></span></li>
+          <li><span class="num">3</span><span class="body"><b>CD8+ T-cells</b> patrol all cells, detecting foreign peptides and triggering destruction.<br><span style="font-size: 14px; color: var(--muted);">ML analogy: <b>distributed anomaly detection</b> across every cell in the body.</span></span></li>
         </ol>
-        <div class="card card-accent" style="margin-top: 20px;">
-          <h3 style="color: var(--accent);">Why computational prediction matters</h3>
-          <p>Predicting which peptides a given MHC will present is the <b>foundation of neoantigen prioritisation</b>, upstream of experimental validation and immunotherapy design.</p>
+        <div class="card card-accent" style="margin-top: 16px;">
+          <h3 style="color: var(--accent);">The computational task</h3>
+          <p>Given an HLA allele (context key), <b>rank 10&sup2;&ndash;10&sup4; candidate peptides</b> by binding likelihood. This is a ranking problem with ~13,000 known allele variants.</p>
         </div>
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
@@ -533,9 +533,17 @@
           <div class="kv"><div class="k">Candidates</div><div class="v">10&sup2;&ndash;10&sup4; peptide sequences (8&ndash;11 aa)</div></div>
           <div class="kv"><div class="k">Output</div><div class="v">Rank by BA + EL &rarr; fusion score</div></div>
         </div>
-        <div class="card">
-          <h3>Why ranking fidelity matters</h3>
-          <p>Small ranking errors at the top compound into large experimental waste. The pipeline is rate-limited by the <b>false-positive rate</b> of the upstream ranker.</p>
+        <div class="card" style="margin-top: 10px;">
+          <h3>Biology &rarr; ML dictionary</h3>
+          <table style="font-size: 13px; margin: 4px 0 0;">
+            <thead><tr><th style="padding: 6px 10px;">Biology</th><th style="padding: 6px 10px;">ML equivalent</th></tr></thead>
+            <tbody>
+              <tr><td style="padding: 5px 10px;">HLA allele</td><td style="padding: 5px 10px;">Context key (conditioner)</td></tr>
+              <tr><td style="padding: 5px 10px;">Peptide (8&ndash;11 aa)</td><td style="padding: 5px 10px;">Candidate input</td></tr>
+              <tr><td style="padding: 5px 10px;">Binding affinity</td><td style="padding: 5px 10px;">Positive-class score</td></tr>
+              <tr><td style="padding: 5px 10px;">~13K allele variants</td><td style="padding: 5px 10px;">Conditional distributions</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
@@ -642,10 +650,72 @@
         </div>
       </div>
       <div style="display: flex; flex-direction: column; min-height: 0;">
+        <h3 style="color: var(--navy); margin-bottom: 8px;">Ablation ladder &mdash; 7 cumulative steps</h3>
         <div class="figure-wrap" style="flex: 1; min-height: 0;">
-          <img src="figures/fig_training_dynamics.png" alt="Training dynamics: loss and validation AUROC across epochs" style="max-height: 50vh;">
+          <svg viewBox="0 0 420 380" width="100%" style="max-height: 52vh;" xmlns="http://www.w3.org/2000/svg" font-family="Source Sans 3, sans-serif">
+            <text x="210" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2332">TransPHLA EL AUROC (5-fold ensemble)</text>
+            <!-- Scale: 0.950 to 0.975, mapped to x=180..390 -->
+            <!-- Axis ticks -->
+            <line x1="180" y1="28" x2="180" y2="310" stroke="#d5dce6" stroke-width="0.8"/>
+            <text x="180" y="322" text-anchor="middle" font-size="8" fill="#8c99a8">0.950</text>
+            <line x1="222" y1="28" x2="222" y2="310" stroke="#d5dce6" stroke-width="0.5" stroke-dasharray="3,3"/>
+            <text x="222" y="322" text-anchor="middle" font-size="8" fill="#8c99a8">0.955</text>
+            <line x1="264" y1="28" x2="264" y2="310" stroke="#d5dce6" stroke-width="0.5" stroke-dasharray="3,3"/>
+            <text x="264" y="322" text-anchor="middle" font-size="8" fill="#8c99a8">0.960</text>
+            <line x1="306" y1="28" x2="306" y2="310" stroke="#d5dce6" stroke-width="0.5" stroke-dasharray="3,3"/>
+            <text x="306" y="322" text-anchor="middle" font-size="8" fill="#8c99a8">0.965</text>
+            <line x1="348" y1="28" x2="348" y2="310" stroke="#d5dce6" stroke-width="0.5" stroke-dasharray="3,3"/>
+            <text x="348" y="322" text-anchor="middle" font-size="8" fill="#8c99a8">0.970</text>
+            <line x1="390" y1="28" x2="390" y2="310" stroke="#d5dce6" stroke-width="0.5" stroke-dasharray="3,3"/>
+            <text x="390" y="322" text-anchor="middle" font-size="8" fill="#8c99a8">0.975</text>
+
+            <!-- Step 1: ESM2 baseline 0.952 → x = 180 + (0.952-0.950)*8400 = 180+16.8 = 197 -->
+            <text x="175" y="52" text-anchor="end" font-size="9" fill="#5a6a7a">ESM2 baseline</text>
+            <rect x="180" y="40" width="17" height="18" rx="3" fill="#2980B9"/>
+            <text x="201" y="53" font-size="9" fill="#1B4F72" font-weight="700">0.952</text>
+
+            <!-- Step 2: + physchem 0.957 → 180 + 7*8.4 = 239 width=59 -->
+            <text x="175" y="92" text-anchor="end" font-size="9" fill="#5a6a7a">+ physchem</text>
+            <rect x="180" y="80" width="59" height="18" rx="3" fill="#2980B9"/>
+            <text x="243" y="93" font-size="9" fill="#1B4F72" font-weight="700">0.957</text>
+            <text x="250" y="93" font-size="8" fill="#27ae60" font-weight="600">&nbsp;+.005</text>
+
+            <!-- Step 3: + pseudo-seq 0.962 → width=101 -->
+            <text x="175" y="132" text-anchor="end" font-size="9" fill="#5a6a7a">+ pseudo-seq</text>
+            <rect x="180" y="120" width="101" height="18" rx="3" fill="#2980B9"/>
+            <text x="285" y="133" font-size="9" fill="#1B4F72" font-weight="700">0.962</text>
+            <text x="292" y="133" font-size="8" fill="#27ae60" font-weight="600">&nbsp;+.005</text>
+
+            <!-- Step 4: + cross-attn 0.964 → width=118 -->
+            <text x="175" y="172" text-anchor="end" font-size="9" fill="#5a6a7a">+ cross-attn</text>
+            <rect x="180" y="160" width="118" height="18" rx="3" fill="#1B4F72"/>
+            <text x="302" y="173" font-size="9" fill="#1B4F72" font-weight="700">0.964</text>
+            <text x="309" y="173" font-size="8" fill="#27ae60" font-weight="600">&nbsp;+.002</text>
+
+            <!-- Step 5: + eff-number 0.969 → width=160 -->
+            <text x="175" y="212" text-anchor="end" font-size="9" fill="#5a6a7a">+ eff-number wt</text>
+            <rect x="180" y="200" width="160" height="18" rx="3" fill="#1B4F72"/>
+            <text x="344" y="213" font-size="9" fill="#1B4F72" font-weight="700">0.969</text>
+            <text x="351" y="213" font-size="8" fill="#27ae60" font-weight="600">&nbsp;+.005</text>
+
+            <!-- Step 6: + LDS 0.971 → width=176 -->
+            <text x="175" y="252" text-anchor="end" font-size="9" fill="#5a6a7a">+ LDS smoothing</text>
+            <rect x="180" y="240" width="176" height="18" rx="3" fill="#1B4F72"/>
+            <text x="360" y="253" font-size="9" fill="#1B4F72" font-weight="700">0.971</text>
+            <text x="367" y="253" font-size="8" fill="#27ae60" font-weight="600">&nbsp;+.002</text>
+
+            <!-- Step 7: + SupCon v2 0.970 → width=168, highlighted -->
+            <text x="175" y="292" text-anchor="end" font-size="9" font-weight="700" fill="#d35400">+ SupCon v2</text>
+            <rect x="180" y="280" width="168" height="18" rx="3" fill="#d35400"/>
+            <text x="352" y="293" font-size="9" fill="#d35400" font-weight="700">0.970</text>
+            <text x="359" y="293" font-size="8" fill="#c0392b" font-weight="600">&nbsp;&minus;.001</text>
+
+            <!-- Annotation: SupCon rare-allele boost -->
+            <text x="210" y="345" text-anchor="middle" font-size="9" fill="#d35400" font-style="italic">SupCon v2: aggregate &minus;0.001 but rare-allele AUPR +0.022</text>
+            <text x="210" y="358" text-anchor="middle" font-size="8.5" fill="#5a6a7a">7 withdrawn components documented as negative results</text>
+          </svg>
         </div>
-        <p class="cite" style="margin-top: 6px;">Training dynamics: BA-only warmup &rarr; multi-task (BA + EL) &middot; validation AUROC converges ~0.91</p>
+        <p class="cite" style="margin-top: 4px;">Source: <code>ablation_ladder.json</code> &middot; TransPHLA EL, full 161,652-row benchmark.</p>
       </div>
     </div>
   </section>
@@ -724,9 +794,15 @@
       <li><span class="num">2</span><span class="body"><b>Per-allele Wilcoxon signed-rank</b> matches the pooled &Delta; sign, with <b>Holm-adjusted</b> <i>p</i> &lt; 0.05 across the family of four TransPHLA comparisons.</span></li>
       <li><span class="num">3</span><span class="body"><b>Allele-clustered bootstrap 95% CI</b> on &Delta; excludes zero (B = 1,000; <i>n</i> = 118,143 rows).</span></li>
     </ol>
-    <div class="card card-navy" style="margin-top: 20px;">
-      <h3>Preceded by exact-pair decontamination</h3>
-      <p>Every evaluation row also in NetMHCpan-4.1&rsquo;s training-pair union is <b>removed before scoring</b>. On TransPHLA: 43,509 of 161,652 rows removed (26.9%) &rarr; <b>118,143 clean rows</b>.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
+      <div class="card card-navy">
+        <h3>Preceded by exact-pair decontamination</h3>
+        <p>Every evaluation row also in NetMHCpan-4.1&rsquo;s training-pair union is <b>removed before scoring</b>. On TransPHLA: 43,509 of 161,652 rows removed (26.9%) &rarr; <b>118,143 clean rows</b>.</p>
+      </div>
+      <div class="card" style="background: var(--bg2);">
+        <h3>CS analogy</h3>
+        <p style="font-size: 15px;">Think of this as a <b>three-gate CI pipeline</b> for model comparisons: gate 1 (DeLong) catches point-estimate noise, gate 2 (Holm) catches allele-level multiplicity, gate 3 (bootstrap CI) catches sample-dependence. A &ldquo;win&rdquo; passes all three gates or gets rejected.</p>
+      </div>
     </div>
   </section>
 
@@ -874,11 +950,26 @@
         <div class="label">held-out alleles<br>(inductive) &middot; below chance</div>
       </div>
     </div>
-    <div class="card card-red" style="margin-top: 8px;">
-      <h3 style="color: var(--red);">What happened</h3>
-      <p>Using evaluation-set labels to fit an inference-time head is leakage that ordinary train/test hygiene does not catch. The apparent gain is in-sample; the collapse is consistent with evaluation-set fitting, not transferable discrimination. The component is <b>withdrawn</b> and reported as a documented negative.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px;">
+      <div class="card card-red">
+        <h3 style="color: var(--red);">What happened</h3>
+        <p>Fitting an inference-time head <b>on the evaluation set itself</b> is leakage that ordinary train/test hygiene does not catch. The gain is in-sample; the collapse is consistent with evaluation-set fitting, not transferable discrimination.</p>
+        <p style="margin-top: 8px; font-size: 15px;"><b>Component withdrawn</b> and reported as a documented negative.</p>
+      </div>
+      <div class="card card-navy">
+        <h3>Cross-benchmark collapse pattern</h3>
+        <table style="font-size: 13px; margin: 4px 0 0;">
+          <thead><tr><th style="padding: 5px 8px;">Channel</th><th class="num-cell" style="padding: 5px 8px;">Base</th><th class="num-cell" style="padding: 5px 8px;">Trans.</th><th class="num-cell" style="padding: 5px 8px;">Induc.</th></tr></thead>
+          <tbody>
+            <tr style="font-weight: 700;"><td style="padding: 4px 8px;">IEDB BA</td><td class="num-cell" style="padding: 4px 8px;">0.828</td><td class="num-cell" style="padding: 4px 8px; color: var(--green);">0.862</td><td class="num-cell" style="padding: 4px 8px; color: var(--red);">0.442</td></tr>
+            <tr><td style="padding: 4px 8px;">TransPHLA BA</td><td class="num-cell" style="padding: 4px 8px;">0.955</td><td class="num-cell" style="padding: 4px 8px; color: var(--green);">0.977</td><td class="num-cell" style="padding: 4px 8px; color: var(--red);">0.871</td></tr>
+            <tr><td style="padding: 4px 8px;">TransPHLA EL</td><td class="num-cell" style="padding: 4px 8px;">0.970</td><td class="num-cell" style="padding: 4px 8px; color: var(--green);">0.978</td><td class="num-cell" style="padding: 4px 8px; color: var(--red);">0.889</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size: 12px; color: var(--muted); margin-top: 6px;">Same pattern across all 3 channels: transductive inflates, inductive collapses.</p>
+      </div>
     </div>
-    <p class="cite" style="margin-top: 8px;">Source: <code>supplementary_data/inductive_reranker_result.json</code> &middot; See also Kapoor 2023, Rosenblatt 2024, Bernett 2024, Joeres 2025.</p>
+    <p class="cite" style="margin-top: 6px;">Source: <code>inductive_reranker_result.json</code> &middot; See also Kapoor 2023, Rosenblatt 2024, Bernett 2024, Joeres 2025.</p>
   </section>
 
   <!-- ═══ Slide 11 — TAKEAWAY ═══ -->
