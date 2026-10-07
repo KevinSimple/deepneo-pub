@@ -251,16 +251,20 @@
   <section class="slide" id="s2">
     <div class="section-tag">1 / Context</div>
     <h2>A central problem in computational immunology</h2>
-    <div class="two-col" style="margin-top: 12px;">
-      <div>
+    <div class="two-col fill" style="margin-top: 8px;">
+      <div style="display: flex; flex-direction: column; justify-content: space-between;">
         <ol class="numbered">
           <li><span class="num">1</span><span class="body"><b>Proteasome</b> shreds cellular proteins into short peptide fragments (8&ndash;11 residues).<br><span style="font-size: 14px; color: var(--muted);">ML analogy: a <b>tokeniser</b> that segments a protein into fixed-length inputs.</span></span></li>
           <li><span class="num">2</span><span class="body"><b>MHC-I groove</b> on the cell surface either accepts or rejects each peptide based on shape fit.<br><span style="font-size: 14px; color: var(--muted);">ML analogy: a <b>fixed-shape binary classifier</b> &mdash; the allele is the context key, the peptide is the candidate.</span></span></li>
           <li><span class="num">3</span><span class="body"><b>CD8+ T-cells</b> patrol all cells, detecting foreign peptides and triggering destruction.<br><span style="font-size: 14px; color: var(--muted);">ML analogy: <b>distributed anomaly detection</b> across every cell in the body.</span></span></li>
         </ol>
-        <div class="card card-accent" style="margin-top: 16px;">
+        <div class="card card-accent" style="margin-top: 12px;">
           <h3 style="color: var(--accent);">The computational task</h3>
-          <p>Given an HLA allele (context key), <b>rank 10&sup2;&ndash;10&sup4; candidate peptides</b> by binding likelihood. This is a ranking problem with ~13,000 known allele variants.</p>
+          <p>Given an HLA allele (context key), <b>rank 10&sup2;&ndash;10<sup>4</sup> candidate peptides</b> by binding likelihood. This is a ranking problem with ~13,000 known allele variants.</p>
+        </div>
+        <div class="card" style="margin-top: 12px; background: var(--bg2);">
+          <h3>Why computational prediction?</h3>
+          <p style="font-size: 15px;">Wet-lab validation of peptide&ndash;MHC binding is slow and expensive. A reliable <b>in-silico ranker</b> filters 10<sup>4</sup> candidates down to 10<sup>1</sup>&ndash;10<sup>2</sup> worth testing. The false-positive rate of the upstream ranker is the bottleneck.</p>
         </div>
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
@@ -530,7 +534,7 @@
         <div class="card card-navy" style="margin-bottom: 14px;">
           <h3>Input / Output</h3>
           <div class="kv"><div class="k">Conditioner</div><div class="v">One HLA allele (34-residue pseudo-sequence)</div></div>
-          <div class="kv"><div class="k">Candidates</div><div class="v">10&sup2;&ndash;10&sup4; peptide sequences (8&ndash;11 aa)</div></div>
+          <div class="kv"><div class="k">Candidates</div><div class="v">10&sup2;&ndash;10<sup>4</sup> peptide sequences (8&ndash;11 aa)</div></div>
           <div class="kv"><div class="k">Output</div><div class="v">Rank by BA + EL &rarr; fusion score</div></div>
         </div>
         <div class="card" style="margin-top: 10px;">
@@ -637,7 +641,7 @@
     <div class="section-tag">3 / Model</div>
     <h2>DeepNeo-CL &mdash; a compact PLM for pMHC-I ranking</h2>
     <div class="two-col fill">
-      <div style="display: flex; flex-direction: column; gap: 14px;">
+      <div style="display: flex; flex-direction: column; gap: 14px; justify-content: start;">
         <div class="card card-navy" style="text-align: center; padding: 16px 20px;">
           <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 2px; font-weight: 600;">Total parameters</p>
           <p style="font-family: var(--mono); font-size: 48px; font-weight: 600; color: var(--navy); margin: 4px 0; line-height: 1;">35 M</p>
@@ -646,73 +650,76 @@
           <div class="kv" style="margin-bottom: 12px;"><div class="k">Trunk</div><div class="v"><code>ESM2-35M</code> &middot; 12 layers, d=480</div></div>
           <div class="kv" style="margin-bottom: 12px;"><div class="k">Context</div><div class="v">Peptide&ndash;HLA <b>cross-attention</b></div></div>
           <div class="kv" style="margin-bottom: 12px;"><div class="k">Heads</div><div class="v">BA + EL &rarr; batch-rank fusion</div></div>
-          <div class="kv"><div class="k">Deployed</div><div class="v">5-fold ensemble</div></div>
+          <div class="kv" style="margin-bottom: 12px;"><div class="k">Training</div><div class="v">NMP-4.1 official 5-fold &middot; BA warmup &rarr; multi-task</div></div>
+          <div class="kv" style="margin-bottom: 12px;"><div class="k">Refinement</div><div class="v">SupCon v2 (4 epochs) &middot; rare-allele AUPR +0.022</div></div>
+          <div class="kv"><div class="k">Deployed</div><div class="v">5-fold ensemble &middot; BA+EL rank fusion</div></div>
+        </div>
+        <div class="card card-accent">
+          <h3 style="color: var(--accent);">CS analogy</h3>
+          <p style="font-size: 15px;">ESM2 trunk = a <b>pre-trained language backbone</b> (like BERT); cross-attention head = a <b>conditional classifier</b> that reads both peptide and allele context.</p>
         </div>
       </div>
       <div style="display: flex; flex-direction: column; min-height: 0;">
         <h3 style="color: var(--navy); margin-bottom: 8px;">Ablation ladder &mdash; 7 cumulative steps</h3>
         <div class="figure-wrap" style="flex: 1; min-height: 0;">
-          <svg viewBox="0 0 420 380" width="100%" style="max-height: 52vh;" xmlns="http://www.w3.org/2000/svg" font-family="Source Sans 3, sans-serif">
-            <text x="210" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2332">TransPHLA EL AUROC (5-fold ensemble)</text>
-            <!-- Scale: 0.950 to 0.975, mapped to x=180..390 -->
-            <!-- Axis ticks -->
-            <line x1="180" y1="28" x2="180" y2="310" stroke="#d5dce6" stroke-width="0.8"/>
-            <text x="180" y="322" text-anchor="middle" font-size="8" fill="#8c99a8">0.950</text>
-            <line x1="222" y1="28" x2="222" y2="310" stroke="#d5dce6" stroke-width="0.5" stroke-dasharray="3,3"/>
-            <text x="222" y="322" text-anchor="middle" font-size="8" fill="#8c99a8">0.955</text>
-            <line x1="264" y1="28" x2="264" y2="310" stroke="#d5dce6" stroke-width="0.5" stroke-dasharray="3,3"/>
-            <text x="264" y="322" text-anchor="middle" font-size="8" fill="#8c99a8">0.960</text>
-            <line x1="306" y1="28" x2="306" y2="310" stroke="#d5dce6" stroke-width="0.5" stroke-dasharray="3,3"/>
-            <text x="306" y="322" text-anchor="middle" font-size="8" fill="#8c99a8">0.965</text>
-            <line x1="348" y1="28" x2="348" y2="310" stroke="#d5dce6" stroke-width="0.5" stroke-dasharray="3,3"/>
-            <text x="348" y="322" text-anchor="middle" font-size="8" fill="#8c99a8">0.970</text>
-            <line x1="390" y1="28" x2="390" y2="310" stroke="#d5dce6" stroke-width="0.5" stroke-dasharray="3,3"/>
-            <text x="390" y="322" text-anchor="middle" font-size="8" fill="#8c99a8">0.975</text>
+          <svg viewBox="0 0 480 370" width="100%" style="max-height: 52vh;" xmlns="http://www.w3.org/2000/svg" font-family="Source Sans 3, sans-serif">
+            <text x="240" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2332">TransPHLA EL AUROC (5-fold ensemble)</text>
+            <!-- Column headers -->
+            <text x="108" y="38" text-anchor="end" font-size="8" fill="#8c99a8" font-weight="600" letter-spacing="0.5">COMPONENT</text>
+            <text x="340" y="38" text-anchor="middle" font-size="8" fill="#8c99a8" font-weight="600" letter-spacing="0.5">AUROC</text>
+            <text x="430" y="38" text-anchor="middle" font-size="8" fill="#8c99a8" font-weight="600" letter-spacing="0.5">STEP &#916;</text>
+            <line x1="15" y1="44" x2="465" y2="44" stroke="#d5dce6" stroke-width="0.8"/>
 
-            <!-- Step 1: ESM2 baseline 0.952 → x = 180 + (0.952-0.950)*8400 = 180+16.8 = 197 -->
-            <text x="175" y="52" text-anchor="end" font-size="9" fill="#5a6a7a">ESM2 baseline</text>
-            <rect x="180" y="40" width="17" height="18" rx="3" fill="#2980B9"/>
-            <text x="201" y="53" font-size="9" fill="#1B4F72" font-weight="700">0.952</text>
+            <!-- Scale: 0.950 to 0.972, mapped to x=120..300 (180px range for 0.022 range = 8182px per unit) -->
+            <!-- Axis ticks at bottom -->
+            <line x1="120" y1="48" x2="120" y2="300" stroke="#d5dce6" stroke-width="0.6"/>
 
-            <!-- Step 2: + physchem 0.957 → 180 + 7*8.4 = 239 width=59 -->
-            <text x="175" y="92" text-anchor="end" font-size="9" fill="#5a6a7a">+ physchem</text>
-            <rect x="180" y="80" width="59" height="18" rx="3" fill="#2980B9"/>
-            <text x="243" y="93" font-size="9" fill="#1B4F72" font-weight="700">0.957</text>
-            <text x="250" y="93" font-size="8" fill="#27ae60" font-weight="600">&nbsp;+.005</text>
+            <!-- Step 1: ESM2 baseline 0.952 → width = (0.952-0.950)*8182 = 16 -->
+            <text x="108" y="68" text-anchor="end" font-size="10" fill="#5a6a7a">ESM2 baseline</text>
+            <rect x="120" y="56" width="16" height="20" rx="3" fill="#85c1e9"/>
+            <text x="340" y="70" text-anchor="middle" font-size="11" fill="#1B4F72" font-weight="700" font-family="JetBrains Mono, monospace">0.952</text>
+            <text x="430" y="70" text-anchor="middle" font-size="10" fill="#8c99a8">&mdash;</text>
 
-            <!-- Step 3: + pseudo-seq 0.962 → width=101 -->
-            <text x="175" y="132" text-anchor="end" font-size="9" fill="#5a6a7a">+ pseudo-seq</text>
-            <rect x="180" y="120" width="101" height="18" rx="3" fill="#2980B9"/>
-            <text x="285" y="133" font-size="9" fill="#1B4F72" font-weight="700">0.962</text>
-            <text x="292" y="133" font-size="8" fill="#27ae60" font-weight="600">&nbsp;+.005</text>
+            <!-- Step 2: + physchem 0.957 → width = 57 -->
+            <text x="108" y="104" text-anchor="end" font-size="10" fill="#5a6a7a">+ physchem</text>
+            <rect x="120" y="92" width="57" height="20" rx="3" fill="#5dade2"/>
+            <text x="340" y="106" text-anchor="middle" font-size="11" fill="#1B4F72" font-weight="700" font-family="JetBrains Mono, monospace">0.957</text>
+            <text x="430" y="106" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="700">+0.005</text>
 
-            <!-- Step 4: + cross-attn 0.964 → width=118 -->
-            <text x="175" y="172" text-anchor="end" font-size="9" fill="#5a6a7a">+ cross-attn</text>
-            <rect x="180" y="160" width="118" height="18" rx="3" fill="#1B4F72"/>
-            <text x="302" y="173" font-size="9" fill="#1B4F72" font-weight="700">0.964</text>
-            <text x="309" y="173" font-size="8" fill="#27ae60" font-weight="600">&nbsp;+.002</text>
+            <!-- Step 3: + pseudo-seq 0.962 → width = 98 -->
+            <text x="108" y="140" text-anchor="end" font-size="10" fill="#5a6a7a">+ pseudo-seq</text>
+            <rect x="120" y="128" width="98" height="20" rx="3" fill="#2e86c1"/>
+            <text x="340" y="142" text-anchor="middle" font-size="11" fill="#1B4F72" font-weight="700" font-family="JetBrains Mono, monospace">0.962</text>
+            <text x="430" y="142" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="700">+0.005</text>
 
-            <!-- Step 5: + eff-number 0.969 → width=160 -->
-            <text x="175" y="212" text-anchor="end" font-size="9" fill="#5a6a7a">+ eff-number wt</text>
-            <rect x="180" y="200" width="160" height="18" rx="3" fill="#1B4F72"/>
-            <text x="344" y="213" font-size="9" fill="#1B4F72" font-weight="700">0.969</text>
-            <text x="351" y="213" font-size="8" fill="#27ae60" font-weight="600">&nbsp;+.005</text>
+            <!-- Step 4: + cross-attn 0.964 → width = 115 -->
+            <text x="108" y="176" text-anchor="end" font-size="10" fill="#5a6a7a">+ cross-attn</text>
+            <rect x="120" y="164" width="115" height="20" rx="3" fill="#2874a6"/>
+            <text x="340" y="178" text-anchor="middle" font-size="11" fill="#1B4F72" font-weight="700" font-family="JetBrains Mono, monospace">0.964</text>
+            <text x="430" y="178" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="700">+0.002</text>
 
-            <!-- Step 6: + LDS 0.971 → width=176 -->
-            <text x="175" y="252" text-anchor="end" font-size="9" fill="#5a6a7a">+ LDS smoothing</text>
-            <rect x="180" y="240" width="176" height="18" rx="3" fill="#1B4F72"/>
-            <text x="360" y="253" font-size="9" fill="#1B4F72" font-weight="700">0.971</text>
-            <text x="367" y="253" font-size="8" fill="#27ae60" font-weight="600">&nbsp;+.002</text>
+            <!-- Step 5: + eff-number wt 0.969 → width = 156 -->
+            <text x="108" y="212" text-anchor="end" font-size="10" fill="#5a6a7a">+ eff-number wt</text>
+            <rect x="120" y="200" width="156" height="20" rx="3" fill="#1B4F72"/>
+            <text x="340" y="214" text-anchor="middle" font-size="11" fill="#1B4F72" font-weight="700" font-family="JetBrains Mono, monospace">0.969</text>
+            <text x="430" y="214" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="700">+0.005</text>
 
-            <!-- Step 7: + SupCon v2 0.970 → width=168, highlighted -->
-            <text x="175" y="292" text-anchor="end" font-size="9" font-weight="700" fill="#d35400">+ SupCon v2</text>
-            <rect x="180" y="280" width="168" height="18" rx="3" fill="#d35400"/>
-            <text x="352" y="293" font-size="9" fill="#d35400" font-weight="700">0.970</text>
-            <text x="359" y="293" font-size="8" fill="#c0392b" font-weight="600">&nbsp;&minus;.001</text>
+            <!-- Step 6: + LDS 0.971 → width = 172 -->
+            <text x="108" y="248" text-anchor="end" font-size="10" fill="#5a6a7a">+ LDS smoothing</text>
+            <rect x="120" y="236" width="172" height="20" rx="3" fill="#1B4F72"/>
+            <text x="340" y="250" text-anchor="middle" font-size="11" fill="#1B4F72" font-weight="700" font-family="JetBrains Mono, monospace">0.971</text>
+            <text x="430" y="250" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="700">+0.002</text>
 
-            <!-- Annotation: SupCon rare-allele boost -->
-            <text x="210" y="345" text-anchor="middle" font-size="9" fill="#d35400" font-style="italic">SupCon v2: aggregate &minus;0.001 but rare-allele AUPR +0.022</text>
-            <text x="210" y="358" text-anchor="middle" font-size="8.5" fill="#5a6a7a">7 withdrawn components documented as negative results</text>
+            <!-- Step 7: + SupCon v2 0.970 → width = 164, highlighted -->
+            <text x="108" y="284" text-anchor="end" font-size="10" font-weight="700" fill="#d35400">+ SupCon v2</text>
+            <rect x="120" y="272" width="164" height="20" rx="3" fill="#d35400"/>
+            <text x="340" y="286" text-anchor="middle" font-size="11" fill="#d35400" font-weight="700" font-family="JetBrains Mono, monospace">0.970</text>
+            <text x="430" y="286" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">&#8722;0.001</text>
+
+            <line x1="15" y1="302" x2="465" y2="302" stroke="#d5dce6" stroke-width="0.8"/>
+            <!-- Annotations -->
+            <text x="240" y="325" text-anchor="middle" font-size="9.5" fill="#d35400" font-style="italic">SupCon v2: aggregate &#8722;0.001 but rare-allele AUPR +0.022</text>
+            <text x="240" y="345" text-anchor="middle" font-size="9" fill="#5a6a7a">Total gain: +0.018 over ESM2 baseline &middot; 7 withdrawn components as negatives</text>
           </svg>
         </div>
         <p class="cite" style="margin-top: 4px;">Source: <code>ablation_ladder.json</code> &middot; TransPHLA EL, full 161,652-row benchmark.</p>
@@ -789,19 +796,38 @@
     <div class="card card-accent" style="margin-bottom: 20px; padding: 14px 24px;">
       <p style="font-size: 17px; margin: 0;">A signed &Delta; (DeepNeo &minus; baseline) is reported as a <b>real</b> win only if <b style="color: var(--accent);">all three</b> conditions hold:</p>
     </div>
-    <ol class="numbered">
-      <li><span class="num">1</span><span class="body"><b>Paired DeLong</b> <i>p</i> &lt; 0.05 on the same rows.</span></li>
-      <li><span class="num">2</span><span class="body"><b>Per-allele Wilcoxon signed-rank</b> matches the pooled &Delta; sign, with <b>Holm-adjusted</b> <i>p</i> &lt; 0.05 across the family of four TransPHLA comparisons.</span></li>
-      <li><span class="num">3</span><span class="body"><b>Allele-clustered bootstrap 95% CI</b> on &Delta; excludes zero (B = 1,000; <i>n</i> = 118,143 rows).</span></li>
-    </ol>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
-      <div class="card card-navy">
-        <h3>Preceded by exact-pair decontamination</h3>
-        <p>Every evaluation row also in NetMHCpan-4.1&rsquo;s training-pair union is <b>removed before scoring</b>. On TransPHLA: 43,509 of 161,652 rows removed (26.9%) &rarr; <b>118,143 clean rows</b>.</p>
+    <div class="two-col fill" style="margin-top: 4px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <ol class="numbered">
+          <li><span class="num">1</span><span class="body"><b>Paired DeLong</b> <i>p</i> &lt; 0.05 on the same rows.<br><span style="font-size: 13px; color: var(--muted);">Tests whether pooled AUROC difference is non-zero.</span></span></li>
+          <li><span class="num">2</span><span class="body"><b>Per-allele Wilcoxon signed-rank</b> matches the pooled &Delta; sign, with <b>Holm-adjusted</b> <i>p</i> &lt; 0.05 across the family of four TransPHLA comparisons.<br><span style="font-size: 13px; color: var(--muted);">Guards against cherry-picking a single allele group.</span></span></li>
+          <li><span class="num">3</span><span class="body"><b>Allele-clustered bootstrap 95% CI</b> on &Delta; excludes zero (B = 1,000; <i>n</i> = 118,143 rows).<br><span style="font-size: 13px; color: var(--muted);">Accounts for allele-level non-independence in the sample.</span></span></li>
+        </ol>
+        <div class="card card-navy">
+          <h3>Preceded by exact-pair decontamination</h3>
+          <p>Every evaluation row also in NetMHCpan-4.1&rsquo;s training-pair union is <b>removed before scoring</b>. On TransPHLA: 43,509 of 161,652 rows removed (26.9%) &rarr; <b>118,143 clean rows</b>.</p>
+        </div>
       </div>
-      <div class="card" style="background: var(--bg2);">
-        <h3>CS analogy</h3>
-        <p style="font-size: 15px;">Think of this as a <b>three-gate CI pipeline</b> for model comparisons: gate 1 (DeLong) catches point-estimate noise, gate 2 (Holm) catches allele-level multiplicity, gate 3 (bootstrap CI) catches sample-dependence. A &ldquo;win&rdquo; passes all three gates or gets rejected.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="card" style="background: var(--bg2);">
+          <h3>CS analogy: three-gate CI pipeline</h3>
+          <p style="font-size: 15px;">Gate 1 (DeLong) catches point-estimate noise. Gate 2 (Holm) catches allele-level multiplicity. Gate 3 (bootstrap CI) catches sample-dependence. A &ldquo;win&rdquo; passes all three gates or gets rejected.</p>
+        </div>
+        <div class="card card-green">
+          <h3 style="color: var(--green);">Outcome verdicts</h3>
+          <table style="font-size: 13px; margin: 4px 0 0;">
+            <thead><tr><th style="padding: 5px 10px;">Gates passed</th><th style="padding: 5px 10px;">Verdict</th></tr></thead>
+            <tbody>
+              <tr><td style="padding: 4px 10px;">All 3 pass, &Delta; &gt; 0</td><td style="padding: 4px 10px;"><span class="verdict-badge verdict-tied" style="background:#edf7ef; color:#1e7e34; border-color:#1e7e34;">WIN</span></td></tr>
+              <tr><td style="padding: 4px 10px;">All 3 pass, &Delta; &lt; 0</td><td style="padding: 4px 10px;"><span class="verdict-badge verdict-loss">LOSS</span></td></tr>
+              <tr><td style="padding: 4px 10px;">Any gate fails</td><td style="padding: 4px 10px;"><span class="verdict-badge verdict-tied">TIED</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card card-accent">
+          <h3 style="color: var(--accent);">Why this matters</h3>
+          <p style="font-size: 15px;">Without multiplicity control, ~5 of 100 alleles show &ldquo;wins&rdquo; by chance at &alpha;=0.05. Our rule eliminates cherry-picking: <b>every claim is Holm-adjusted across the full family</b>.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -913,16 +939,31 @@
     <div class="section-tag">8 / Honest reporting</div>
     <h2>Where NetMHCpan still wins</h2>
     <div class="two-col two-col-wide-l fill">
-      <div>
-        <div class="card card-red" style="margin-bottom: 14px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="card card-red">
           <h3 style="color: var(--red);">BA-head vs BA-head</h3>
           <p style="font-size: 17px; margin-bottom: 8px;">&Delta; AUROC = <b style="color: var(--red);">&minus;0.0137</b> &mdash; NMP higher</p>
-          <p style="font-size: 15px;">Holm-adjusted <i>p</i> = <b>1.7 &times; 10&supmin;&sup3;</b> &middot; Bootstrap CI excludes zero</p>
+          <p style="font-size: 15px;">Holm-adjusted <i>p</i> = <b>1.7 &times; 10<sup>&minus;3</sup></b> &middot; Bootstrap CI excludes zero</p>
           <p style="font-size: 14px; color: var(--muted); margin-top: 6px;">All three conditions met &rarr; <span style="color:var(--red); font-weight: 700;">Holm-robust NMP win</span></p>
         </div>
         <div class="card card-accent">
           <h3 style="color: var(--accent);">Different protocols &rarr; different verdicts</h3>
           <p>Without Holm adjustment, the fusion&rsquo;s pooled edge (+0.0073) can be reported as a win. Under the three-condition rule it is <b>not Holm-robust</b> (Holm <i>p</i> = 0.151).</p>
+        </div>
+        <div class="card card-navy">
+          <h3>Why report this?</h3>
+          <p style="font-size: 15px;">Most papers in this field report only wins. We apply the same rule uniformly: <b>NMP&rsquo;s BA-head advantage is real</b> and survives all three gates. The fusion&rsquo;s EL-driven recovery is what closes the deployed gap.</p>
+        </div>
+        <div class="card" style="background: var(--bg2);">
+          <h3>Verdict summary (decontaminated TransPHLA)</h3>
+          <table style="font-size: 13px; margin: 4px 0 0;">
+            <thead><tr><th style="padding: 5px 10px;">Comparison</th><th style="padding: 5px 10px;">Verdict</th></tr></thead>
+            <tbody>
+              <tr><td style="padding: 4px 10px;">Fusion vs Fusion</td><td style="padding: 4px 10px;"><span class="verdict-badge verdict-tied">TIED</span></td></tr>
+              <tr><td style="padding: 4px 10px;">BA vs BA</td><td style="padding: 4px 10px;"><span class="verdict-badge verdict-loss">NMP wins</span></td></tr>
+              <tr><td style="padding: 4px 10px;">EL vs EL</td><td style="padding: 4px 10px;"><span class="verdict-badge verdict-tied">Holm-tied</span></td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center; min-height: 0;">
@@ -976,23 +1017,37 @@
   <section class="slide" id="s11">
     <div class="section-tag">10 / Takeaway</div>
     <h2>What this paper actually claims</h2>
-    <div class="three-col" style="margin-bottom: 16px;">
+    <div class="three-col" style="margin-bottom: 16px; flex: 0;">
       <div class="card card-navy">
         <h3>Model</h3>
         <p>A compact <b>35M-parameter PLM</b> for peptide&ndash;MHC class I ranking, trained on the official NetMHCpan-4.1 folds.</p>
+        <p style="font-size: 14px; color: var(--muted); margin-top: 8px;">ESM2 trunk + cross-attention &middot; 5-fold ensemble &middot; SupCon refinement</p>
       </div>
       <div class="card card-accent">
         <h3 style="color: var(--accent);">Protocol</h3>
         <p>A <b>leakage-aware, multiplicity-controlled</b> evaluation contract, applied verbatim in Results and linked to the methodology literature.</p>
+        <p style="font-size: 14px; color: var(--muted); margin-top: 8px;">DeLong + Holm-Wilcoxon + Bootstrap CI &middot; pair-level decontamination</p>
       </div>
       <div class="card card-green">
         <h3 style="color: var(--green);">Negatives</h3>
         <p>Two evaluation-failure case studies on <b>our own data</b>: a successor-corpus holdout overlap and a transductive-overfitting rescorer collapse.</p>
+        <p style="font-size: 14px; color: var(--muted); margin-top: 8px;">7 withdrawn components &middot; documented as negatives</p>
       </div>
     </div>
-    <div class="card" style="background: var(--bg2);">
-      <h3>Scope restrictions</h3>
-      <p>Class I MHC &middot; canonical 8&ndash;11-mer peptides &middot; no clinical, Class II, PTM, or TCR-specificity claim.</p>
+    <div class="two-col" style="gap: 16px; margin-bottom: 16px;">
+      <div class="card" style="background: var(--bg2);">
+        <h3>Scope restrictions</h3>
+        <p>Class I MHC &middot; canonical 8&ndash;11-mer peptides &middot; no clinical, Class II, PTM, or TCR-specificity claim.</p>
+      </div>
+      <div class="card" style="background: var(--bg2);">
+        <h3>Key numbers at a glance</h3>
+        <div class="kv"><div class="k">TransPHLA</div><div class="v">Fusion AUROC 0.9573 vs NMP 0.9575 &rarr; <b>TIED</b></div></div>
+        <div class="kv"><div class="k">IEDB EL</div><div class="v">Mean rank <b>1.80</b> / 14 predictors (rank-1 in 24/46 weeks)</div></div>
+        <div class="kv"><div class="k">Rescorer</div><div class="v">Transductive 0.862 &rarr; inductive <b>0.442</b> (withdrawn)</div></div>
+      </div>
+    </div>
+    <div class="card card-navy" style="text-align: center; padding: 14px 24px;">
+      <p style="font-size: 17px; margin: 0;"><b>Contribution</b>: the evaluation protocol — not the model — is the primary offering. The model is a proof of concept that it can survive the protocol.</p>
     </div>
   </section>
 
@@ -1017,11 +1072,29 @@
         </p>
       </div>
     </div>
+    <div class="two-col" style="margin-top: 16px;">
+      <div class="card" style="background: var(--bg2);">
+        <h3>Supplementary materials</h3>
+        <p style="font-size: 14px; line-height: 1.7;">
+          <code>ablation_ladder.json</code> &mdash; 7-step cumulative ablation<br>
+          <code>inductive_reranker_result.json</code> &mdash; transductive failure data<br>
+          <code>weekly_ranking_*.json</code> &mdash; IEDB 46-week rankings
+        </p>
+      </div>
+      <div class="card" style="background: var(--bg2);">
+        <h3>Reproducibility</h3>
+        <p style="font-size: 14px; line-height: 1.7;">
+          All figures regenerable from SI JSON ledgers<br>
+          Contamination ledger published for independent audit<br>
+          Holm / bootstrap reproducible from raw per-allele AUROCs
+        </p>
+      </div>
+    </div>
     <div class="divider"></div>
-    <div style="text-align: center;">
-      <p style="font-size: 20px; font-weight: 600; color: var(--fg);">Kevin Wang &middot; Parma Nand</p>
-      <p class="meta" style="margin-top: 4px;">Auckland University of Technology</p>
-      <p style="margin-top: 16px; font-size: 18px; color: var(--navy); font-weight: 600;">Thanks for watching.</p>
+    <div style="text-align: center; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <p style="font-size: 24px; font-weight: 600; color: var(--fg); margin-bottom: 6px;">Kevin Wang &middot; Parma Nand</p>
+      <p class="meta" style="margin-top: 4px;">School of Design and Creative Technologies &middot; Auckland University of Technology</p>
+      <p style="margin-top: 18px; font-size: 20px; color: var(--navy); font-weight: 600;">Thanks for watching.</p>
     </div>
   </section>
 
