@@ -17,6 +17,8 @@ This folder is a self-contained slide pack: HTML deck, narration script, B-roll 
 | `NARRATION_SCRIPT.md` | 525-word narration script with timing marks (0:00 – 3:45) in 7 blocks |
 | `STORYBOARD.md` | **Scene-by-scene production guide**: maps narration → slides → figures → B-roll → transitions for the video editor |
 | `YOUTUBE_METADATA.md` | **Ready-to-paste YouTube upload fields**: title, description with timestamps, tags, category, thumbnail and caption instructions |
+| `PROMPT_FOR_CONTENT_AI.md` | Self-contained prompt for content-generation AI — encodes paper ground truth, scope restrictions, tone rules, audience. Expected output: 11 markdown blocks (slides 2–12) |
+| `AGENT_INSTRUCTIONS.md` | Cloud agent workflow: 5-step process (generate → integrate → sanity-check → update companions → commit) with hard constraints |
 | `OPENART_PROMPTS.md` | 3 optional B-roll clip prompts for OpenArt Video (opening, mid, outro) |
 | `captions.srt` | 26-entry SRT caption file for YouTube auto-upload |
 | `thumbnail_option1.svg` | Thumbnail A — headline-claim style |
@@ -88,8 +90,11 @@ Full claim-to-evidence mapping: `../evidence/CLAIM_EVIDENCE_TABLE.md` · 515/515
 
 ## For an iterating agent
 
-If you are a cloud agent working in this folder:
+**Start here → [`AGENT_INSTRUCTIONS.md`](AGENT_INSTRUCTIONS.md)** — the full 5-step workflow with hard constraints.
 
+To regenerate slide content, use [`PROMPT_FOR_CONTENT_AI.md`](PROMPT_FOR_CONTENT_AI.md) as the content-generation prompt. It is self-contained and encodes all paper ground truth, scope restrictions, and tone rules.
+
+Quick reference:
 - The deck is **one self-contained HTML file**. Edit `slides.html` directly.
 - Images in `figures/` are referenced relatively; preserve the filenames or update the `<img src>` paths.
 - Narration script and captions are **not auto-linked** — if you change narration or slide ordering, update `NARRATION_SCRIPT.md`, `captions.srt`, and the slide-to-narration table above.
