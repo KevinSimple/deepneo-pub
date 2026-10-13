@@ -1,3 +1,19 @@
+<!--
+  NAVIGATION NOTE — if you arrived here from the MDPI Information cover letter
+  or submission package, the content you want is one directory down. Keep this
+  banner at the top until the manuscript receives a decision.
+-->
+> **For the MDPI *Information* submission (Stage 1 model, NetMHCpan-**4.1** comparator, submitted Oct 2026):**
+> see [`/mdpi_submission/`](./mdpi_submission/) — compliance pack, highlights, graphical abstract,
+> cover letter, and the evidence JSON ledgers that every numeric claim in the manuscript traces to.
+>
+> **The content below this notice is paper-2 (v4.2)** — an independent follow-up benchmark + model
+> card. The two lines use different training corpora (NetMHCpan-**4.2** vs **4.1**) and different
+> held-out test sets; their numbers are not comparable and never appear together in the submitted
+> manuscript.
+
+---
+
 # DeepNeo-CL v4.2 — public benchmark & model card
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23073342.svg)](https://doi.org/10.5281/zenodo.23073342)
