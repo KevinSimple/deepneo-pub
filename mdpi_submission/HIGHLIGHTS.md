@@ -7,7 +7,7 @@ Five bullet points, each ≤ 85 characters (common pre-submission highlight form
 ---
 
 - A compact 35 M-param PLM (DeepNeo-CL) for peptide–MHC class I ranking.
-- Leakage-aware, multiplicity-controlled evaluation contract (DeLong + Holm + bootstrap).
+- Leakage-aware evaluation contract: DeLong + per-allele Holm + bootstrap CI.
 - Matches NetMHCpan-4.1 at the fused score on decontaminated TransPHLA (n = 118,143).
 - Mid-field on IEDB weekly BA (rank 6.85 / 14); leads a three-predictor EL panel.
 - Transductive case study: in-sample AUROC 0.862 collapses to 0.442 held-out.
@@ -18,10 +18,10 @@ Five bullet points, each ≤ 85 characters (common pre-submission highlight form
 
 | # | Chars | Highlight |
 |---|---|---|
-| 1 | 63 | "A compact 35 M-param PLM (DeepNeo-CL) for peptide–MHC class I ranking." |
-| 2 | 78 | "Leakage-aware, multiplicity-controlled evaluation contract (DeLong + Holm + bootstrap)." |
+| 1 | 70 | "A compact 35 M-param PLM (DeepNeo-CL) for peptide–MHC class I ranking." |
+| 2 | 75 | "Leakage-aware evaluation contract: DeLong + per-allele Holm + bootstrap CI." |
 | 3 | 83 | "Matches NetMHCpan-4.1 at the fused score on decontaminated TransPHLA (n = 118,143)." |
-| 4 | 78 | "Mid-field on IEDB weekly BA (rank 6.85 / 14); leads a three-predictor EL panel." |
-| 5 | 76 | "Transductive case study: in-sample AUROC 0.862 collapses to 0.442 held-out." |
+| 4 | 79 | "Mid-field on IEDB weekly BA (rank 6.85 / 14); leads a three-predictor EL panel." |
+| 5 | 75 | "Transductive case study: in-sample AUROC 0.862 collapses to 0.442 held-out." |
 
-All five under 85 characters. No frozen number violated; no tone-rule word.
+All five verified under 85 characters (re-counted 2026-10-13). No frozen number violated; no tone-rule word. Bullet 2 revised 2026-10-13 to add "per-allele" (multiplicity signal) and "CI" (statistical specificity) while trimming to 75 chars.
