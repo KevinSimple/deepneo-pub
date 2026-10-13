@@ -55,15 +55,33 @@ Each prompt begins with a **filename** header. Save the FigureLab download under
 
 ---
 
-## `fl05_multiplicity_holm.png` — Per-allele multiplicity and Holm adjustment
+## `fl05_multiplicity_holm.png` — Holm family-wise correction across the 4 Table 2 comparisons
 
 **Where it's used**: Deck slide 7 ("Problem 2: multiple testing"); Trailer beat 0:48–1:00.
 
+**IMPORTANT (corrected 2026-10-14)**: The paper's Holm family is **4** (the four TransPHLA Table 2 comparisons), **not 112 alleles**. The 112-ish alleles are the sample for the per-allele Wilcoxon test *within* each row; that test rolls up to one p-value per row, and Holm acts on the four resulting p-values. An earlier version of this prompt incorrectly specified Holm across 112 alleles and produced an image with p-values > 1.0 (mathematically impossible — Holm's formula clips at 1).
+
 **Prompt**:
 
-> A horizontal row of 112 small rectangles across the full width of a 16:9 white canvas, each rectangle representing one HLA allele (label the first and last few with real names: "HLA-A*02:01", "HLA-A*01:01", "…", "HLA-B*58:01"). Each rectangle shows a tiny internal bar labelled with a p-value in small text; those below α = 0.05 are coloured amber ("raw p < 0.05") and those above are grey. Count: ~20 of 112 rectangles are amber. Below this row, a second horizontal row of the same 112 rectangles but after **Holm adjustment** — most of the previously-amber rectangles are now grey (p × m no longer survives), only ~3 remain amber. A vertical arrow between the two rows labelled "Holm family-wise correction (m = 112 alleles)". Minimalist editorial style, navy outlines, clean typography. No stock graphs.
+> A 16:9 white editorial-illustration canvas showing exactly **four** horizontal comparison bars arranged in two stacked rows (not 112). The four bars represent the paper's four TransPHLA Table 2 comparisons:
+>
+> ① "v4.1 fus vs fus" · ② "v4.1 BA vs NMP BA" · ③ "v4.1 EL vs NMP EL" · ④ "v4.1 deployed fus vs NMP BA"
+>
+> **Top row header**: "Per-allele Wilcoxon p-values (raw)" — bars labelled with:
+> ① p = 0.253 (grey) · ② p = 0.00042 (amber) · ③ p = 0.386 (grey) · ④ p = 0.050 (amber, borderline)
+>
+> **Between the rows**: a downward sage/navy arrow labelled "Holm family-wise correction (family size m = 4 comparisons)".
+>
+> **Bottom row header**: "Holm-adjusted p-values" — bars labelled with:
+> ① p = 0.505 (grey) · ② p = 0.0017 (amber) · ③ p = 0.505 (grey) · ④ p = 0.151 (grey)
+>
+> Takeaway caption at the bottom in small text: "Only the NetMHCpan BA-head advantage (Δ = −0.0137) survives Holm correction across the family of 4 TransPHLA comparisons."
+>
+> **CRITICAL math constraint**: Holm's formula is `min(p × k, 1)`. Every Holm-adjusted p-value MUST be ≤ 1.000. Never show p > 1. All four Holm values above are already correct and bounded.
+>
+> Clean editorial scientific-illustration style, navy outlines, amber fill for significant bars, grey fill for non-significant, pure white background. No stock graphs, no Excel UI, no bell curves. Do NOT show per-allele breakdown (do not show 112 or 84 alleles — that structure rolls up into each row's Wilcoxon p via rank test, which happens upstream and is not depicted here).
 
-**Negative tokens**: Excel UI, generic statistics stock images, bell curves.
+**Negative tokens**: Excel UI, generic statistics stock images, bell curves, 112 bars, per-allele chips, p-values greater than 1.
 
 ---
 

@@ -75,13 +75,13 @@ Stage ④ highlighted in amber with a subtle "you are here" caret.
 
 ---
 
-## 1:30 – 1:45 · Problem 2 — multiplicity across 112 alleles
+## 1:30 – 1:45 · Problem 2 — multiplicity across the comparison family
 
 **Visual**: 🧬 `fl05_multiplicity_holm.png`.
 
-**Narration** (~45 words):
+**Narration** (~55 words):
 
-> The second catch. The benchmark covers 112 HLA alleles. Report one pooled "win" without correcting for the 112 comparisons and random noise alone will manufacture about six wins at α = 0.05. We predeclare Holm-adjusted per-allele Wilcoxon tests, with allele-clustered bootstrap confidence intervals.
+> The second catch. The benchmark gives us four head-to-head tests between DeepNeo-CL and NetMHCpan-4.1 — BA head, EL head, deployed fusion, and a control. If you report whichever one looks like a win without correcting across the family of four, random noise alone can manufacture a false positive. We predeclare per-allele Wilcoxon tests, Holm-adjusted across the four, with allele-clustered bootstrap confidence intervals.
 
 ---
 

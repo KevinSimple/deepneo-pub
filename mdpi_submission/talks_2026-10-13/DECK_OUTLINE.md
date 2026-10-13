@@ -80,14 +80,14 @@
 | Speaker note | *"Here's the first trap. Public benchmarks accumulate over years. When a new model trains on all of them and is then evaluated on 'the next' public benchmark, the overlap is enormous. Our exact-pair decontamination removes 26.9% of the holdout. We only report numbers on the clean subset."* |
 | Timing | 3:30 – 4:30 |
 
-### Slide 7 · Problem 2 — multiplicity across 112 alleles
+### Slide 7 · Problem 2 — multiplicity across the comparison family
 
 | Field | Content |
 |---|---|
-| Headline | **One win in 112 comparisons is not a win** |
+| Headline | **Four head-to-head tests → Holm across the family of 4** |
 | Visual | 🧬 `fl05_multiplicity_holm.png` |
-| Bullet | · Per-allele Wilcoxon tests (m = 112)<br>· Holm family-wise correction<br>· Allele-clustered bootstrap CI on paired Δ |
-| Speaker note | *"The second trap. The benchmark has 112 alleles. If you report that your model beats the baseline on 20 of them without correcting for multiplicity, random noise alone generates about 6 'wins' at α = 0.05. We predeclare a three-condition rule: DeLong plus Holm-adjusted per-allele Wilcoxon plus a bootstrap CI that excludes zero."* |
+| Bullet | · Per-allele Wilcoxon within each row (84 alleles → 1 p-value)<br>· Holm family-wise correction across the **4 Table 2 comparisons** (m = 4)<br>· Allele-clustered bootstrap CI on paired Δ |
+| Speaker note | *"The second trap. Our Table 2 reports four comparisons: BA head, EL head, deployed fusion, and a control. Within each row, we run a per-allele Wilcoxon signed-rank test over 84 alleles to get one p-value per row. Those four p-values then get Holm-corrected. Why four and not 112? Because the comparisons are the inferential family — the 112 alleles are the sample for the within-row Wilcoxon. Under this contract only the NetMHCpan BA-head Δ = −0.0137 (Holm p = 0.0017) survives; the pooled fusion win (raw p = 0.05) drops to Holm p = 0.15 and does not."* |
 | Timing | 4:30 – 5:30 |
 
 ### Slide 8 · The three-condition rule

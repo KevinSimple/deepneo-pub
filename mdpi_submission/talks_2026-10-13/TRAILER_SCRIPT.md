@@ -50,11 +50,11 @@ Target: short promo for the MDPI *Information* submission. Lives on YouTube Shor
 
 ## 0:48 – 1:00 · Problem 2 — multiplicity
 
-**Visual**: `fl05_multiplicity_holm.png` (112 alleles pre/post Holm).
+**Visual**: `fl05_multiplicity_holm.png` (4 TransPHLA comparisons pre/post Holm).
 
 **Narration**:
 
-> There's a second trap. The benchmark covers 112 HLA alleles. If you report one "win" without correcting for the 112 comparisons, random noise can look like a win. We predeclared **Holm-adjusted per-allele Wilcoxon tests**, with allele-clustered bootstrap confidence intervals.
+> There's a second trap. On this benchmark we run four head-to-head tests between DeepNeo-CL and NetMHCpan-4.1 — BA head, EL head, deployed fusion, and a secondary control. If you report whichever one looks like a win without correcting across the family, you've cherry-picked. We predeclare **per-allele Wilcoxon tests, Holm-adjusted across all four comparisons**, with allele-clustered bootstrap confidence intervals.
 
 ---
 
