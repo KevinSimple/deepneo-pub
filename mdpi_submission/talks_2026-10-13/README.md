@@ -7,7 +7,8 @@ Conference-style deck (~12 min) + 60–90 s short trailer, sharing a single fami
 | File | Purpose | Status |
 |---|---|---|
 | `FIGURELAB_PROMPTS.md` | 6 publication-quality biology-illustration briefs for figurelab.ai. Each is paste-ready; each is cross-referenced to the deck slide and trailer beat that consumes it | ✅ ready |
-| `TRAILER_SCRIPT.md` | 90-second narration script with timing marks. Written against the 6 FigureLab illustrations as background plates | ✅ ready |
+| `TRAILER_SCRIPT.md` | 90-second narration script with timing marks. Written against the 6 FigureLab illustrations as background plates — the Shorts / Twitter cut | ✅ ready |
+| `TRAILER_SCRIPT_EXTENDED.md` | 2:30 explainer cut — same 6 FigureLab plates PLUS real paper architecture figure PLUS 3 static text cards (pipeline positioning · honest-tie result · end card). YouTube main-feed, LinkedIn, pub-repo embed | ✅ ready |
 | `DECK_OUTLINE.md` | 15-slide outline (title + 14) with speaker notes, timings, and figure/illustration cross-refs for a 10–12 min conference talk | ✅ ready |
 | `figures_input/` | Drop FigureLab outputs here as `fl01_mhc_presentation.png`, `fl02_normal_vs_cancer.png`, … (filenames fixed in the prompts) | 📂 awaiting outputs |
 | `figures_paper/` | Symlinked/copied real paper figures (ROC/PR, decontam ledger, head-to-head bars) that round out the deck | 📂 to populate |
