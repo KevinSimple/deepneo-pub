@@ -62,14 +62,14 @@
   }
 
   h1 { font-size: 68px; font-weight: 800; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 20px; }
-  h1.title-big { font-size: 86px; }
-  h2 { font-size: 40px; font-weight: 700; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 24px; color: var(--fg); }
+  h1.title-big { font-size: 80px; }
+  h2 { font-size: 38px; font-weight: 700; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 24px; color: var(--fg); }
   h3 { font-size: 22px; font-weight: 600; letter-spacing: 0; margin-bottom: 8px; color: var(--blue); }
   p  { font-size: 20px; line-height: 1.5; color: var(--fg); max-width: 1300px; }
   .lead { font-size: 26px; color: var(--muted); line-height: 1.4; margin-bottom: 24px; }
   .caption { font-size: 14px; color: var(--muted); font-style: italic; margin-top: 10px; }
 
-  .two-col { display: grid; grid-template-columns: 1fr 1.6fr; gap: 36px; align-items: start; flex: 1; min-height: 0; }
+  .two-col { display: grid; grid-template-columns: 1fr 1.5fr; gap: 36px; align-items: start; flex: 1; min-height: 0; }
   .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; align-items: start; flex: 1; }
   .one-col-fig { display: flex; flex-direction: column; flex: 1; min-height: 0; align-items: center; justify-content: center; }
 
@@ -88,12 +88,13 @@
   }
   .figure-card img { width: 100%; height: auto; max-height: 68vh; object-fit: contain; }
   .figure-card.compact img { max-height: 55vh; }
+  .figure-card.tall img { max-height: 72vh; }
 
   .num-highlight {
-    font-size: 72px; font-weight: 800; color: var(--accent); letter-spacing: -2px; font-variant-numeric: tabular-nums;
+    font-size: 68px; font-weight: 800; color: var(--accent); letter-spacing: -2px; font-variant-numeric: tabular-nums;
     line-height: 1;
   }
-  .num-sub { font-size: 20px; color: var(--muted); margin-top: 8px; }
+  .num-sub { font-size: 18px; color: var(--muted); margin-top: 8px; max-width: 320px; line-height: 1.3; }
 
   .pill-card {
     background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px;
@@ -108,13 +109,11 @@
 
   .cite { font-size: 13px; color: var(--dim); margin-top: 14px; font-style: italic; }
 
-  /* title slide specific */
   .title-slide { align-items: flex-start; justify-content: center; }
   .title-slide .authors { font-size: 24px; color: var(--muted); margin-top: 28px; }
   .title-slide .venue { font-size: 18px; color: var(--dim); margin-top: 12px; letter-spacing: 1px; text-transform: uppercase; }
-  .title-slide .subtitle { font-size: 32px; color: var(--muted); font-weight: 500; max-width: 1400px; margin-top: 20px; line-height: 1.3; }
+  .title-slide .subtitle { font-size: 30px; color: var(--muted); font-weight: 500; max-width: 1400px; margin-top: 20px; line-height: 1.3; }
 
-  /* end slide */
   .end-slide { align-items: center; justify-content: center; text-align: center; }
   .end-slide h1 { font-size: 120px; margin-bottom: 40px; color: var(--accent); }
   .end-slide .end-links { font-size: 20px; color: var(--muted); margin-top: 30px; font-family: 'Fira Code', monospace; line-height: 2; }
@@ -126,7 +125,7 @@
 
 <div class="deck" id="deck">
 
-  <!-- Slide 1 — Title -->
+  <!-- 1 — Title -->
   <section class="slide title-slide" data-section="">
     <div style="margin-top: 60px;">
       <div style="color: var(--accent); font-size: 15px; letter-spacing: 4px; text-transform: uppercase; font-weight: 700; margin-bottom: 24px;">DeepNeo-CL · MDPI Information · Oct 2026</div>
@@ -138,7 +137,7 @@
     </div>
   </section>
 
-  <!-- Slide 2 — The biology in 60 seconds -->
+  <!-- 2 — Biology -->
   <section class="slide" data-section="1 · Biology for CS">
     <h2>MHC class I presents 8–11-residue peptides to CD8+ T-cells</h2>
     <div class="two-col">
@@ -155,7 +154,7 @@
     </div>
   </section>
 
-  <!-- Slide 3 — Why we care computationally -->
+  <!-- 3 — Healthy vs tumour -->
   <section class="slide" data-section="1 · Biology for CS">
     <h2>Why we care computationally — healthy vs tumour</h2>
     <div class="two-col">
@@ -171,7 +170,7 @@
     </div>
   </section>
 
-  <!-- Slide 4 — The task, formally -->
+  <!-- 4 — The task -->
   <section class="slide" data-section="1 · Biology for CS">
     <h2>A ranking problem over 10²–10⁴ candidate peptides</h2>
     <div class="two-col">
@@ -187,27 +186,27 @@
     </div>
   </section>
 
-  <!-- Slide 5 — Who the comparator is -->
+  <!-- 5 — NetMHCpan reference -->
   <section class="slide" data-section="2 · Evaluation traps">
     <h2>NetMHCpan-4.1 — the industrial reference</h2>
     <div class="three-col">
       <div class="pill-card blue">
         <h3>Primary</h3>
-        <p><strong style="color: var(--fg);">NetMHCpan-4.1</strong> — the field's incumbent, trained on massive public BA + EL corpus</p>
+        <p><strong style="color: var(--fg);">NetMHCpan-4.1</strong> BA/EL — field incumbent, trained on massive public BA + EL corpus</p>
       </div>
       <div class="pill-card blue">
         <h3>Secondary</h3>
-        <p><strong style="color: var(--fg);">MHCflurry-2.0</strong> on IEDB · <strong style="color: var(--fg);">TransPHLA</strong> benchmark</p>
+        <p>IEDB auto_bench + 2014–2026 pool; platform scores on <strong>identical rows</strong></p>
       </div>
       <div class="pill-card accent">
         <h3>Fair comparison</h3>
-        <p>DeepNeo-CL ships on the <strong>exact same NetMHCpan-4.1 CV folds</strong> — matched training exposure, same fold-level test rows</p>
+        <p>DeepNeo-CL trained on the <strong>official NetMHCpan-4.1 five-fold BA + EL partitions</strong> (folds c000–c004), partitioned at the (peptide, HLA) <strong>pair level</strong> — matched training exposure</p>
       </div>
     </div>
     <p class="caption" style="margin-top: 40px;">Any gap we report cannot be blamed on "you had more data".</p>
   </section>
 
-  <!-- Slide 6 — Problem 1: leakage -->
+  <!-- 6 — Problem 1 leakage -->
   <section class="slide" data-section="2 · Evaluation traps">
     <h2>Problem 1 — 26.9% of a popular holdout was in the training set</h2>
     <div class="two-col">
@@ -218,13 +217,13 @@
           <li>Clean subset reported throughout: <strong>n = 118,143</strong></li>
           <li>Without this cut, every PLM looks state-of-the-art</li>
         </ul>
-        <p class="cite">SI: transphla_decontam_vs_42.json</p>
+        <p class="cite">SI: transphla_decontam_vs_42.json  ·  removal rate verified against the committed pair-level ledger</p>
       </div>
       <div class="figure-card"><img src="figures_input/fl04_leakage_venn.png" alt="Train/test leakage Venn"></div>
     </div>
   </section>
 
-  <!-- Slide 7 — Problem 2: multiplicity -->
+  <!-- 7 — Problem 2 Holm -->
   <section class="slide" data-section="2 · Evaluation traps">
     <h2>Problem 2 — four head-to-head tests → Holm across the family of 4</h2>
     <div class="two-col">
@@ -235,13 +234,14 @@
           <li>Allele-clustered bootstrap CI on paired Δ</li>
         </ul>
         <p class="caption">Only the <strong style="color: var(--accent);">NetMHCpan BA-head advantage</strong> (Δ = −0.0137, Holm p = 0.0017) survives.
-          The pooled fusion win (raw p = 0.05) drops to Holm p = 0.15 and does <em>not</em>.</p>
+          The pooled fusion-vs-NMP-BA pattern (raw <em>p</em> = 0.038) drops to Holm <em>p</em> = 0.151 and does <strong>not</strong>.</p>
+        <p class="cite">SI: table2_holm_adjusted.json  ·  numbers match paper Table 2 line 170 verbatim</p>
       </div>
       <div class="figure-card"><img src="figures_input/fl05_multiplicity_holm.png" alt="Holm family-wise correction"></div>
     </div>
   </section>
 
-  <!-- Slide 8 — The three-condition rule -->
+  <!-- 8 — Three-condition rule -->
   <section class="slide" data-section="2 · Evaluation traps">
     <h2>The three-condition superiority rule</h2>
     <div class="three-col" style="margin-top: 40px;">
@@ -258,18 +258,37 @@
         <p>Resample at the <strong>allele level</strong>, 95% CI on Δ <strong>excludes zero</strong></p>
       </div>
     </div>
-    <p class="caption" style="margin-top: 44px;">If all three hold → we claim an asymmetry. If one or two → we report numbers and refuse to claim superiority. This is the paper's main methodological contribution.</p>
+    <p class="caption" style="margin-top: 44px;">If all three hold → we claim an asymmetry. If one or two → we report numbers and refuse to claim superiority. <strong>Paper's main methodological contribution.</strong></p>
   </section>
 
-  <!-- Slide 9 — Case study: transductive collapse -->
+  <!-- 9 — Case study A: successor-corpus overlap -->
   <section class="slide" data-section="2 · Evaluation traps">
-    <h2>A cautionary case study — fitted on the eval set vs held out</h2>
+    <h2>Case study A — successor-corpus overlap</h2>
     <div class="two-col">
       <div>
-        <div style="display: flex; gap: 48px; margin-bottom: 24px;">
+        <div class="num-highlight" style="color: var(--red);">99.93 %</div>
+        <div class="num-sub" style="max-width: 480px;">of a 1,365-row holdout <em>disjoint from NetMHCpan-4.1 by construction</em> appears in <strong>NetMHCpan-4.2's</strong> later IEDB BA training pairs</div>
+        <ul class="bullet-list" style="margin-top: 28px;">
+          <li>1,364 / 1,365 rows overlap v4.2 training</li>
+          <li>99.93% is a <strong>train–test overlap rate</strong>, not an accuracy</li>
+          <li>Set is used only as a <strong>contamination probe</strong>, never a DeepNeo-vs-4.2 board</li>
+          <li>Transferable lesson: <strong>successor corpora silently absorb your holdout</strong></li>
+        </ul>
+        <p class="cite">SI: iedb_holdout_nmp42_overlap.json  ·  paper § 3.3, Case Study A</p>
+      </div>
+      <div class="figure-card"><img src="figures_paper/png/fig_contamination_ledger.png" alt="Contamination % bars, 4.1 vs 4.2"></div>
+    </div>
+  </section>
+
+  <!-- 10 — Case study B: transductive collapse -->
+  <section class="slide" data-section="2 · Evaluation traps">
+    <h2>Case study B — inductive collapse of a transductive rescorer</h2>
+    <div class="two-col">
+      <div>
+        <div style="display: flex; gap: 40px; margin-bottom: 24px;">
           <div>
             <div class="num-highlight" style="color: var(--accent);">0.862</div>
-            <div class="num-sub">in-sample AUROC (5-fold CV on the eval set)</div>
+            <div class="num-sub">in-sample AUROC (5-fold CV <em>on the eval set</em>)</div>
           </div>
           <div>
             <div class="num-highlight" style="color: var(--red);">0.442</div>
@@ -277,17 +296,17 @@
           </div>
         </div>
         <ul class="bullet-list">
-          <li>Second-stage pocket rescorer, CV-fitted on IEDB BA eval set</li>
-          <li>In-sample AUROC 0.862 → <strong>withdrawn as a result</strong></li>
-          <li>Documented as a <strong>failure mode</strong>, not a claim</li>
+          <li>Crystal-template pocket rescorer, 5-fold CV on IEDB BA eval set</li>
+          <li>In-sample 0.862 → <strong>withdrawn from deployment claims</strong></li>
+          <li>Transferable lesson: <strong>leakage need not sit only in the training split</strong></li>
         </ul>
-        <p class="caption"><em>Transductive CV on the evaluation set is not a benchmark.</em></p>
+        <p class="cite">SI: inductive_reranker_result.json  ·  paper § 3.3, Case Study B</p>
       </div>
       <div class="figure-card"><img src="figures_input/fl06_transductive_collapse.png" alt="Transductive collapse 0.862 → 0.442"></div>
     </div>
   </section>
 
-  <!-- Slide 10 — Architecture -->
+  <!-- 11 — Architecture -->
   <section class="slide" data-section="3 · Model + results">
     <h2>DeepNeo-CL — ESM2-35M + cross-attention + two heads</h2>
     <div class="two-col">
@@ -295,36 +314,53 @@
         <ul class="bullet-list">
           <li><strong>35M-param ESM2</strong> trunk — frozen 2 epochs, then top-2 unfrozen (10× lower LR)</li>
           <li>Peptide × HLA pseudo-sequence <strong>cross-attention</strong> + V37 physchem</li>
-          <li><strong>BA head</strong> (censored log-IC50) · <strong>EL head</strong> (focal BCE)</li>
-          <li><strong>5-fold ensemble</strong>; deployed BA = batch-rank average</li>
+          <li><strong>BA head</strong>: censored log-IC50  ·  <strong>EL head</strong>: focal BCE (γ = 2)  ·  within-HLA pairwise rank hinge</li>
+          <li><strong>5-fold ensemble</strong> on the official NetMHCpan-4.1 folds; deployed BA = batch-rank average</li>
         </ul>
       </div>
       <div class="figure-card"><img src="figures_paper/png/fig_data_flow.png" alt="Data flow / architecture"></div>
     </div>
   </section>
 
-  <!-- Slide 11 — Headline result — fusion match -->
+  <!-- 12 — Headline fusion tie -->
   <section class="slide" data-section="3 · Model + results">
     <h2>Headline — fusion vs fusion on decontaminated TransPHLA: a tie</h2>
     <div class="two-col">
       <div>
-        <div class="pill-card accent" style="margin-bottom: 20px;">
+        <div class="pill-card accent" style="margin-bottom: 18px;">
           <h3>DeepNeo-CL fusion</h3>
           <span class="num">0.9573</span>
         </div>
-        <div class="pill-card green" style="margin-bottom: 20px;">
+        <div class="pill-card green" style="margin-bottom: 18px;">
           <h3>NetMHCpan-4.1 fusion</h3>
           <span class="num">0.9575</span>
         </div>
-        <p style="font-size: 24px; color: var(--muted);">Δ = <span style="font-family: monospace; color: var(--fg);">−0.0002</span> &nbsp;·&nbsp; <strong style="color: var(--accent);">Tied</strong> under the three-condition rule</p>
+        <p style="font-size: 22px; color: var(--muted);">Δ = <span style="font-family: monospace; color: var(--fg);">−0.0002</span> &nbsp;·&nbsp; <strong style="color: var(--accent);">Tied</strong> under the three-condition rule</p>
         <p class="caption" style="margin-top: 14px;">NetMHCpan retains the <strong>BA-head</strong> advantage: Δ = −0.0137, Holm p = 1.7×10⁻³</p>
-        <p class="cite">n = 118,143 · SI: transphla_rescored_fusion_fixed.json + table2_holm_adjusted.json</p>
+        <p class="cite">n = 118,143  ·  Paper Table 2 line 168-170  ·  Figure fig_roc_pr_decontam.pdf</p>
       </div>
-      <div class="figure-card compact"><img src="figures_paper/png/fig_pooled_h2h_ba.png" alt="Pooled head-to-head"></div>
+      <div class="figure-card tall"><img src="figures_paper/png/fig_roc_pr_decontam.png" alt="ROC and PR on decontaminated TransPHLA"></div>
     </div>
   </section>
 
-  <!-- Slide 12 — IEDB weekly scoreboard -->
+  <!-- 13 — Per-length honesty -->
+  <section class="slide" data-section="3 · Model + results">
+    <h2>Per-length honesty — DeepNeo fusion vs NetMHCpan BA</h2>
+    <div class="two-col">
+      <div>
+        <ul class="bullet-list">
+          <li>CIs on Δ exclude zero at <strong>8-, 9-, 10-, and 11-mers</strong></li>
+          <li>Smallest absolute margin: <strong>9-mers, Δ = +0.0043</strong></li>
+          <li>So <em>not</em> an "exact tie" at every length — but the pooled fusion contrast (Table 2 row 4) is <strong>not Holm-robust</strong> at the family level</li>
+          <li>Both facts are reported; neither is suppressed</li>
+        </ul>
+        <p class="cite">Paper § 3.2, last paragraph  ·  SI: per_figure_provenance.json</p>
+      </div>
+      <div class="figure-card compact"><img src="figures_paper/png/fig_per_length_decontam.png" alt="Per-length ΔAUROC on decontaminated TransPHLA"></div>
+    </div>
+  </section>
+
+  <!-- 14 — IEDB weekly -->
   <section class="slide" data-section="3 · Model + results">
     <h2>IEDB weekly scoreboard — mid-field on BA, lead on the EL panel</h2>
     <div class="two-col">
@@ -332,25 +368,25 @@
         <div style="display: flex; gap: 56px; margin-bottom: 24px;">
           <div>
             <div class="num-highlight">6.85 / 14</div>
-            <div class="num-sub">BA mean rank (14 predictors)</div>
+            <div class="num-sub">BA mean rank, 46 weeks, 14 ranking-eligible predictors</div>
           </div>
           <div>
             <div class="num-highlight">1.80 / 3</div>
-            <div class="num-sub">EL mean rank (MS 3-predictor panel)</div>
+            <div class="num-sub">EL mean rank, three-predictor MS-EL board</div>
           </div>
         </div>
         <ul class="bullet-list">
-          <li>IEDB auto_bench weekly — same rows across all methods</li>
-          <li>BA: mid-field — not a win, not a loss</li>
-          <li>EL: leads the smaller mass-spec panel</li>
+          <li>IEDB auto_bench weekly — identical rows across all methods</li>
+          <li>BA: not a win, not a loss</li>
+          <li>Within-allele (per-reference) Wilcoxon vs NMP-4.1 BA: <strong>tied</strong> (p = 0.65)</li>
         </ul>
-        <p class="cite">SI: weekly_ranking_v41_2020_2026_singlecol_v2.json</p>
+        <p class="cite">Paper § 3.3  ·  SI: weekly_ranking_v41_2020_2026_singlecol_v2.json</p>
       </div>
-      <div class="figure-card compact"><img src="figures_paper/png/fig_weekly_ranking_ba.png" alt="Weekly BA ranking"></div>
+      <div class="figure-card compact"><img src="figures_paper/png/fig_weekly_ranking_ba.png" alt="Weekly BA ranking board"></div>
     </div>
   </section>
 
-  <!-- Slide 13 — Calibration -->
+  <!-- 15 — Calibration -->
   <section class="slide" data-section="3 · Model + results">
     <h2>Calibration — expected calibration error 0.091 vs 0.202</h2>
     <div class="two-col">
@@ -370,13 +406,31 @@
           <li>DeepNeo better calibrated at the low-score end</li>
           <li>Matters for score-thresholding in downstream vaccine pipelines</li>
         </ul>
-        <p class="cite">SI: Figure S1 · fig_S1_calibration.pdf</p>
+        <p class="cite">Paper SI Figure S1  ·  fig_S1_calibration.pdf</p>
       </div>
       <div class="figure-card compact"><img src="figures_paper/png/fig_S1_calibration.png" alt="Calibration reliability diagram"></div>
     </div>
   </section>
 
-  <!-- Slide 14 — Contributions -->
+  <!-- 16 — Ablation -->
+  <section class="slide" data-section="3 · Model + results">
+    <h2>Ablation — cumulative component attribution</h2>
+    <div class="two-col">
+      <div>
+        <ul class="bullet-list">
+          <li>Baseline: ESM2-35M peptide-only, <strong>AUROC 0.952</strong></li>
+          <li>Deployment: SupCon v2 ensemble, <strong>AUROC 0.970</strong></li>
+          <li>Per-step Δ: V37 +0.005, pseudo-seq +0.005, cross-attn +0.002, eff-num +0.005, LDS +0.002</li>
+          <li>No single component Δ exceeds +0.005 — <strong>gain is distributed, not any single trick</strong></li>
+          <li>SupCon delivers <strong>+0.022 AUPR</strong> on the rare-allele <em>n</em><sub>train</sub> &lt; 100 subset</li>
+        </ul>
+        <p class="cite">Paper § 3.4  ·  SI: ablation_ladder.json  ·  Figure fig07_ablation_grid.pdf</p>
+      </div>
+      <div class="figure-card compact"><img src="figures_paper/png/fig07_ablation_grid.png" alt="Cumulative ablation ladder"></div>
+    </div>
+  </section>
+
+  <!-- 17 — Contributions -->
   <section class="slide" data-section="4 · Takeaway">
     <h2>What the paper actually contributes</h2>
     <div class="three-col" style="margin-top: 36px;">
@@ -386,7 +440,7 @@
       </div>
       <div class="pill-card accent">
         <h3>② Evaluation contract</h3>
-        <p>A <strong style="color: var(--fg);">leakage-aware, multiplicity-controlled</strong> protocol: exact decontamination + DeLong + Holm + bootstrap. Portable to any shared-corpus ranking task.</p>
+        <p>A <strong style="color: var(--fg);">leakage-aware, multiplicity-controlled</strong> protocol: exact decontamination + DeLong + Holm (family of 4) + bootstrap. Portable to any shared-corpus ranking task.</p>
       </div>
       <div class="pill-card accent">
         <h3>③ Failure-mode case studies</h3>
@@ -398,10 +452,10 @@
     <p class="caption" style="margin-top: 40px; text-align: center;">If there's one thing to remember, it's contribution ②. The model is a compact competitor; the methodology is what we hope people adopt.</p>
   </section>
 
-  <!-- Slide 15 — Thanks + links -->
+  <!-- 18 — Thanks -->
   <section class="slide end-slide" data-section="">
     <h1>Thanks.</h1>
-    <p style="font-size: 28px; color: var(--muted); max-width: 900px;">Paper, evidence pack, SI JSON ledgers, and compliance audits:</p>
+    <p style="font-size: 28px; color: var(--muted); max-width: 900px;">Paper, SI JSON ledgers, compliance audits, overleaf zip:</p>
     <div class="end-links">
       <div><span style="color: var(--accent);">▸</span>&nbsp; <strong style="color: var(--fg);">github.com/KevinSimple/deepneo-pub/mdpi_submission</strong></div>
       <div><span style="color: var(--accent);">▸</span>&nbsp; deepneo.kevinwanglab.org &nbsp;<span style="color: var(--dim); font-family: Inter;">· live model (v4.2 line, not this paper's)</span></div>
@@ -414,7 +468,7 @@
 
 <div class="footer">
   <span class="paper">Wang &amp; Nand · MDPI Information · Oct 2026</span>
-  <span class="page"><span id="pagenum">1</span> / <span id="pagetotal">15</span></span>
+  <span class="page"><span id="pagenum">1</span> / <span id="pagetotal">18</span></span>
 </div>
 
 <div class="controls">
@@ -442,7 +496,6 @@
     segs.forEach((seg, k) => seg.classList.toggle('done', k <= idx));
     document.getElementById('pagenum').textContent = idx + 1;
 
-    // inject or update section tag
     let tag = s.querySelector('.section-tag');
     const section = s.dataset.section || '';
     if (!tag && section) {
