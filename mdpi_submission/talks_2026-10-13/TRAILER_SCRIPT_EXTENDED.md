@@ -68,9 +68,9 @@ Target: longer-form explainer for YouTube main-feed, Twitter long-form, LinkedIn
 
 **Visual**: `figures_paper/png/fig_S1_calibration.png`.
 
-**Narration** (~45 words):
+**Narration** (~50 words):
 
-> Second real finding, and probably the paper's most useful one. **Expected calibration error 0.091 versus 0.202** — DeepNeo-CL's probability outputs have less than half NetMHCpan's calibration error. This matters practically for any vaccine-design pipeline that thresholds scores at a chosen probability.
+> Second real finding, and probably the paper's most useful one. On the TransPHLA EL set, **expected calibration error 0.091 versus 0.202** — DeepNeo-CL's probability outputs have less than half NetMHCpan's calibration error at 10-bin reliability. This matters practically for any vaccine-design pipeline that thresholds scores at a chosen probability.
 
 ---
 

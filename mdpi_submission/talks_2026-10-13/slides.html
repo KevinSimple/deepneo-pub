@@ -235,24 +235,25 @@
 
   <!-- 7 — THE REAL FINDING: Calibration (ELEVATED from end) -->
   <section class="slide" data-section="3 · The real findings">
-    <h2><span class="honest-tag real">● Real</span>Calibration — ECE 0.091 vs 0.202 on the clean TransPHLA set</h2>
+    <h2><span class="honest-tag real">● Real</span>Calibration — ECE 0.091 vs 0.202 (TransPHLA EL, n = 161,652)</h2>
     <div class="two-col">
       <div>
         <div style="display: flex; gap: 48px; margin-bottom: 20px;">
           <div>
             <div class="num-highlight" style="color: var(--green);">0.091</div>
-            <div class="num-sub">DeepNeo-CL ECE</div>
+            <div class="num-sub">DeepNeo-CL EL · ECE</div>
           </div>
           <div>
             <div class="num-highlight" style="color: var(--muted);">0.202</div>
-            <div class="num-sub">NetMHCpan-4.1 ECE</div>
+            <div class="num-sub">NetMHCpan-4.1 EL · ECE</div>
           </div>
         </div>
         <ul class="bullet-list">
-          <li><strong>Half the calibration error</strong> at 10-bin reliability</li>
-          <li>The <strong>only win we can defend without caveats</strong> — paired, same rows, bigger-is-worse metric</li>
-          <li>Matters practically for <strong>score-thresholding</strong> in vaccine-design pipelines (which cut off at a chosen probability)</li>
+          <li><strong>Half the calibration error</strong> at 10-bin reliability on the full TransPHLA EL set</li>
+          <li>The <strong>only comparison that stands without a tie-vs-win caveat</strong> — paired, same rows, bigger-is-worse metric</li>
+          <li>Matters practically for <strong>score-thresholding</strong> in vaccine-design pipelines</li>
           <li>No other pMHC predictor paper has reported calibration on this benchmark</li>
+          <li style="color: var(--muted);"><em>Caveat: measurement is on the full set (includes the 26.9% rows removed under decontamination). A decontaminated re-measurement is noted as future work in SI.</em></li>
         </ul>
         <p class="cite">Paper SI Figure S1 · fig_S1_calibration.pdf</p>
       </div>
