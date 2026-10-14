@@ -1,145 +1,118 @@
 # Extended trailer script — DeepNeo-CL · 2:30 explainer
 
-Target: longer-form explainer for YouTube main-feed, Twitter long-form, LinkedIn posts, pub-repo landing-page embed, and the MDPI SI promo. CS audience; real biology vocabulary; more breathing room than the 90-second cut.
+Target: longer-form explainer for YouTube main-feed, Twitter long-form, LinkedIn, pub-repo landing-page embed, MDPI SI promo.
 
-**Companion**: the 90 s cut lives in `TRAILER_SCRIPT.md` and remains the Shorts/Twitter version.
+**Honest-tier framing** (binding — matches the paper's actual value tier):
+- Lead the real findings (**leakage ledger · calibration · SI evidence pack**)
+- Headline fusion match as a **tie**, not a win
+- Case studies compressed into one beat; framed as "concrete ledgers for known traps"
+- Three-condition rule reframed as "standard tools, applied with discipline"
 
-**Visual family (shared with the 90 s cut, 2 new asset types added)**:
-- 🧬 Six FigureLab plates `fl01`–`fl06` (same as 90 s cut; see `FIGURELAB_PROMPTS.md`)
-- 📊 Three real paper figures: `latex/figures/fig_data_flow.pdf` · `latex/figures/graphical_abstract.svg` (middle panel) · `latex/figures/fig_pooled_h2h_ba.pdf`
-- 🖼 Three static text slides (built in Keynote/PowerPoint, 1920×1080): **Pipeline card** · **Architecture card** · **Honest-tie card**
+**Visual plates**: 6 FigureLab plates (fl01–fl06) + 4 paper-figure PNGs (fig_S1_calibration, fig_roc_pr_decontam, fig_data_flow, fig07_ablation_grid) + 3 static text cards.
 
-**Pacing**: 10 beats across 2:30, roughly 12–18 s per beat. Narration runs ~180 words/min (brisk-but-natural) at a target of ~400 total words.
+**Pacing**: 10 beats across 2:30, ~15 s per beat; narration ~180 wpm.
 
 ---
 
 ## 0:00 – 0:15 · The biology opener
 
-**Visual**: 🧬 `fl01_mhc_presentation.png` (full-frame, slow Ken-Burns zoom from the T-cell inward to the MHC-I/peptide complex on the cell surface).
-
-**Narration** (~45 words):
-
-> Every nucleated cell in your body is constantly chopping its own proteins into short fragments — **peptides** — and displaying them on its surface, bound to a molecule called **MHC class I**. This is how CD8+ T-cells know what's happening inside a cell they can't see into.
-
----
-
-## 0:15 – 0:30 · Why it matters (healthy vs tumour)
-
-**Visual**: 🧬 `fl02_normal_vs_cancer.png` (crossfade from fl01 at 0:15; hold both panels side-by-side).
+**Visual**: `fl01_mhc_presentation.png` (full-frame, slow Ken-Burns zoom).
 
 **Narration** (~40 words):
 
-> Healthy cells present **self peptides**, and the immune system ignores them. Tumour cells also present **neoantigens** — fragments of mutated or abnormal proteins. If a CD8+ T-cell sees a neoantigen on an MHC class I molecule, it kills the cell.
+> Every nucleated cell in your body chops its own proteins into short fragments — **peptides** — and displays them on its surface, bound to **MHC class I**. This is how CD8+ T-cells know what's happening inside a cell they can't see into.
 
 ---
 
-## 0:30 – 0:45 · Where this prediction sits in cancer-vaccine design
+## 0:15 – 0:28 · Why it matters
 
-**Visual**: 🖼 **Pipeline card** — a static slide showing a 5-stage horizontal flow:
-`① Patient tumour DNA/RNA-seq  →  ② Mutation calls  →  ③ Candidate peptides  →  ④ MHC-presentation prediction (DeepNeo-CL)  →  ⑤ Peptide/mRNA vaccine`
-Stage ④ highlighted in amber with a subtle "you are here" caret.
+**Visual**: `fl02_normal_vs_cancer.png`.
 
-**Narration** (~45 words):
+**Narration** (~35 words):
 
-> Here's where machine learning enters. Personalised cancer-vaccine pipelines sequence a patient's tumour, call the mutations, generate a list of candidate neoantigen peptides, and then need to predict which ones the patient's HLA alleles will actually present. That upstream prediction is what DeepNeo-CL does.
+> Tumour cells also display **neoantigens** — fragments of mutated proteins. If a T-cell sees a neoantigen on an MHC class I molecule, it kills the cell. Personalised cancer-vaccine design depends on predicting which peptides a given HLA allele will present.
 
 ---
 
-## 0:45 – 1:00 · The task, formally
+## 0:28 – 0:43 · Where this prediction sits
 
-**Visual**: 🧬 `fl03_ranking_task.png` (candidate peptides → model → ranked list).
+**Visual**: 🖼 **Pipeline card** — 5-stage flow: Patient sequencing → Mutation calls → Candidate peptides → **MHC-presentation prediction (DeepNeo-CL)** → Vaccine. Stage 4 highlighted amber with "YOU ARE HERE".
 
-**Narration** (~40 words):
+**Narration** (~38 words):
 
-> Computationally, this is a **ranking problem**. Take ten-thousand candidate peptides, score each one against one HLA allele, and sort — the top of the list goes to expensive experimental validation. The output has two heads: binding affinity, and eluted-ligand presentation probability.
-
----
-
-## 1:00 – 1:15 · The model, briefly
-
-**Visual**: 📊 Middle panel of `latex/figures/graphical_abstract.svg` (ESM2 trunk → cross-attention → BA + EL heads → 5-fold ensemble). Alternatively `latex/figures/fig_data_flow.pdf` cropped to the model block.
-
-**Narration** (~45 words):
-
-> DeepNeo-CL is deliberately compact: a 35-million-parameter protein language model, ESM2, as the trunk, with one cross-attention layer letting each peptide position attend over the HLA's binding-pocket pseudo-sequence. Two heads, trained as a five-fold ensemble on the official NetMHCpan-4.1 folds.
+> Here's where machine learning enters. The industry reference is **NetMHCpan-4.1**. We built DeepNeo-CL — a 35-million-parameter PLM, trained on NetMHCpan's own cross-validation folds, so no training-data advantage. The paper is about what happens when you compare the two honestly.
 
 ---
 
-## 1:15 – 1:30 · Problem 1 — leakage via a shared public corpus
+## 0:43 – 1:00 · The real finding #1 — 26.9% leakage
 
-**Visual**: 🧬 `fl04_leakage_venn.png`.
+**Visual**: `fl04_leakage_venn.png`.
 
 **Narration** (~50 words):
 
-> But here's the first catch. Most public benchmarks for this task overlap NetMHCpan-4.1's own training corpus. On one widely-used holdout we checked, **26.9 percent** of the pairs were already in the training set. If you don't remove them, you're grading on the training data — and every PLM looks state-of-the-art.
+> First real finding. The widely-cited TransPHLA holdout contains **twenty-six point nine percent exact (peptide, HLA) pair overlap** with NetMHCpan-4.1's own training corpus. Forty-three thousand five hundred and nine pairs removed. Every TransPHLA number in the paper is on the clean subset — **n equals 118,143**. Nobody else has published this specific decontam ledger.
 
 ---
 
-## 1:30 – 1:45 · Problem 2 — multiplicity across the comparison family
+## 1:00 – 1:14 · The honest headline — a tie
 
-**Visual**: 🧬 `fl05_multiplicity_holm.png`.
+**Visual**: `figures_paper/png/fig_roc_pr_decontam.png`.
 
-**Narration** (~55 words):
+**Narration** (~42 words):
 
-> The second catch. The benchmark gives us four head-to-head tests between DeepNeo-CL and NetMHCpan-4.1 — BA head, EL head, deployed fusion, and a control. If you report whichever one looks like a win without correcting across the family of four, random noise alone can manufacture a false positive. We predeclare per-allele Wilcoxon tests, Holm-adjusted across the four, with allele-clustered bootstrap confidence intervals.
+> Under exact decontamination plus **Holm-adjusted per-allele tests**, DeepNeo-CL fused-score and NetMHCpan-4.1 fused-score are **tied** on the clean subset — 0.9573 versus 0.9575. NetMHCpan keeps the BA-head lead at Δ = −0.0137, Holm p = 1.7×10⁻³. We report both.
 
 ---
 
-## 1:45 – 2:00 · The honest result
+## 1:14 – 1:30 · The real finding #2 — calibration
 
-**Visual**: 🖼 **Honest-tie card** — large text slide:
-```
-On decontaminated TransPHLA (n = 118,143)
-
-DeepNeo-CL fusion         0.9573
-NetMHCpan-4.1 fusion      0.9575
-                           Δ = −0.0002  Tied
-
-NetMHCpan-4.1 BA-head keeps a Holm-robust Δ = −0.0137 lead.
-```
-Palette: navy headline on white, amber for DeepNeo row, sage for NetMHCpan.
+**Visual**: `figures_paper/png/fig_S1_calibration.png`.
 
 **Narration** (~45 words):
 
-> Under that honest contract, on 118,143 decontaminated TransPHLA pairs, DeepNeo-CL and NetMHCpan-4.1 **tie** at the fused score we deploy. NetMHCpan keeps a small but Holm-robust lead on the BA head. We report both, and we don't claim a win.
+> Second real finding, and probably the paper's most useful one. **Expected calibration error 0.091 versus 0.202** — DeepNeo-CL's probability outputs have less than half NetMHCpan's calibration error. This matters practically for any vaccine-design pipeline that thresholds scores at a chosen probability.
 
 ---
 
-## 2:00 – 2:15 · The cautionary case study
+## 1:30 – 1:44 · The model, briefly
 
-**Visual**: 🧬 `fl06_transductive_collapse.png`.
+**Visual**: `figures_paper/png/fig_data_flow.png` (or `graphical_abstract.svg` middle panel).
 
-**Narration** (~45 words):
+**Narration** (~42 words):
 
-> One cautionary tale we think the field needs. We fitted a second-stage pocket rescorer with cross-validation on the IEDB BA evaluation set. CV AUROC: 0.862 — looks state-of-the-art. When we deployed it to held-out alleles: 0.442, **below chance**. Transductive CV on the evaluation set is not a benchmark.
+> The model is deliberately compact. ESM2-35M trunk, one cross-attention layer letting each peptide position attend over the HLA pseudo-sequence, two heads for BA and EL, five-fold ensemble. Trained on commodity GPUs. The gain over the peptide-only baseline is **distributed** across components, not any single trick.
 
 ---
 
-## 2:15 – 2:30 · Takeaway + end card
+## 1:44 – 2:00 · The three-condition rule
 
-**Visual**: 🖼 Static end card (same layout as the 90 s cut):
+**Visual**: 🧬 `fl05_multiplicity_holm.png` (the 4-comparison Holm family image).
 
-```
-Efficient Protein Language Models for
-Peptide–MHC Ranking
+**Narration** (~48 words):
 
-A Leakage-Aware Evaluation Protocol under
-Multiplicity Control
+> The evaluation contract: **DeLong (1988) + Holm (1979) + bootstrap (1979)**. All standard tools — the contribution is applying all three with discipline in a sub-field that routinely does pooled-AUROC-only comparisons. Under this contract, the only Holm-robust TransPHLA asymmetry is NetMHCpan's BA-head lead.
 
-Kevin Wang · Parma Nand
-Auckland University of Technology
+---
 
-github.com/KevinSimple/deepneo-pub
-MDPI Information · 2026
+## 2:00 – 2:14 · Two cautionary ledgers (known traps, concrete numbers)
 
-[QR code to pub repo]
-```
+**Visual**: `fl06_transductive_collapse.png` (left-side 0.862→0.442, with 99.93% overlay in text).
 
-**Narration** (~30 words, delivered calmly before the fade):
+**Narration** (~48 words):
 
-> The paper's main contribution isn't a bigger model — it's an evaluation contract portable to any shared-corpus ranking task. Full paper, evidence ledgers, and compliance pack: in the link below.
+> Two cautionary ledgers. **Ninety-nine point nine three percent** of an author-constructed holdout turns out to be in NetMHCpan-4.2's later training. A pocket rescorer fitted by CV on the eval set hit AUROC **0.862** — then collapsed to **0.442**, below chance, when honestly held out. Known traps. Specific numbers.
 
-Then fade to end card and hold 7 s with no narration (QR scan time).
+---
+
+## 2:14 – 2:30 · The evidence pack + end card
+
+**Visual**: 🖼 **End card** (title, authors, QR, link) with brief "515 claims · 17 SI JSON ledgers" overlay 2:14–2:20.
+
+**Narration** (~35 words):
+
+> **Five hundred fifteen numeric claims. Seventeen public SI JSON ledgers.** Every digit in the paper traces to a committed file. Full paper, evidence pack, and compliance audits at the link.
+
+Fade to end card for the remaining ~8 s (QR scan time).
 
 ---
 
@@ -147,55 +120,43 @@ Then fade to end card and hold 7 s with no narration (QR scan time).
 
 | Beat | Words | Target seconds @ 180 wpm | OK? |
 |---|---|---|---|
-| 0:00–0:15 (fl01)                            | 45 | 15 | ✅ |
-| 0:15–0:30 (fl02)                            | 40 | 13 | ✅ (2 s pad) |
-| 0:30–0:45 (🖼 Pipeline card)                | 45 | 15 | ✅ |
-| 0:45–1:00 (fl03)                            | 40 | 13 | ✅ (2 s pad) |
-| 1:00–1:15 (📊 architecture)                 | 45 | 15 | ✅ |
-| 1:15–1:30 (fl04)                            | 50 | 17 | 🟡 trim to 45 if read fast |
-| 1:30–1:45 (fl05)                            | 45 | 15 | ✅ |
-| 1:45–2:00 (🖼 Honest-tie card)              | 45 | 15 | ✅ |
-| 2:00–2:15 (fl06)                            | 45 | 15 | ✅ |
-| 2:15–2:30 (🖼 end card + QR hold)           | 30 | 10 | ✅ (fade pad = 5 s silence) |
-| **Total**                                   | **430** | **~143 s** | 🟡 **expected 150 s target — read briskly at 180 wpm or trim 1-2 words/beat** |
+| 0:00–0:15 (fl01)                 | 40 | 13 | ✅ |
+| 0:15–0:28 (fl02)                 | 35 | 12 | ✅ |
+| 0:28–0:43 (pipeline card)        | 38 | 13 | ✅ |
+| 0:43–1:00 (**26.9% leakage**)    | 50 | 17 | ✅ |
+| 1:00–1:14 (**honest tie**)       | 42 | 14 | ✅ |
+| 1:14–1:30 (**calibration**)      | 45 | 15 | ✅ |
+| 1:30–1:44 (architecture)         | 42 | 14 | ✅ |
+| 1:44–2:00 (Holm discipline)      | 48 | 16 | ✅ |
+| 2:00–2:14 (cautionary ledgers)   | 48 | 14 | ✅ |
+| 2:14–2:30 (ledger + end card)    | 35 | 12 | ✅ |
+| **Total**                        | **423** | **~141 s** | 🟡 brisk read lands under 2:30 with ~8-10 s end-card hold |
 
-If the brisk pass still overshoots, pre-trim option: drop "and every PLM looks state-of-the-art" from beat 6, and "about six wins at α = 0.05" from beat 7. Lands cleanly under 2:30.
+---
+
+## What changed from the earlier draft
+
+**Promoted (now have dedicated beats):**
+- 26.9% leakage (was folded into "problem 1" — now stands alone as "the real finding #1")
+- Calibration (was tacked onto the end — now a dedicated real-finding beat with the honest "probably the paper's most useful finding" framing)
+- The SI evidence pack (515 claims · 17 ledgers) — now in the end-card beat
+
+**Demoted / compressed:**
+- Multiplicity trap (dropped as a standalone beat; the Holm framing is in beat 8 as "the three-condition rule" with explicit "standard tools, applied with discipline")
+- Case studies (compressed from 2 beats to 1 beat; framed as "known traps, specific numbers" not "surprising findings")
+
+**Honest-tie framing throughout:** no "beats NetMHCpan". The 0.9573 vs 0.9575 tie is the headline. The BA-head loss is reported alongside, as the paper does.
+
+**End-card copy change:** emphasizes **515 claims · 17 ledgers** (the real receipts), not just the paper title.
 
 ---
 
 ## Shot list / editor notes
 
-**Pacing rules (binding — the audience is CS, they don't want the biology hand-wavy):**
-
-- Each FigureLab plate held full-screen with slow Ken-Burns (10–15% zoom over its beat). No fast cuts in biology sections.
-- Text cards (pipeline / honest-tie / end card) stay static — no animation. Let the viewer read.
-- `fig_data_flow.pdf` or the architecture panel can have a subtle highlight-sweep over the three blocks (ESM2 → cross-attention → heads) across its 15 s.
-- Transitions: 0.3 s crossfade between every beat. No swipes, no slides, no cute animations.
-- Caption / subtitle: hard-burn captions for YouTube silent-autoplay audiences. Font: SF Pro / Inter, 36 pt white on 60%-opacity navy bar at the bottom 15% of the frame.
-
-**Audio:**
-
-- Narration recorded in one take per beat (10 clips). Compile in Descript / Audacity.
-- Background music: ambient / minimal (no bed drops, no risers). −18 LUFS integrated, duck under narration to −24 LUFS. Example matches: "Kiasmos — Blurred", "Nils Frahm — Says", or any royalty-free piano-pad from Epidemic Sound / Pixabay Music.
-- Final mix: narration peaks at −6 dBFS; bed at −24 dBFS integrated.
-
-**Deliverables from the edit:**
-
-| File | Spec | Target home |
-|---|---|---|
-| `trailer_extended_1080p.mp4` | 1920×1080, 24 fps, H.264, ≤ 200 MB | YouTube main-feed, LinkedIn |
-| `trailer_extended_square.mp4` | 1080×1080 centre-crop, same length | Twitter, LinkedIn embed |
-| `trailer_extended_captions.srt` | WebVTT also acceptable | YouTube caption upload |
-| `trailer_90s.mp4` (from the 90 s cut) | 1920×1080 and 1080×1920 Shorts versions | YouTube Shorts, Twitter |
-
----
-
-## Where this file sits in the pack
-
-- `README.md` — orchestration (unchanged)
-- `FIGURELAB_PROMPTS.md` — the 6 biology-illustration briefs (unchanged; this script re-uses all 6)
-- `TRAILER_SCRIPT.md` — the 90 s Shorts/Twitter cut (unchanged, still the primary short version)
-- **`TRAILER_SCRIPT_EXTENDED.md`** — this file, 2:30 explainer cut
-- `DECK_OUTLINE.md` — the 15-slide conference talk outline (unchanged)
-
-No paper content touched. No new biology scenes introduced — the 2 new "card" slides are static text + the real paper architecture figure, consistent with the pack's stated visual family.
+Unchanged from the earlier draft:
+- Each FigureLab plate held full-screen with slow Ken-Burns (10–15% zoom over its beat)
+- Static text cards (pipeline / end card) stay still
+- 0.3 s crossfades between beats
+- Hard-burn captions for silent-autoplay viewers
+- −18 LUFS integrated, duck under narration to −24 LUFS
+- Export: 1080p MP4 + 1080×1080 square crop + SRT captions
