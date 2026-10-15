@@ -69,7 +69,7 @@ Target: short promo for the MDPI *Information* submission. YouTube Shorts (verti
 
 **Narration**:
 
-> **Every single numeric claim** in the paper — all 515 of them — traces to one of 17 public SI JSON ledgers. Reviewers can re-check every digit. Full paper and evidence pack: in the link below.
+> **Every substantive numeric claim** in the paper traces to one of **17 public SI JSON ledgers**. A committed audit script shows 43 of 43 headline-claim checks match. Reviewers can re-check every digit. Full paper and evidence pack: in the link below.
 
 Then fade to end card and hold 4-6 seconds for QR scan.
 
@@ -100,7 +100,7 @@ Each FigureLab plate and paper figure is 16:9. For 9:16 Shorts crop, use the cen
 | 0:22 | **26.9% leakage: exposed** |
 | 0:38 | **Honest result: a tie** |
 | 0:52 | **The quiet win: ½ the calibration error** |
-| 1:06 | **515 claims, 17 ledgers, all public** |
+| 1:06 | **17 SI JSON ledgers · committed audit script · all public** |
 
 ---
 

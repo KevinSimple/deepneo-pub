@@ -263,25 +263,25 @@
 
   <!-- 8 — THE REAL FINDING: Public evidence pack (ELEVATED from footer cites) -->
   <section class="slide" data-section="3 · The real findings">
-    <h2><span class="honest-tag real">● Real</span>Public evidence pack — every number traceable</h2>
+    <h2><span class="honest-tag real">● Real</span>Public evidence pack — every substantive number traceable</h2>
     <div class="three-col" style="margin-top: 32px;">
-      <div class="pill-card green">
-        <h3>Claims</h3>
-        <span class="num">515</span>
-        <p>numeric claims in the paper, every one machine-traceable to a committed SI JSON ledger</p>
-      </div>
       <div class="pill-card green">
         <h3>Ledgers</h3>
         <span class="num">17</span>
-        <p>SI JSON files, each one named by the manuscript section it supports (table2_holm_adjusted.json, transphla_rescored_fusion_fixed.json, …)</p>
+        <p>SI JSON files, each named by the manuscript section it supports (<code>table2_holm_adjusted.json</code>, <code>transphla_rescored_fusion_fixed.json</code>, …)</p>
       </div>
       <div class="pill-card green">
-        <h3>Reproducibility</h3>
-        <span class="num">100 %</span>
-        <p>of Table 1-6 numbers reproduced from the committed ledgers by two independent compliance audits (both PASS)</p>
+        <h3>Headline-claim audit</h3>
+        <span class="num">43 / 43</span>
+        <p>The committed <code>_claim_evidence_audit.py</code> script tests 43 headline numeric claims against the JSON ledgers; last re-run 2026-10-15, zero failures</p>
+      </div>
+      <div class="pill-card green">
+        <h3>Compliance audits</h3>
+        <span class="num">PASS × 2</span>
+        <p>Structural audit (18 PASS · 1 Minor · 0 FAIL) + content/claims audit (VERDICT: PASS on directly verifiable items)</p>
       </div>
     </div>
-    <p class="caption" style="margin-top: 36px; text-align: center;">Rare in the sub-field. Reviewers can re-check every digit without the training cluster.</p>
+    <p class="caption" style="margin-top: 36px; text-align: center;">Rare in the sub-field. Reviewers can re-check every digit against committed files without the training cluster.</p>
   </section>
 
   <!-- 9 — MID: Headline fusion tie -->
@@ -428,7 +428,7 @@
     <div class="three-col" style="margin-top: 32px;">
       <div class="pill-card green">
         <h3>● Real</h3>
-        <p><strong style="color: var(--fg);">26.9% leakage ledger</strong> on TransPHLA, <strong style="color: var(--fg);">ECE 0.091 vs 0.202</strong> calibration win, and <strong style="color: var(--fg);">515 claims traceable</strong> to committed SI JSONs. Nobody else has published any of these on this benchmark.</p>
+        <p><strong style="color: var(--fg);">26.9% leakage ledger</strong> on TransPHLA, <strong style="color: var(--fg);">ECE 0.091 vs 0.202</strong> calibration win (TransPHLA EL, n = 161,652), and <strong style="color: var(--fg);">17 SI JSON ledgers</strong> with a committed audit script (43/43 headline-claim checks MATCH). Nobody else has published any of these on this benchmark.</p>
       </div>
       <div class="pill-card accent">
         <h3>◐ Mid</h3>
@@ -448,7 +448,7 @@
   <!-- 16 — Thanks -->
   <section class="slide end-slide" data-section="">
     <h1>Thanks.</h1>
-    <p style="font-size: 28px; color: var(--muted); max-width: 900px;">Paper, SI JSON ledgers (17 files · 515 claims), compliance audits, overleaf zip:</p>
+    <p style="font-size: 28px; color: var(--muted); max-width: 900px;">Paper, 17 SI JSON ledgers, audit script, compliance reports, overleaf zip:</p>
     <div class="end-links">
       <div><span style="color: var(--accent);">▸</span>&nbsp; <strong style="color: var(--fg);">github.com/KevinSimple/deepneo-pub/mdpi_submission</strong></div>
       <div><span style="color: var(--accent);">▸</span>&nbsp; deepneo.kevinwanglab.org &nbsp;<span style="color: var(--dim); font-family: Inter;">· live model (v4.2 line, not this paper's)</span></div>

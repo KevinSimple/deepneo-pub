@@ -106,11 +106,11 @@ Target: longer-form explainer for YouTube main-feed, Twitter long-form, LinkedIn
 
 ## 2:14 – 2:30 · The evidence pack + end card
 
-**Visual**: 🖼 **End card** (title, authors, QR, link) with brief "515 claims · 17 SI JSON ledgers" overlay 2:14–2:20.
+**Visual**: 🖼 **End card** (title, authors, QR, link) with brief "17 SI JSON ledgers · committed audit script" overlay 2:14–2:20.
 
 **Narration** (~35 words):
 
-> **Five hundred fifteen numeric claims. Seventeen public SI JSON ledgers.** Every digit in the paper traces to a committed file. Full paper, evidence pack, and compliance audits at the link.
+> **Seventeen public SI JSON ledgers.** Every substantive numeric claim in the paper traces to a committed file; a committed audit script shows 43 of 43 headline checks match. Full paper, evidence pack, and compliance audits at the link.
 
 Fade to end card for the remaining ~8 s (QR scan time).
 
@@ -139,7 +139,7 @@ Fade to end card for the remaining ~8 s (QR scan time).
 **Promoted (now have dedicated beats):**
 - 26.9% leakage (was folded into "problem 1" — now stands alone as "the real finding #1")
 - Calibration (was tacked onto the end — now a dedicated real-finding beat with the honest "probably the paper's most useful finding" framing)
-- The SI evidence pack (515 claims · 17 ledgers) — now in the end-card beat
+- The SI evidence pack (17 ledgers + committed audit script) — now in the end-card beat
 
 **Demoted / compressed:**
 - Multiplicity trap (dropped as a standalone beat; the Holm framing is in beat 8 as "the three-condition rule" with explicit "standard tools, applied with discipline")
@@ -147,7 +147,7 @@ Fade to end card for the remaining ~8 s (QR scan time).
 
 **Honest-tie framing throughout:** no "beats NetMHCpan". The 0.9573 vs 0.9575 tie is the headline. The BA-head loss is reported alongside, as the paper does.
 
-**End-card copy change:** emphasizes **515 claims · 17 ledgers** (the real receipts), not just the paper title.
+**End-card copy change:** emphasizes **17 SI JSON ledgers + committed audit script** (the real receipts), not just the paper title.
 
 ---
 

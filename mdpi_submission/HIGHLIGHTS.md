@@ -12,7 +12,7 @@ Each bullet maps to a frozen number or ledger that is reproducible from the comm
 - Decontamination finds 26.9% exact-pair leakage; clean n = 118,143 reported.
 - Matches NetMHCpan-4.1 at the fused score on decontaminated TransPHLA.
 - Expected calibration error 0.091 vs 0.202 — half the baseline (SI Fig S1).
-- 515 numeric claims in the paper trace to 17 public SI JSON ledgers.
+- Every substantive claim traces to one of 17 public SI JSON ledgers.
 
 ---
 
@@ -24,7 +24,7 @@ Each bullet maps to a frozen number or ledger that is reproducible from the comm
 | 2 | 75 | "Decontamination finds 26.9% exact-pair leakage; clean n = 118,143 reported." |
 | 3 | 69 | "Matches NetMHCpan-4.1 at the fused score on decontaminated TransPHLA." |
 | 4 | 74 | "Expected calibration error 0.091 vs 0.202 — half the baseline (SI Fig S1)." |
-| 5 | 67 | "515 numeric claims in the paper trace to 17 public SI JSON ledgers." |
+| 5 | 69 | "Every substantive claim traces to one of 17 public SI JSON ledgers." |
 
 All five under 85 characters. No frozen number violated; no tone-rule word.
 
@@ -35,6 +35,6 @@ All five under 85 characters. No frozen number violated; no tone-rule word.
 | Previous bullet | Replaced because |
 |---|---|
 | "Mid-field on IEDB weekly BA (rank 6.85 / 14); leads a three-predictor EL panel." | "Mid-field" is a weak marketing bullet; the panel-lead is on only 3 methods. Replaced with the calibration ECE win, which is a defensible stand-alone finding on the primary benchmark. |
-| "Transductive case study: in-sample AUROC 0.862 collapses to 0.442 held-out." | Case study is a known textbook trap; its value is the ledger not the lesson. Replaced with the 515-claims / 17-ledgers evidence-pack line, which is a defensible provenance contribution unusual in the sub-field. |
+| "Transductive case study: in-sample AUROC 0.862 collapses to 0.442 held-out." | Case study is a known textbook trap; its value is the ledger not the lesson. Replaced with the 17-SI-ledger evidence-pack line, which is a defensible provenance contribution unusual in the sub-field. |
 
 **2026-10-13**: bullet #2 trimmed from 87 → 75 chars (added "per-allele" and "CI" specificity).
