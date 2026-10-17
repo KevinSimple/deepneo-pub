@@ -97,42 +97,72 @@ QUERIES:   [consensus]  "data leakage train test overlap peptide MHC binding
 TOOLS:     consensus, pubmed, websearch
 
 HITS:
-  - MUNIS — "Deep learning enhances the prediction of HLA class I-presented CD8+
-    T cell epitopes in foreign pathogens." Nature Machine Intelligence 2024.
-    https://www.nature.com/articles/s42256-024-00971-y  ·  PMC11847706
-    Search-engine summary reports:
-      "over 65% of positive epitopes in the evaluation dataset are also present in
-       the training sets of existing predictors like TransPHLA and BigMHC"
-      "Previous methodologies removed only matched HLA-I-peptide pairs from the
-       training set, resulting in substantial overlap between test set epitopes and
-       training sets, whereas a stricter approach involved removing all epitopes used
-       in model evaluation from training sets, regardless of HLA-I restriction"
+  - MUNIS — Wohlwend J, Nathan A, Shalon N, Crain CR, Tano-Menka R, Goldberg B,
+    Richards E, Gaiha GD, Barzilay R.
+    "Deep learning enhances the prediction of HLA class I-presented CD8 T cell
+     epitopes in foreign pathogens."
+    Nature Machine Intelligence 2025;7(2):232-243.
+    DOI 10.1038/s42256-024-00971-y  ·  PMID 40008296  ·  PMC11847706
+    (MIT CSAIL / Jameel Clinic — Barzilay lab — with Ragon Institute / Gaiha lab.
+     NOTE: cite as 2025, not 2024. Online-first late 2024; issue is 7(2) 2025.)
 
-VERDICT:   WEAKENED  (possibly REFUTED — needs primary-source check)
-EVIDENCE:  SECONDARY  (search-engine summary only; the primary abstract could not be
-           retrieved — PubMed returned 0 for the MUNIS query, and the Nature page was
-           not fetched in full this session)
+    VERBATIM, retrieved from PMC full text 2026-10-18:
+      (a) "over 65% of positive epitopes in the evaluation dataset are also present
+           in the training sets of existing predictors, excluding MUNIS where we
+           ensure a 0% overlap."
+      (b) "This is a far stricter approach to data filtering than previous
+           methodologies where only matched HLA-I-peptide pairs were removed from
+           the training set, resulting in substantial overlap between test set
+           epitopes and training sets."
+      (c) "all epitopes used in model evaluation were removed from training sets,
+           regardless of HLA-I restriction."
 
-NARROWED:  Pending primary-source check. If the MUNIS summary is accurate, then:
-             - TransPHLA contamination HAS been quantified before (at ~65% under a
-               stricter peptide-level criterion, vs our 26.9% under exact-pair)
-             - our exact-(peptide,HLA)-pair protocol is the WEAKER criterion that
-               MUNIS explicitly argues against
-           The surviving honest framing would be:
+VERDICT:   WEAKENED — but NOT for the reason first assumed
+EVIDENCE:  PRIMARY (PMC full text retrieved 2026-10-18)
+
+CORRECTION TO THE 2026-10-18 FIRST PASS:
+  The first pass recorded, from a search-engine summary, that MUNIS named
+  "TransPHLA and BigMHC" with contamination percentages. The PRIMARY text does NOT
+  name those predictors in quote (a) — it says "existing predictors" generically.
+  The TransPHLA/BigMHC attribution was the search engine's gloss and must not be
+  repeated as MUNIS's wording.
+
+  Further: the two numbers are NOT comparable.
+    - MUNIS 65%  = their curated epitope evaluation set vs various predictors'
+                   training sets, under HLA-agnostic peptide removal
+    - ours 26.9% = TransPHLA holdout vs the NetMHCpan-4.1 training-pair union,
+                   under exact (peptide, HLA) pair removal
+  Neither supersedes the other numerically. Our 26.9% figure is NOT scooped.
+
+THE ACTUAL EXPOSURE (sharper and more serious than "someone published our number"):
+  MUNIS quote (b) explicitly names the criterion this manuscript uses — exact
+  (peptide, HLA) pair removal — as the INSUFFICIENT prior approach, and
+  demonstrates a stricter alternative. A high-profile 2025 Nat Mach Intell paper
+  therefore stands as a published argument against our decontamination design.
+
+  The manuscript ALREADY concedes the point conceptually at
+  deepneo_information.tex:134-135:
+    "This is a lower bound on cross-model contamination: it does not remove
+     peptide-sequence similarity to training peptides, peptide-allele neighbourhood
+     leakage, shared upstream MS/BA assays, or private/unenumerated training sets
+     of non-NetMHCpan competitors."
+  So the SCIENCE is honest. What is missing is the CITATION — we describe the gap
+  without pointing at the paper that closes it. To a reviewer who knows MUNIS this
+  reads as unfamiliarity with the literature, which is worse than either knowing
+  or not knowing.
+
+NARROWED:  Surviving honest framing for the cover letter (already applied):
              "we report an exact-pair decontamination ledger for TransPHLA against
-              the NetMHCpan-4.1 training union, and ship it as machine-readable SI;
-              stricter peptide-level criteria (e.g. MUNIS) remove more and are
-              discussed in Limitations."
-           Note the manuscript ALREADY concedes the lower-bound point at
-           deepneo_information.tex:134-135 — the paper is internally honest; it is
-           the cover letter's novelty framing that is at risk.
+              the NetMHCpan-4.1 training union and ship it as machine-readable SI;
+              exact-pair removal is a lower bound, and stricter peptide-level
+              criteria remove more."
 
-ACTION:    1. Retrieve MUNIS primary text and confirm/deny the 65% figure and the
-              stricter-protocol description.
-           2. Rewrite COVER_LETTER.md contribution #1 to drop the "not previously
-              published" assertion.
-           3. Consider citing MUNIS in Related Work (tex:82) and acknowledging the
-              stricter-decontamination line of work.
+ACTION:    1. DONE — COVER_LETTER.md contribution #1 rewritten; "has not been
+              previously published" removed; lower-bound acknowledgement added.
+           2. OPEN — cite MUNIS in Related Work (tex:82) and in the Limitations
+              lower-bound paragraph (tex:134-135). Manuscript is under a no-edit
+              directive; text drafted but not applied.
+           3. CLOSED — primary-source verification complete.
 ```
 
 ---
@@ -199,18 +229,50 @@ ACTION:    Either (a) soften to a factual statement with no comparative claim
 
 | # | Claim | Verdict | Evidence | Ships? |
 |---|---|---|---|---|
-| 1 | Calibration novelty | **REFUTED** | PRIMARY | ❌ must remove |
-| 2 | Decontam-ledger novelty | **WEAKENED** | SECONDARY | ❌ must rewrite; primary check pending |
+| 1 | Calibration novelty | **REFUTED** | PRIMARY | ❌ removed 2026-10-18 |
+| 2 | Decontam-ledger novelty | **WEAKENED** | **PRIMARY** (confirmed 2026-10-18) | ❌ rewritten 2026-10-18 |
 | 3 | "Most papers skip multiplicity control" | UNRESOLVED | none | ✅ paper's hedged form is fine |
-| 4 | "Reproducibility unusual in sub-field" | UNRESOLVED | none | ⚠️ soften to factual |
+| 4 | "Reproducibility unusual in sub-field" | UNRESOLVED | none | ✅ softened to factual 2026-10-18 |
 
-## Literature gaps found (reviewer-visible risk)
+## Literature gaps found (reviewer-visible risk — OPEN)
 
 Neither of these appears in the manuscript's 26-entry bibliography:
 
 | Missing citation | Why it matters |
 |---|---|
-| **MHCVision** (Bioinformatics 2021, doi:10.1093/bioinformatics/btab479) | Directly prior art for probability calibration of NetMHCpan class-I output |
-| **MUNIS** (Nat. Mach. Intell. 2024, s42256-024-00971-y) | Directly prior art for TransPHLA/BigMHC contamination quantification and for stricter peptide-level decontamination |
+| **MHCVision** — Pearngam et al., *Bioinformatics* 2021;37(21):3830–3838, doi:10.1093/bioinformatics/btab479, PMID 34196671 | Directly prior art for probability calibration (FDR/PEP) of NetMHCpan class-I output. Our SI reports ECE on the same kind of problem without acknowledging this line of work. |
+| **MUNIS** — Wohlwend et al., *Nat. Mach. Intell.* 2025;7(2):232–243, doi:10.1038/s42256-024-00971-y, PMID 40008296 | Explicitly names exact-(peptide,HLA)-pair removal — **our criterion** — as the insufficient prior approach, and demonstrates stricter HLA-agnostic epitope removal. Our Limitations concedes the gap conceptually but cites nobody. |
 
-Suggested reviewers Bernett and Kalinina both work in biological-ML leakage methodology and are plausible readers of MUNIS.
+Suggested reviewers **Bernett** and **Kalinina** both work in biological-ML leakage methodology; MUNIS is a 2025 *Nature Machine Intelligence* paper in exactly that space from the Barzilay lab. Probability they know it: high.
+
+## Recommended citation text (drafted, NOT applied — manuscript under no-edit directive)
+
+**For Related Work (`deepneo_information.tex:82`, after the BigMHC sentence):**
+
+> Decontamination criteria themselves vary across this literature: Wohlwend et al. remove every evaluation epitope from training regardless of HLA restriction, a strictly stronger criterion than the matched-pair removal used here and in most prior comparisons~\cite{munis2025}.
+
+**For the lower-bound paragraph (`deepneo_information.tex:134-135`, appended):**
+
+> This matched-pair criterion is weaker than HLA-agnostic epitope removal~\cite{munis2025}; we report it as a lower bound rather than as a sufficient decontamination guarantee.
+
+**For the calibration figure caption (`supplement.tex:100`, appended):**
+
+> Probability calibration for class-I predictors has previously been approached through FDR/posterior-error-probability estimation on NetMHCpan output~\cite{mhcvision2021}; the diagram here is a paired reliability comparison rather than a calibration method.
+
+**Bibliography entries to add:**
+
+```latex
+\bibitem{munis2025}
+Wohlwend, J.; Nathan, A.; Shalon, N.; et~al. Deep learning enhances the prediction of
+HLA class~I-presented CD8 T cell epitopes in foreign pathogens.
+\emph{Nat.~Mach.~Intell.} \textbf{2025}, \emph{7}, 232--243.
+https://doi.org/10.1038/s42256-024-00971-y
+
+\bibitem{mhcvision2021}
+Pearngam, P.; Sriswasdi, S.; Pisitkun, T.; Jones, A.R. MHCVision: estimation of global
+and local false discovery rate for MHC class~I peptide binding prediction.
+\emph{Bioinformatics} \textbf{2021}, \emph{37}, 3830--3838.
+https://doi.org/10.1093/bioinformatics/btab479
+```
+
+Cost: 2 bibliography entries + 3 sentences. Zero numbers change. Closes the single most likely reviewer objection.
