@@ -50,7 +50,7 @@ Target: longer-form explainer for YouTube main-feed, Twitter long-form, LinkedIn
 
 **Narration** (~50 words):
 
-> First real finding. The widely-cited TransPHLA holdout contains **twenty-six point nine percent exact (peptide, HLA) pair overlap** with NetMHCpan-4.1's own training corpus. Forty-three thousand five hundred and nine pairs removed. Every TransPHLA number in the paper is on the clean subset — **n equals 118,143**. Nobody else has published this specific decontam ledger.
+> First real finding. The widely-cited TransPHLA holdout contains **twenty-six point nine percent exact (peptide, HLA) pair overlap** with NetMHCpan-4.1's own training corpus. Forty-three thousand five hundred and nine pairs removed. Every TransPHLA number in the paper is on the clean subset — **n equals 118,143** — and the pair-level ledger ships as machine-readable Supplementary Data, so anyone can reproduce or contest the cut.
 
 ---
 

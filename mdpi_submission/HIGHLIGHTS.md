@@ -35,6 +35,6 @@ All five under 85 characters. No frozen number violated; no tone-rule word.
 | Previous bullet | Replaced because |
 |---|---|
 | "Mid-field on IEDB weekly BA (rank 6.85 / 14); leads a three-predictor EL panel." | "Mid-field" is a weak marketing bullet; the panel-lead is on only 3 methods. Replaced with the calibration ECE win, which is a defensible stand-alone finding on the primary benchmark. |
-| "Transductive case study: in-sample AUROC 0.862 collapses to 0.442 held-out." | Case study is a known textbook trap; its value is the ledger not the lesson. Replaced with the 17-SI-ledger evidence-pack line, which is a defensible provenance contribution unusual in the sub-field. |
+| "Transductive case study: in-sample AUROC 0.862 collapses to 0.442 held-out." | Case study is a known textbook trap; its value is the ledger not the lesson. Replaced with the 17-SI-ledger evidence-pack line, which is a factual provenance statement requiring no comparative claim about the sub-field. |
 
 **2026-10-13**: bullet #2 trimmed from 87 → 75 chars (added "per-allele" and "CI" specificity).

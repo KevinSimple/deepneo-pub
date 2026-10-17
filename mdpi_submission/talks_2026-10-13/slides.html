@@ -224,7 +224,8 @@
         <ul class="bullet-list" style="margin-top: 24px;">
           <li>43,509 of 161,652 pairs removed at decontamination</li>
           <li>Every TransPHLA number in the paper is on the <strong>clean subset: n = 118,143</strong></li>
-          <li>Nobody else has published this specific decontam ledger on this specific widely-used benchmark</li>
+          <li>Ships as a <strong>machine-readable pair-level ledger</strong> — reproducible or contestable row-by-row</li>
+          <li style="color: var(--muted);"><em>Exact-pair removal is a lower bound; stricter peptide-level criteria (removing eval peptides regardless of HLA) remove more. We say so in Methods and Limitations.</em></li>
           <li>Future papers citing TransPHLA now have a receipt to point to — or ignore at their peril</li>
         </ul>
         <p class="cite">SI: transphla_decontam_vs_42.json</p>
@@ -252,8 +253,8 @@
           <li><strong>Half the calibration error</strong> at 10-bin reliability on the full TransPHLA EL set</li>
           <li>The <strong>only comparison that stands without a tie-vs-win caveat</strong> — paired, same rows, bigger-is-worse metric</li>
           <li>Matters practically for <strong>score-thresholding</strong> in vaccine-design pipelines</li>
-          <li>No other pMHC predictor paper has reported calibration on this benchmark</li>
-          <li style="color: var(--muted);"><em>Caveat: measurement is on the full set (includes the 26.9% rows removed under decontamination). A decontaminated re-measurement is noted as future work in SI.</em></li>
+          <li style="color: var(--muted);"><em>Prior art exists: MHCVision (Bioinformatics 2021) does FDR/PEP calibration for NetMHCpan output; NetMHCpan ships percentile-rank calibration. Our contribution is the paired reliability-diagram comparison on this benchmark.</em></li>
+          <li style="color: var(--muted);"><em>Caveat: measurement is on the full set (includes the 26.9% rows removed under decontamination). A decontaminated re-measurement is future work.</em></li>
         </ul>
         <p class="cite">Paper SI Figure S1 · fig_S1_calibration.pdf</p>
       </div>
@@ -428,7 +429,7 @@
     <div class="three-col" style="margin-top: 32px;">
       <div class="pill-card green">
         <h3>● Real</h3>
-        <p><strong style="color: var(--fg);">26.9% leakage ledger</strong> on TransPHLA, <strong style="color: var(--fg);">ECE 0.091 vs 0.202</strong> calibration win (TransPHLA EL, n = 161,652), and <strong style="color: var(--fg);">17 SI JSON ledgers</strong> with a committed audit script (43/43 headline-claim checks MATCH). Nobody else has published any of these on this benchmark.</p>
+        <p><strong style="color: var(--fg);">26.9% leakage ledger</strong> on TransPHLA (machine-readable, pair-level), <strong style="color: var(--fg);">ECE 0.091 vs 0.202</strong> paired reliability comparison (TransPHLA EL, n = 161,652), and <strong style="color: var(--fg);">17 SI JSON ledgers</strong> with a committed audit script (43/43 headline-claim checks MATCH).</p>
       </div>
       <div class="pill-card accent">
         <h3>◐ Mid</h3>

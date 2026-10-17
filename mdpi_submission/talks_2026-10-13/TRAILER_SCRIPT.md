@@ -59,7 +59,7 @@ Target: short promo for the MDPI *Information* submission. YouTube Shorts (verti
 
 **Narration**:
 
-> One thing DeepNeo-CL actually wins cleanly: **calibration**. On the TransPHLA EL set, expected calibration error 0.091 versus 0.202 — less than half NetMHCpan's. Nobody else has reported calibration on this benchmark. Matters practically for anyone thresholding scores in a vaccine pipeline.
+> One thing DeepNeo-CL actually wins cleanly: **calibration**. On the TransPHLA EL set, expected calibration error 0.091 versus 0.202 — less than half NetMHCpan's. Matters practically for anyone thresholding scores in a vaccine pipeline, because the number you threshold on is closer to the truth.
 
 ---
 
